@@ -15,7 +15,7 @@
           <h2 class="az-dashboard-title">Hi Shilpa, welcome back!</h2>
           <!-- <p class="az-dashboard-text">CET Dashboard</p> -->
           <p class="az-dashboard-text" style="margin-top: 12px;font-size: 18px;">
-            India Dashboard / <a routerLink="/branches">Branches Dashboard</a>
+            <span style="color: blue">India Dashboard</span> / <a routerLink="/branches" style="color: black;">Branches Dashboard</a>
           </p>
         </div>
         <div class="az-content-header-right">
@@ -70,7 +70,7 @@
                 </div>
             </div>
           </div>
-          <div class="media">
+          <div class="media" [hidden]="true">
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #bu>
                 <option value="">All BU</option>
@@ -78,12 +78,101 @@
               </select>
             </div>
           </div>
-          <div class="media">
+          <div class="media" style="margin-left: 20px;" [hidden]="hideAllBranches">
+            <div class="media-body">
+              <div class="container btn btn-secondary dropdown-toggle">
+                <div class="row">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          BU
+                        </button>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')">All</a></li>
+                            <li class="dropdown-submenu">
+                              <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
+                              <ul class="dropdown-menu">
+                                <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">DU Digital Platform</a></li>
+                                <li class="dropdown-submenu">
+                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Enterprise DU')">Enterprise DU</a>
+                                  <ul class="dropdown-menu">
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
+                                  </ul>
+                                </li>
+                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NMEC')">DU NMEC</a></li>
+                                <li class="dropdown-submenu">
+                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Solutions DU')">Public Solutions DU</a>
+                                  <ul class="dropdown-menu">
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Aviation')">DU Public Solutions - Aviation</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Others')">DU Public Solutions - Others</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Public Safety')">DU Public Solutions - Public Safety</a></li>
+                                  </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('SAS DU')">SAS DU</a>
+                                  <ul class="dropdown-menu">
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Australia MS')">DU SA&S - Australia MS</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Others')">DU SA&S - Others</a></li>
+                                  </ul>
+                                </li>
+                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('Solution Factory')">Solution Factory</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Transportation')">BU Transportation</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Submarine')">BU Submarine</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Smart Mfg.')">BU Smart Mfg.</a></li>
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Safety BU')">Public Safety BU</a>
+                              <ul class="dropdown-menu">
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety - Aviation')">BU Public Safety - Aviation</a></li>
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety')">BU Public Safety</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU PNS Business')">BU PNS Business</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU NEC Labs')">BU NEC Labs</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Logistics')">BU Logistics</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU JCCS')">BU JCCS</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS BU')">CNS BU</a>
+                              <ul class="dropdown-menu">
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS')">BU CNS</a></li>
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS 5G')">BU CNS 5G</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
+
+                          </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="media" style="margin-left: 20px;" [hidden]="hideIndia">
+            <div class="media-body">
+              <div class="container btn btn-secondary dropdown-toggle">
+                <div class="row">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          BU
+                        </button>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')">All BU</a></li>
+                          <li class="dropdown-item" *ngFor="let bu_name of bu_names_branch"><a href="javascript:void(0)" (click)="selectBu(bu_name)">{{bu_name}}</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="media" style="margin-left: 10px;">
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #geo>
                 <!-- <option value="">Geo</option> -->
-                <option value="">All Branches</option>
                 <option value="india">India</option>
+                <option value="">All Branches</option>
                 <option value="japan">Japan</option>
                 <option value="emea">EMEA</option>
                 <!-- <option value="LATAM">LATAM</option> -->
@@ -112,14 +201,14 @@
           <a class="nav-link" routerLink="/"><i class="fas fa-elli psis-h"></i></a>
         </nav> -->
       </div>
-
+      {{geoFilter}}/{{buFilter}}/{{timeFilter}}
       <div class="row row-sm mg-b-20">
         <div class="col-lg-6 mg-t-20 mg-lg-t-0">
           <div class="card card-dashboard-five">
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Order Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -142,7 +231,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Sales Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -167,7 +256,7 @@
             <div class="card-header row">
               <div class="col-lg-8">
                 <h6 class="card-title">Order Conversion<span *ngIf="currentBC">({{currentBC}}BC)</span></h6> 
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
                 <div class="row">
                   <div class="col-lg-6">
                     <select (change)="toggleOrderConversion()" style="width: 100px;" #toggleOrder>
@@ -215,7 +304,7 @@
             <div class="card-header row">
               <div class="col-lg-12">
                 <h6 class="card-title">Projected Conversion rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
               </div>
             </div>
             <div class="card-body">
@@ -243,7 +332,7 @@
                 <div class="card-header row">
                   <div class="col-lg-12">
                     <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                   </div>
                 </div>
                 <div class="card-body row">
@@ -266,7 +355,7 @@
                 <div class="card-header row">
                   <div class="col-lg-12">
                     <h6 class="card-title">New Customers Acquired<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
                   </div>
                 </div>
                 <div class="card-body">
@@ -281,7 +370,7 @@
                 <div class="card-header row">
                   <div class="col-lg-12">
                     <h6 class="card-title">Average Order Cycle Time<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Months</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Months</p>
                   </div>
                 </div>
                 <div class="card-body">
@@ -294,7 +383,7 @@
                 <div class="card-header row">
                   <div class="col-lg-12">
                     <h6 class="card-title">Average Order <br>Size<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                   </div>
                 </div>
                 <div class="card-body row">
@@ -339,7 +428,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -365,7 +454,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -391,7 +480,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                 <p class="card-text"></p>
               </div>
               <div class="col-lg-6">
@@ -418,7 +507,7 @@
               <div class="col-md-12">
                 <div style="text-align: center;">
                   <h3 class="card-title" style="font-size: 1rem;">Top 5 Key Projects<span *ngIf="currentBC">({{currentBC}}BC)</span></h3>
-                  {{buFilter}}/{{timeFilter}}<br>
+                  {{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>
                   <select class="" style="border-width: 0px;" (change)="toggleProjects()" #toggleProj>
                     <option value="actual">Actual</option>
                     <option value="open">Open</option>
@@ -528,7 +617,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Top 5 Key Accounts<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -549,7 +638,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -693,8 +782,8 @@
     <div class="modal-dialog" role="document" style="max-width: 1000px;max-height: 1000px;overflow-y: initial !important;">
       <div class="modal-content" style="margin-top: -20px;">
         <div class="modal-header">
-          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{buFilter}}/{{timeFilter}}</h4> -->
-          <h4 class="modal-title">Pipeline Analysis({{buFilter}}/{{timeFilter}})</h4>
+          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
+          <h4 class="modal-title">Pipeline Analysis({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
           <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closePipelineModal()">
             <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
           </button>
@@ -706,7 +795,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Classify(Basis Rank)</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -730,7 +819,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Geo</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -756,7 +845,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Segment</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -785,8 +874,8 @@
     <div class="modal-dialog" role="document" style="max-width: 500px;max-height: 500px;">
       <div class="modal-content" style="margin-top: -20px;">
         <div class="modal-header">
-          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{buFilter}}/{{timeFilter}}</h4> -->
-          <h4 class="modal-title">F Rank Analysis({{buFilter}}/{{timeFilter}})</h4>
+          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
+          <h4 class="modal-title">F Rank Analysis({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
           <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closeFRankModal()">
             <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
           </button>
@@ -798,7 +887,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">F Rank</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -826,8 +915,8 @@
     <div class="modal-dialog" role="document" style="max-width: 600px;max-height: 500px;">
       <div class="modal-content" style="margin-top: -20px;">
         <div class="modal-header">
-          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{buFilter}}/{{timeFilter}}</h4> -->
-          <h4 class="modal-title">Sales Breakdown({{buFilter}}/{{timeFilter}})</h4>
+          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
+          <h4 class="modal-title">Sales Breakdown({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
           <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closeSalesModal()">
             <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
           </button>
@@ -839,7 +928,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">New/Backlog</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">

@@ -24,6 +24,47 @@ export class DataService {
     return this.http.get(environment.API_URL+"api/x_intp_cet_and_fin/cet_common_utils/get_bu", this.httpOptions)
   }
 
+  public getBuByBranch(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet_common_utils/get_bu_by_branch", postData, this.httpOptions)
+  }
+
+  public getBuNamesGrouping(): Observable<any> {
+    // return this.http.get(environment.API_URL+"api/x_intp_cet_and_fin/cet_common_utils/get_bu", this.httpOptions)
+    return of({
+      "status": true,
+      "bu_names": [
+          {
+              group: 'All',
+              items: [
+                  {value: '', name: 'All BU'}
+              ]
+          },
+          {
+              group: 'GDC',
+              items: [
+                  {value: 'BU 1', name: 'BU 1'},
+                  {value: 'BU 2', name: 'BU 2'},
+                  {value: 'BU 3', name: 'BU 3'},
+                  {value: 'BU 4', name: 'BU 4'}
+              ]
+          },
+          {
+              group: 'Public',
+              items: [
+                  {value: 'BU 5', name: 'BU 5'},
+                  {value: 'BU 6', name: 'BU 6'}
+              ]
+          },
+          {
+              group: 'AIPF',
+              items: [
+                  {value: 'BU AIPF BU', name: 'AIPF'}
+              ]
+          }
+      ]
+    });
+  }
+
   public getOrderOverview(postData: any): Observable<any> {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/order_overview", postData, this.httpOptions)
   }

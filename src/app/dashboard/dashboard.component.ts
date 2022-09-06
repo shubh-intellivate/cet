@@ -66,8 +66,9 @@ export class DashboardComponent implements OnInit {
   chart_line_top_accounts: any;
   chart_line: any;
   top_key_projects_actuals: any;
-  base_url: any = "http://88.218.92.164/";
-  // base_url: any = "http://localhost:4201/";
+  // base_url: any = "http://88.218.92.164/";
+  base_url: any = "http://localhost:4200/";
+  // base_url: any = "http://45.66.159.11/";
   sayDoOrderValue: any;
   top_key_accounts: any;
   sayDoSalesValue: any;
@@ -102,6 +103,11 @@ export class DashboardComponent implements OnInit {
   fRankOpen: any;
   fRankTogo: any;
   bu_names: any;
+  bu_group_names: any;
+  hideAllBranches: any = true;
+  hideIndia: any = false;
+  bu_names_branch: any;
+  geoFilter: any = "India";
 
   constructor(
     private dataService : DataService
@@ -110,6 +116,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getBuNames();
+    this.getBuByBranch();
+    this.getBuNamesGrouping();
     this.createChartGaugeOrder('','','','','','','');
     this.createChartGaugeSales('','','','','','','');
     this.createOrderOppGraph('','','','','','','');
@@ -2222,6 +2230,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  selectBu(buName){
+    console.log(buName)
+    this.bu.nativeElement.value = buName;
+    this.globalFilter();
+  }
+
   globalFilter(){
     var bu = this.bu.nativeElement.value;
     var geo = this.geo.nativeElement.value;
@@ -2233,10 +2247,27 @@ export class DashboardComponent implements OnInit {
     var timeframeFilter = ''
     this.buFilterLink = bu;
 
+
     if(bu == ''){
       this.buFilter = 'All BU'
     }else{
       this.buFilter = bu
+    }
+
+    if(geo == ''){
+      this.geoFilter = 'All Branches';
+    }else{
+      this.geoFilter = geo;
+    }
+
+    if(geo == 'india'){
+      // this.bu.nativeElement.value = '';
+      this.hideIndia = false;
+      this.hideAllBranches = true;
+    }else{
+      // this.bu.nativeElement.value = '';
+      this.hideIndia = true;
+      this.hideAllBranches = false;
     }
 
     if(timeframe == 'ytd'){
@@ -2349,6 +2380,23 @@ export class DashboardComponent implements OnInit {
     this.dataService.getBuNames().subscribe(
       res => {
         this.bu_names = res.result.bu_names;
+      });
+  }
+
+  getBuByBranch(){
+    let data = {
+      "branch":"India"
+    }
+    this.dataService.getBuByBranch(data).subscribe(
+      res => {
+        this.bu_names_branch = res.result.bu_names;
+      });
+  }
+
+  getBuNamesGrouping(){
+    this.dataService.getBuNamesGrouping().subscribe(
+      res => {
+        this.bu_group_names = res.bu_names;
       });
   }
 
