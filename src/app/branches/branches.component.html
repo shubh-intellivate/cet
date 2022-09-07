@@ -15,7 +15,7 @@
           <h2 class="az-dashboard-title">Hi Shilpa, welcome back!</h2>
           <!-- <p class="az-dashboard-text">CET Dashboard</p> -->
           <p class="az-dashboard-text" style="margin-top: 12px;font-size: 18px;">
-            Branches Dashboard / <a routerLink="/dashboard">India Dashboard</a>
+            Branches Dashboard / <a routerLink="/dashboard">India & DU Dashboard</a>
           </p>
           
         </div>
@@ -70,7 +70,7 @@
                 </div>
             </div>
           </div>
-          <div class="media">
+          <div class="media" [hidden]="true">
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #bu>
                 <option value="All BU">All BU</option>
@@ -83,6 +83,77 @@
                 <option value="Digital PF DU">Digital PF DU</option>
                 <option value="SA&S -Others">SA&S -Others</option>
               </select>
+            </div>
+          </div>
+          <div class="media" style="margin-left: 20px;">
+            <div class="media-body">
+              <div class="container btn btn-secondary dropdown-toggle">
+                <div class="row">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          BU
+                        </button>
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')">All</a></li>
+                            <li class="dropdown-submenu">
+                              <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
+                              <ul class="dropdown-menu">
+                                <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">DU Digital Platform</a></li>
+                                <li class="dropdown-submenu">
+                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Enterprise DU')">Enterprise DU</a>
+                                  <ul class="dropdown-menu">
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
+                                  </ul>
+                                </li>
+                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NMEC')">DU NMEC</a></li>
+                                <li class="dropdown-submenu">
+                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Solutions DU')">Public Solutions DU</a>
+                                  <ul class="dropdown-menu">
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Aviation')">DU Public Solutions - Aviation</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Others')">DU Public Solutions - Others</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Public Safety')">DU Public Solutions - Public Safety</a></li>
+                                  </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('SAS DU')">SAS DU</a>
+                                  <ul class="dropdown-menu">
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Australia MS')">DU SA&S - Australia MS</a></li>
+                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Others')">DU SA&S - Others</a></li>
+                                  </ul>
+                                </li>
+                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('Solution Factory')">Solution Factory</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Transportation')">BU Transportation</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Submarine')">BU Submarine</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Smart Mfg.')">BU Smart Mfg.</a></li>
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Safety BU')">Public Safety BU</a>
+                              <ul class="dropdown-menu">
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety - Aviation')">BU Public Safety - Aviation</a></li>
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety')">BU Public Safety</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU PNS Business')">BU PNS Business</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU NEC Labs')">BU NEC Labs</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Logistics')">BU Logistics</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU JCCS')">BU JCCS</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
+                            <li class="dropdown-submenu">
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS BU')">CNS BU</a>
+                              <ul class="dropdown-menu">
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS')">BU CNS</a></li>
+                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS 5G')">BU CNS 5G</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
+                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
+
+                          </ul>
+                    </div>
+                </div>
+            </div>
             </div>
           </div>
           <div class="media">
