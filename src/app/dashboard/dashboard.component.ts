@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit {
   @ViewChild("fiscal_year") fiscal_year: ElementRef;
   @ViewChild("toggleClass") toggleClass: ElementRef;
   @ViewChild("toggleProj") toggleProj: ElementRef;
-  @ViewChild("toggleSale") togglesale: ElementRef;
   @ViewChild("toggleG") toggleG: ElementRef;
   @ViewChild("toggleSeg") toggleSeg: ElementRef;  
   @ViewChild("currency") currency: ElementRef;
@@ -84,8 +83,6 @@ export class DashboardComponent implements OnInit {
   segment_class_show: boolean = true;
   normalizedavg: any;
   highestValue: any;
-  classify_sales_show: boolean = false;
-  classify_sales_rank_show: boolean = true;
   chart_sales: Highcharts.Chart;
   maxOrderSizeValue: any;
   minOrderSizeValue: any;
@@ -169,16 +166,6 @@ export class DashboardComponent implements OnInit {
     }else{
       this.classify_rank_show = true;
       this.classify_class_show = false;
-    }
-  }
-
-  toggleSales(){
-    if(this.togglesale.nativeElement.value == 'overall'){
-      this.classify_sales_show = false;
-      this.classify_sales_rank_show = true;
-    }else{
-      this.classify_sales_show = true;
-      this.classify_sales_rank_show = false;
     }
   }
 
@@ -1813,8 +1800,8 @@ export class DashboardComponent implements OnInit {
     this.blur = "blur";
     this.salesModal = "block";
     var amount_arr = [
-      ['New', 179],
-      ['Backlog', 201]
+      ['New', this.salesBreakdown.New.value],
+      ['Backlog', this.salesBreakdown.Backlog.value]
     ];
     this.chart_sales = Highcharts.chart('classify-sales', {
       chart: {
@@ -1885,41 +1872,31 @@ export class DashboardComponent implements OnInit {
               },
               data: [ {
                   name: 'New',
-                  y: 47,
-                  // url: this.base_url+'records?bu='+bu+'&lost_reason=Price&timeframe='+timeframe
+                  y: parseInt(this.salesBreakdown.New.percentage)
                 },
                 {
                   name: 'Backlog',
-                  y: 53,
-                  // url: this.base_url+'records?bu='+bu+'&lost_reason=Lost to Competition&timeframe='+timeframe
+                  y: parseInt(this.salesBreakdown.Backlog.percentage)
                 }
               ]
           }
       ]
     } as any);
-    var classify_rank_sales = {
-      chart: {
-        type: 'column',
-      },
+    
+    this.chart_sales = Highcharts.chart('new-sales-trend', {
       title: {
-          text: '' ,
-          align: 'right'
-      },
-      accessibility: {
-          announceNewData: {
-              enabled: true
-          }
-      },
-      xAxis: {
-          type: 'category'
+          text: ''
       },
       yAxis: {
           title: {
               text: ''
           },
+          labels:{
+            enabled: false
+          },
+          minorTickInterval: 100,
           gridLineColor: 'transparent',
           type: 'logarithmic',
-          minorTickInterval: 100,
           stackLabels: {
             enabled: true,
             style: {
@@ -1932,126 +1909,42 @@ export class DashboardComponent implements OnInit {
             formatter: function () {
               return this.total;
             }
-        },labels:{
-          enabled: false
-        }
-  
+            // formatter: function () {
+            //   return '' + Highcharts.numberFormat(this.total, 2, ',', ' ');
+            // }
+          },
+      },
+      xAxis: {
+          categories: ["Q1", "Q2", "Q3", "Q4"]
       },
       legend: {
-          enabled: false
+        enabled: false
       },
+      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],      
       plotOptions: {
-          series: {
-              borderWidth: 0,
-              dataLabels: {
-                  enabled: true,
-                  formatter:function() {
-                    if(this.y != 0) {
-                      return this.y;
-                    }
-                  }
-              }
-          },
-          column: {
+        column: {
             stacking: 'normal',
             dataLabels: {
-                enabled: true
+                enabled: true,
+                formatter: function () {
+                  return this.total;
+                }
             }
-        }
+        },
+        series: {
+          pointWidth: 50,
+          cursor: 'pointer',
+        },
       },
-      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
-      tooltip: {
-          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
-      },
-  
       series: [
-        //   {
-        //   name: 'New',
-        //   dataLabels: {
-        //     enabled: true,
-        //     formatter:function() {
-        //       if(this.y != 0) {
-        //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
-        //       }
-        //     },
-        //     style: {
-        //       color: 'white',
-        //       textOutline: 'transparent'
-        //     }
-        //   },
-        //   data: [{
-        //     name: 'Act',
-        //     y: 46,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'A',
-        //     y: 26,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'B',
-        //     y: 18,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'C',
-        //     y: 27,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'D',
-        //     y: 46,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'E',
-        //     y: 25,
-        //     drilldown: ''
-        //   }]
-        // },{
-        //   name: 'Backlog',
-        //   dataLabels: {
-        //     enabled: true,
-        //     formatter:function() {
-        //       if(this.y != 0) {
-        //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
-        //       }
-        //     },
-        //     style: {
-        //       color: 'white',
-        //       textOutline: 'transparent'
-        //     }
-        //   },
-        //   data: [{
-        //     name: 'Act',
-        //     y: 23,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'A',
-        //     y: 27,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'B',
-        //     y: 46,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'C',
-        //     y: 36,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'D',
-        //     y: 25,
-        //     drilldown: ''
-        //   }, {
-        //     name: 'E',
-        //     y: 18,
-        //     drilldown: ''
-        //   }]
-        // }
         {
+          type: 'column',
           name: 'E',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+' '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2059,23 +1952,36 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
-            name: 'New',
-            y: 23,
-            drilldown: ''
-          }, {
-            name: 'Backlog',
-            y: 27,
-            drilldown: ''
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.New.Q1.E)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.New.Q2.E)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.New.Q3.E)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.New.Q4.E)
           }]
         },
         {
+          type: 'column',
           name: 'D',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+' '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2083,23 +1989,36 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
-            name: 'New',
-            y: 26,
-            drilldown: ''
-          }, {
-            name: 'Backlog',
-            y: 57,
-            drilldown: ''
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.New.Q1.D)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.New.Q2.D)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.New.Q3.D)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.New.Q4.D)
           }]
         },
         {
+          type: 'column',
           name: 'C',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+' '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2107,23 +2026,36 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
-            name: 'New',
-            y: 24,
-            drilldown: ''
-          }, {
-            name: 'Backlog',
-            y: 45,
-            drilldown: ''
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.New.Q1.C)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.New.Q2.C)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.New.Q3.C)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.New.Q4.C)
           }]
         },
         {
+          type: 'column',
           name: 'B',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+' '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2131,23 +2063,36 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
-            name: 'New',
-            y: 35,
-            drilldown: ''
-          }, {
-            name: 'Backlog',
-            y: 27,
-            drilldown: ''
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.New.Q1.B)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.New.Q2.B)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.New.Q3.B)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.New.Q4.B)
           }]
         },
         {
+          type: 'column',
           name: 'A',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+' '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2155,23 +2100,36 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
-            name: 'New',
-            y: 34,
-            drilldown: ''
-          }, {
-            name: 'Backlog',
-            y: 26,
-            drilldown: ''
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.New.Q1.A)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.New.Q2.A)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.New.Q3.A)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.New.Q4.A)
           }]
         },
         {
+          type: 'column',
           name: 'Act',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+' '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2179,19 +2137,454 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
-            name: 'New',
-            y: 37,
-            drilldown: ''
-          }, {
-            name: 'Backlog',
-            y: 19,
-            drilldown: ''
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.New.Q1.Act)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.New.Q2.Act)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.New.Q3.Act)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.New.Q4.Act)
           }]
-        }
-      ]
-    }
-    Highcharts.chart('classify-sales-rank', classify_rank_sales as any);
+        },
+      ],
+      drilldown: {
+        series:[
+          {
+            type: 'column',
+            name: "test",
+            id: "test",
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
+            plotOptions: {
+              column: {
+                  stacking: 'normal',
+                  dataLabels: {
+                    enabled: true
+                  }
+              }
+            },
+            data: [{
+                "name": "Q1",
+                "y": 1
+            }, {
+                "name": "Q2",
+                "y": 2
+            }, {
+                "name": "Q3",
+                "y": 3
+            }, {
+                "name": "Q4",
+                "y": 4
+            }]
+          },{
+            type: 'column',
+            name: "test",
+            id: "test1",
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
+            plotOptions: {
+              column: {
+                  stacking: 'normal',
+                  dataLabels: {
+                    enabled: true
+                  }
+              }
+            },
+            data: [{
+                "name": "Q1",
+                "y": 1
+            }, {
+                "name": "Q2",
+                "y": 2
+            }, {
+                "name": "Q3",
+                "y": 3
+            }, {
+                "name": "Q4",
+                "y": 4
+            }]
+          }
+
+        ]
+      },
+      responsive: {
+          rules: [{
+              condition: {
+                  maxWidth: 500
+              },
+              chartOptions: {
+                  legend: {
+                      layout: 'horizontal',
+                      align: 'center',
+                      verticalAlign: 'bottom'
+                  }
+              }
+          }]
+      }
+
+    } as any);
+    this.chart_sales = Highcharts.chart('backlog-sales-trend', {
+      title: {
+          text: ''
+      },
+      yAxis: {
+          title: {
+              text: ''
+          },
+          labels:{
+            enabled: false
+          },
+          minorTickInterval: 100,
+          gridLineColor: 'transparent',
+          type: 'logarithmic',
+          stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: ( // theme
+                    Highcharts.defaultOptions.title.style &&
+                    Highcharts.defaultOptions.title.style.color
+                ) || 'gray'
+            },
+            formatter: function () {
+              return this.total;
+            }
+            // formatter: function () {
+            //   return '' + Highcharts.numberFormat(this.total, 2, ',', ' ');
+            // }
+          },
+      },
+      xAxis: {
+          categories: ["Q1", "Q2", "Q3", "Q4"]
+      },
+      legend: {
+        enabled: false
+      },
+      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],      
+      plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true,
+                formatter: function () {
+                  return this.total;
+                }
+            }
+        },
+        series: {
+          pointWidth: 50,
+          cursor: 'pointer',
+        },
+      },
+      series: [
+        {
+          type: 'column',
+          name: 'E',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.Backlog.Q1.E)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.Backlog.Q2.E)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.Backlog.Q3.E)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.Backlog.Q4.E)
+          }]
+        },
+        {
+          type: 'column',
+          name: 'D',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.Backlog.Q1.D)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.Backlog.Q2.D)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.Backlog.Q3.D)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.Backlog.Q4.D)
+          }]
+        },
+        {
+          type: 'column',
+          name: 'C',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.Backlog.Q1.C)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.Backlog.Q2.C)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.Backlog.Q3.C)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.Backlog.Q4.C)
+          }]
+        },
+        {
+          type: 'column',
+          name: 'B',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.Backlog.Q1.B)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.Backlog.Q2.B)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.Backlog.Q3.B)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.Backlog.Q4.B)
+          }]
+        },
+        {
+          type: 'column',
+          name: 'A',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.Backlog.Q1.A)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.Backlog.Q2.A)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.Backlog.Q3.A)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.Backlog.Q4.A)
+          }]
+        },
+        {
+          type: 'column',
+          name: 'Act',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: "Q1",
+            y: parseInt(this.salesBreakdown.Backlog.Q1.Act)
+          },{
+            name: "Q2",
+            y: parseInt(this.salesBreakdown.Backlog.Q2.Act)
+          },{
+            name: "Q3",
+            y: parseInt(this.salesBreakdown.Backlog.Q3.Act)
+          },{
+            name: "Q4",
+            y: parseInt(this.salesBreakdown.Backlog.Q4.Act)
+          }]
+        },
+      ],
+      drilldown: {
+        series:[
+          {
+            type: 'column',
+            name: "test",
+            id: "test",
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
+            plotOptions: {
+              column: {
+                  stacking: 'normal',
+                  dataLabels: {
+                    enabled: true
+                  }
+              }
+            },
+            data: [{
+                "name": "Q1",
+                "y": 1
+            }, {
+                "name": "Q2",
+                "y": 2
+            }, {
+                "name": "Q3",
+                "y": 3
+            }, {
+                "name": "Q4",
+                "y": 4
+            }]
+          },{
+            type: 'column',
+            name: "test",
+            id: "test1",
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
+            plotOptions: {
+              column: {
+                  stacking: 'normal',
+                  dataLabels: {
+                    enabled: true
+                  }
+              }
+            },
+            data: [{
+                "name": "Q1",
+                "y": 1
+            }, {
+                "name": "Q2",
+                "y": 2
+            }, {
+                "name": "Q3",
+                "y": 3
+            }, {
+                "name": "Q4",
+                "y": 4
+            }]
+          }
+
+        ]
+      },
+      responsive: {
+          rules: [{
+              condition: {
+                  maxWidth: 500
+              },
+              chartOptions: {
+                  legend: {
+                      layout: 'horizontal',
+                      align: 'center',
+                      verticalAlign: 'bottom'
+                  }
+              }
+          }]
+      }
+
+    } as any);
   }
 
   closePipelineModal(){
@@ -3226,7 +3619,7 @@ export class DashboardComponent implements OnInit {
               type: 'solidgauge',
             },
             title: {
-              text: '<span style="font-size: 15px;">Budget - '+ parseInt(res.result.result.totalTarget)+'<br>Actual - '+parseInt(res.result.result.achieved.value)+'</span>',
+              text: '<span style="font-size: 15px;">Target - '+ parseInt(res.result.result.totalTarget)+'<br>Actual - '+parseInt(res.result.result.achieved.value)+'</span>',
             },
             credits: {
               enabled: false,
@@ -3402,7 +3795,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: parseInt(res.result.result.achieved.orderBudget),
                 drilldown: ''
               }, {
@@ -3429,7 +3822,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
@@ -3456,7 +3849,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
@@ -3483,7 +3876,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
@@ -3510,7 +3903,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
@@ -3725,7 +4118,7 @@ export class DashboardComponent implements OnInit {
               type: 'solidgauge',
             },
             title: {
-              text: '<span style="font-size: 15px;">Budget - '+ parseInt(res.result.result.totalTarget)+'<br>Actual - '+parseInt(res.result.result.achieved.value)+'</span>',
+              text: '<span style="font-size: 15px;">Target - '+ parseInt(res.result.result.totalTarget)+'<br>Actual - '+parseInt(res.result.result.achieved.value)+'</span>',
             },
             credits: {
               enabled: false,
@@ -3899,7 +4292,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: parseInt(res.result.result.achieved.salesBudget),
                 drilldown: ''
               }, {
@@ -3926,7 +4319,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
@@ -3953,7 +4346,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
@@ -3980,7 +4373,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
@@ -4008,7 +4401,7 @@ export class DashboardComponent implements OnInit {
                 }
               },
               data: [{
-                name: 'Budget',
+                name: 'Target',
                 y: 0,
                 drilldown: ''
               }, {
