@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
   top_key_projects_actuals: any;
   // base_url: any = "http://88.218.92.164/";
   // base_url: any = "http://localhost:4200/";
-  base_url: any = "http://45.66.159.11/";
+  base_url: any = "http://45.66.159.11/cet/";
   sayDoOrderValue: any;
   top_key_accounts: any;
   sayDoSalesValue: any;
