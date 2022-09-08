@@ -66,8 +66,8 @@ export class DashboardComponent implements OnInit {
   chart_line: any;
   top_key_projects_actuals: any;
   // base_url: any = "http://88.218.92.164/";
-  base_url: any = "http://localhost:4200/";
-  // base_url: any = "http://45.66.159.11/";
+  // base_url: any = "http://localhost:4200/";
+  base_url: any = "http://45.66.159.11/";
   sayDoOrderValue: any;
   top_key_accounts: any;
   sayDoSalesValue: any;
@@ -1854,7 +1854,17 @@ export class DashboardComponent implements OnInit {
         verticalAlign: 'middle',
         itemMarginTop: 10,
         itemMarginBottom: 10,
-        labelFormat: '{name} {y:.1f}%',
+        // labelFormat: '{name} {y:.1f}%',
+        labelFormatter: function () {
+          let point = this,
+          no_of_opp;
+          amount_arr.forEach(d => {
+            if(d[0] == point.name){
+              no_of_opp = d[1]
+            }
+          })
+          return `${point.name}: ${no_of_opp}(${point.y}%)`
+        }
       },
       series: [
           {
@@ -4619,7 +4629,9 @@ export class DashboardComponent implements OnInit {
           ['Lost to Competition', parseInt(res.result.result['Lost to Competitor_sum'])],
           ['No Budget/Lost Funding', parseInt(res.result.result['No Budget / Lost Funding_sum'])],
           ['No Decision/Non-Responsive', parseInt(res.result.result['No Decision / Non-Responsive_sum'])],
+          ['Dropped by BU', parseInt(res.result.result['Dropped by BU_sum'])],
           ['Other', parseInt(res.result.result['Other_sum'])],
+          
         ];
         this.chart_lost_opp = Highcharts.chart('chart-pie-lost-opp', {
           chart: {
@@ -4715,6 +4727,10 @@ export class DashboardComponent implements OnInit {
                       name: 'No Decision/Non-Responsive',
                       y: parseInt(res.result.result['No Decision / Non-Responsive']),
                       url: this.base_url+'records?bu='+bu+'&lost_reason=No Decision / Non-Responsive&timeframe='+timeframe
+                    }, {
+                      name: 'Dropped by BU',
+                      y: parseInt(res.result.result['Dropped by BU']),
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Dropped by BU&timeframe='+timeframe
                     }, {
                       name: 'Other',
                       y: parseInt(res.result.result['Other']),
