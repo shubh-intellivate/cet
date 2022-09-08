@@ -4093,6 +4093,11 @@ export class DashboardComponent implements OnInit {
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=Act&timeframe='+timeframe
                   },
                   {
+                    name: 'Act-BC',
+                    y: parseInt(res.result.result.achieved.confirmed.Act_BC),
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=Act&timeframe='+timeframe
+                  },
+                  {
                     name: 'S',
                     y: parseInt(res.result.result.achieved.confirmed.S),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=S&timeframe='+timeframe
@@ -4639,7 +4644,7 @@ export class DashboardComponent implements OnInit {
           },
           colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
           title: {
-              text: res.result.percentage+'%<br>'+res.result.Sum+'Mn',
+              text: res.result.percentage+'%<br>'+res.result.Sum,
               align: 'center',
               verticalAlign: 'middle',
               x: -145

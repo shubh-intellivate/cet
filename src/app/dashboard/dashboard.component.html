@@ -86,7 +86,7 @@
                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')">All</a></li>
                           <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS BU')">CNS (Consol)</a>
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS (Consol)')">CNS (Consol)</a>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS')">BU CNS</a></li>
                                 <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS 5G')">BU CNS 5G</a></li>
@@ -650,7 +650,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
