@@ -2634,9 +2634,12 @@ export class DashboardComponent implements OnInit {
   }
 
   selectBu(buName){
-    console.log(buName)
+    if(buName == ''){
+      this.selectedBuValue = 'All BU';
+    }else{
+      this.selectedBuValue = buName;
+    }
     this.bu.nativeElement.value = buName;
-    this.selectedBuValue = buName;
     this.globalFilter();
   }
 
