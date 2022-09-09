@@ -91,12 +91,12 @@ export class DashboardComponent implements OnInit {
   hide_project_open: boolean = true;
   salesBreakdown: any;
   fRankModal: any="none";
-  filterBu: any;
-  filterStart_date: string;
-  filterEnd_date: string;
-  filterGeo: any;
-  filterCurrency: any;
-  filterTimeframe: any;
+  filterBu: any = '';
+  filterStart_date: string = '';
+  filterEnd_date: string = '';
+  filterGeo: any = '';
+  filterCurrency: any = '';
+  filterTimeframe: any = '';
   fRankOpen: any;
   fRankTogo: any;
   bu_names: any;
@@ -104,6 +104,7 @@ export class DashboardComponent implements OnInit {
   bu_names_branch: any;
   geoFilter: any = "India";
   selectedBuValue: any = "All BU";
+  filterFiscal_year: any = '';
 
   constructor(
     private dataService : DataService
@@ -2732,25 +2733,26 @@ export class DashboardComponent implements OnInit {
     this.filterGeo = geo;
     this.filterCurrency = currency;
     this.filterTimeframe= timeframe;
+    this.filterFiscal_year= fiscal_year;
 
-    this.createChartGaugeOrder(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.createChartGaugeSales(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.createOrderOppGraph(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.createOrderAmtGraph(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getOrdersBookedLastMonth(bu, geo, fiscal_year);
-    this.getBidWinRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getAvgOrderCycle(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getAvgOrderSize(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getOrderRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getEstimatedRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getRequiredRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getTopKeyProjects(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getTopKeyAccounts(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getSayDoOrder(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getSayDoSales(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getNewCustomersAcquired(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getLostOpportunities(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
-    this.getOrderTrend(bu, start_date, end_date, geo, currency, timeframe, fiscal_year);
+    this.createChartGaugeOrder(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.createChartGaugeSales(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.createOrderOppGraph(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.createOrderAmtGraph(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getOrdersBookedLastMonth(this.filterBu, this.filterGeo, this.filterFiscal_year);
+    this.getBidWinRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getAvgOrderCycle(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getAvgOrderSize(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getOrderRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getEstimatedRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getRequiredRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getTopKeyProjects(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getTopKeyAccounts(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getSayDoOrder(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getSayDoSales(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getNewCustomersAcquired(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getLostOpportunities(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getOrderTrend(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.showOrderOppPercentage();
     this.showOrderAmtPercentage();
     this.showPrevYearSaydoValue();
@@ -2794,15 +2796,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getSayDoOrder(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-    };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getSayDoOrder(data).subscribe(
       res => {
@@ -2909,15 +2918,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getSayDoSales(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year, 
-      "timeframe":timeframe
-    };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getSayDoSales(data).subscribe(
       res => {
@@ -3024,15 +3040,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getTopKeyProjects(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-    };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getTopKeyProjects(data).subscribe(
       res => {
@@ -3045,15 +3068,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getTopKeyAccounts(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-    };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getTopKeyAccounts(data).subscribe(
       res => {
@@ -3219,11 +3249,18 @@ export class DashboardComponent implements OnInit {
   }
 
   getOrdersBookedLastMonth(bu, geo, fiscal_year){
-    let data = {
-      "bu":bu,
-      "geo":geo,
-      "fiscal_year": fiscal_year
-    };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    geo = this.filterGeo;
+    fiscal_year = this.filterFiscal_year;
 
     this.dataService.getOrdersBooked(data).subscribe(
       res => {
@@ -3236,15 +3273,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getNewCustomersAcquired(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-  };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getNewCustomersAcquired(data).subscribe(
       res => {
@@ -3256,15 +3300,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getBidWinRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-  };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getBidWinRate(data).subscribe(
       res => {
@@ -3276,15 +3327,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getAvgOrderCycle(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-  };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getAvgOrderCycle(data).subscribe(
       res => {
@@ -3296,15 +3354,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getAvgOrderSize(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-  };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getAvgOrderSize(data).subscribe(
       res => {
@@ -3319,15 +3384,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getOrderRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-  };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getOrderRunRate(data).subscribe(
       res => {
@@ -3339,15 +3411,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getEstimatedRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-  };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getEstimatedRunRate(data).subscribe(
       res => {
@@ -3359,15 +3438,22 @@ export class DashboardComponent implements OnInit {
   }
 
   getRequiredRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-  };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
     this.dataService.getRequiredRunRate(data).subscribe(
       res => {
@@ -3390,15 +3476,22 @@ export class DashboardComponent implements OnInit {
   }
 
   createOrderOppGraph(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-        "bu":bu,
-        "start_date":start_date,
-        "end_date":end_date,
-        "geo":geo,
-        "currency":currency,
-        "fiscal_year": fiscal_year,
-        "timeframe":timeframe
-    };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
     this.dataService.getOrderConversionOpp(data).subscribe(
       res => {
         if(res.result.status == "true"){
@@ -3497,15 +3590,22 @@ export class DashboardComponent implements OnInit {
   }
 
   createOrderAmtGraph(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
-    let data = {
-      "bu":bu,
-      "start_date":start_date,
-      "end_date":end_date,
-      "geo":geo,
-      "currency":currency,
-      "fiscal_year": fiscal_year,
-      "timeframe":timeframe
-    };
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
     this.dataService.getOrderConversionAmt(data).subscribe(
       res => {
         if(res.result.status == "true"){
@@ -3606,14 +3706,21 @@ export class DashboardComponent implements OnInit {
 
   createChartGaugeOrder(bu, start_date, end_date, geo, currency, timeframe, fiscal_year): void {
     var data =  {
-      "bu": bu,
-      "start_date": start_date,
-      "end_date": end_date,
-      "geo": geo,
-      "currency": currency,
-      "fiscal_year": fiscal_year,
-      "timeframe": timeframe
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
     }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
     this.dataService.getOrderOverview(data).subscribe(
       res => {
         if(res.result.status == "true"){
@@ -4114,14 +4221,21 @@ export class DashboardComponent implements OnInit {
 
   createChartGaugeSales(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
     var data =  {
-      "bu": bu,
-      "start_date": start_date,
-      "end_date": end_date,
-      "geo": geo,
-      "currency": currency,
-      "fiscal_year": fiscal_year,
-      "timeframe": timeframe
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
     }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
     this.dataService.getSalesOverview(data).subscribe(
       res => {
         if(res.result.status == "true"){
@@ -4619,14 +4733,21 @@ export class DashboardComponent implements OnInit {
 
   getLostOpportunities(bu, start_date, end_date, geo, currency, timeframe, fiscal_year): void {
     var data =  {
-      "bu": bu,
-      "start_date": start_date,
-      "end_date": end_date,
-      "geo": geo,
-      "currency": currency,
-      "fiscal_year": fiscal_year,
-      "timeframe": timeframe
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
     }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
     this.dataService.getLostOpportunities(data).subscribe(
       res => {
         var number_of_opp = [
@@ -4751,14 +4872,21 @@ export class DashboardComponent implements OnInit {
 
   getOrderTrend(bu, start_date, end_date, geo, currency, timeframe, fiscal_year): void {
     var data =  {
-      "bu": bu,
-      "start_date": start_date,
-      "end_date": end_date,
-      "geo": geo,
-      "currency": currency,
-      "fiscal_year": fiscal_year,
-      "timeframe": timeframe
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
     }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
 
       this.dataService.getOrderTrend(data).subscribe(
         res => {
