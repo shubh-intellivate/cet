@@ -4154,11 +4154,11 @@ export class DashboardComponent implements OnInit {
                       y: parseInt(res.result.result.achieved.toGo.E),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=E&timeframe='+timeframe
                     },
-                    // {
-                    //   name: 'F',
-                    //   y: parseInt(res.result.result.achieved.toGo.F),
-                    //   url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=F&timeframe='+timeframe
-                    // }
+                    {
+                      name: 'S',
+                      y: parseInt(res.result.result.achieved.toGo.S),
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=F&timeframe='+timeframe
+                    }
                   ]
                 },
                 {
