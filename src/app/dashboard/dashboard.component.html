@@ -106,7 +106,7 @@
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU PNS Business')">BU PNS Business</a></li>
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU NEC Labs')">BU NEC Labs</a></li>
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Logistics')">BU Logistics</a></li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU JCCS')">BU JCCS</a></li>
+                          <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU JCCS')">BU JCCS</a></li> -->
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
@@ -121,26 +121,25 @@
                               <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Others')">DU Public Solutions - Others</a></li>
                             </ul>
                           </li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU JCCS')">DU JCCS</a></li>
                           <li class="dropdown-submenu">
                             <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU ESDU (Consol.)')">DU ESDU (Consol.)</a>
                             <ul class="dropdown-menu">
                               <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
                               <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Others')">DU Public Solutions - Others</a></li>
                             </ul>
                           </li>
                           <li class="dropdown-submenu">
-                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU ESDU (Consol.)')">DU SA&S (Consol.)</a>
+                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU SA&S (Consol.)')">DU SA&S (Consol.)</a>
                             <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU SA&S - Australia MS</a></li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">	
+                              <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU SA&S - Australia MS')">DU SA&S - Australia MS</a></li>
+                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Others')">	
                                 DU SA&S - Others</a></li>
                             </ul>
                           </li>
                           <li class="dropdown-submenu">
                             <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
                             <ul class="dropdown-menu">
+                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU JCCS')">DU JCCS</a></li>
                               <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">DU Digital Platform</a></li>
                               <li class="dropdown-submenu">
                                 <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Enterprise DU')">Enterprise DU</a>
@@ -340,7 +339,7 @@
         <div class="col-lg-6 mg-t-20 mg-lg-t-0">
           <div class="row row-sm">
             <div class="col-lg-8 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five">
+              <div class="card card-dashboard-five" style="height: 220px;">
                 <div class="card-header row">
                   <div class="col-lg-12">
                     <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>

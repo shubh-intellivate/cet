@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
   bu_names_branch: any;
   geoFilter: any = "India";
   selectedBuValue: any = "All BU";
-  filterFiscal_year: any = '';
+  filterFiscal_year: any = '2022';
 
   constructor(
     private dataService : DataService
@@ -115,23 +115,23 @@ export class DashboardComponent implements OnInit {
     this.getBuNames();
     this.getBuByBranch();
     this.getBuNamesGrouping();
-    this.createChartGaugeOrder('','','','','','','');
-    this.createChartGaugeSales('','','','','','','');
-    this.createOrderOppGraph('','','','','','','');
-    this.createOrderAmtGraph('','','','','','','');
-    this.getOrdersBookedLastMonth('','','');
-    this.getBidWinRate('','','','','','','');
-    this.getAvgOrderCycle('','','','','','','');
-    this.getAvgOrderSize('','','','','','','');
-    this.getOrderRunRate('','','','','','','');
-    this.getEstimatedRunRate('','','','','','','');
-    this.getRequiredRunRate('','','','','','','');
-    this.getTopKeyProjects('','','','','','','');
+    this.createChartGaugeOrder('','','','','','','2022');
+    this.createChartGaugeSales('','','','','','','2022');
+    this.createOrderOppGraph('','','','','','','2022');
+    this.createOrderAmtGraph('','','','','','','2022');
+    this.getOrdersBookedLastMonth('','','2022');
+    this.getBidWinRate('','','','','','','2022');
+    this.getAvgOrderCycle('','','','','','','2022');
+    this.getAvgOrderSize('','','','','','','2022');
+    this.getOrderRunRate('','','','','','','2022');
+    this.getEstimatedRunRate('','','','','','','2022');
+    this.getRequiredRunRate('','','','','','','2022');
+    this.getTopKeyProjects('','','','','','','2022');
     this.getTopKeyAccounts('','','','','','','2022');
-    this.getSayDoOrder('','','','','','','');
-    this.getSayDoSales('','','','','','','');
-    this.getNewCustomersAcquired('','','','','','','');
-    this.getLostOpportunities('','','','','','','');
+    this.getSayDoOrder('','','','','','','2022');
+    this.getSayDoSales('','','','','','','2022');
+    this.getNewCustomersAcquired('','','','','','','2022');
+    this.getLostOpportunities('','','','','','','2022');
     this.getOrderTrend('','','','','','','2022');
   }
 
@@ -2659,12 +2659,6 @@ export class DashboardComponent implements OnInit {
       this.buFilter = 'All BU'
     }else{
       this.buFilter = bu
-    }
-
-    if(geo == ''){
-      this.geoFilter = 'All Branches';
-    }else{
-      this.geoFilter = geo;
     }
 
     if(timeframe == 'ytd'){
