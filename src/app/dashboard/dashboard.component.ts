@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
   sayDoOrderValue: any;
   top_key_accounts: any;
   sayDoSalesValue: any;
-  actual_timeframe:any = '1H';
+  actual_timeframe:any = '';
   classify_rank_show: boolean = false;
   classify_class_show: boolean = true;
   geo_rank_show: boolean = false;
@@ -2676,51 +2676,51 @@ export class DashboardComponent implements OnInit {
       end_date = "";
       this.timeFilter = 'Q1';
       timeframeFilter = 'Q1'
-      this.actual_timeframe = 'Q1'
+      // this.actual_timeframe = 'Q1'
     }else if(timeframe == 'Q2'){
       start_date = "";
       end_date = "";
       this.timeFilter = 'Q2';
       timeframeFilter = 'Q2'
-      this.actual_timeframe = 'Q2'
+      // this.actual_timeframe = 'Q2'
     }else if(timeframe == 'Q3'){
       start_date = "";
       end_date = "";
       this.timeFilter = 'Q3';
       timeframeFilter = 'Q3'
-      this.actual_timeframe = 'Q2'
+      // this.actual_timeframe = 'Q2'
     }else if(timeframe == 'Q4'){
       start_date = "";
       end_date = "";
       this.timeFilter = 'Q4';
       timeframeFilter = 'Q4'
-      this.actual_timeframe = 'Q2'
+      // this.actual_timeframe = 'Q2'
     }else if(timeframe == '1H'){
       start_date = "";
       end_date = "";
       this.timeFilter = '1H';
       timeframeFilter = '1H'
-      this.actual_timeframe = '1H'
+      // this.actual_timeframe = '1H'
     }else if(timeframe == '2H'){
       start_date = "";
       end_date = "";
       this.timeFilter = '2H';
       timeframeFilter = '1H'
-      this.actual_timeframe = '1H'
+      // this.actual_timeframe = '1H'
     }else if(timeframe == 'annual'){
       start_date = "";
       end_date = "";
       timeframeFilter = ''
       this.timeFilter = 'Annual';
       timeframe = ''
-      this.actual_timeframe = '1H'
+      // this.actual_timeframe = '1H'
     }else if(timeframe == 'ytd'){
       start_date = "";
       end_date = "";
       timeframeFilter = ''
       this.timeFilter = 'YTD';
       timeframe = ''
-      this.actual_timeframe = '1H'
+      // this.actual_timeframe = '1H'
     }else if(timeframe == 'custom'){
       this.customDateFilter ="block";
     }
@@ -3491,8 +3491,12 @@ export class DashboardComponent implements OnInit {
     timeframe = this.filterTimeframe;
     this.dataService.getOrderConversionOpp(data).subscribe(
       res => {
-        if(res.result.status == "true"){
-          this.orderOppPerValue = res.result.result.percentage+'%';
+          if(res.result.status == "true"){if(res.result.result.percentage == "-"){
+            this.orderOppPerValue = res.result.result.percentage;
+          }else{
+            this.orderOppPerValue = res.result.result.percentage+'%';
+          }
+          this.actual_timeframe = res.result.result.actual_time_frame;
           var xaxis = []
           var yaxis = []
           res.result.result.drilldown.forEach(element => {
@@ -3606,7 +3610,12 @@ export class DashboardComponent implements OnInit {
     this.dataService.getOrderConversionAmt(data).subscribe(
       res => {
         if(res.result.status == "true"){
-          this.orderAmtPerValue = res.result.result.percentage+'%';
+          if(res.result.result.percentage == "-"){
+            this.orderAmtPerValue = res.result.result.percentage;
+          }else{
+            this.orderAmtPerValue = res.result.result.percentage+'%';
+          }
+          this.actual_timeframe = res.result.result.actual_time_frame;
           var xaxis = []
           var yaxis = []
           res.result.result.drilldown.forEach(element => {
