@@ -4966,6 +4966,43 @@ export class DashboardComponent implements OnInit {
             series: [
               {
                 type: 'column',
+                name: 'F',
+                dataLabels: {
+                  enabled: true,
+                  formatter:function() {
+                    if(this.y != 0) {
+                      return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                    }
+                  },
+                  style: {
+                    color: 'white',
+                    textOutline: 'transparent'
+                  }
+                },
+                point: {
+                  events: {
+                      click: function () {
+                          // location.href = this.options.url;
+                          window.open(this.options.url);
+                      }
+                  }
+                },
+                data: [{
+                  name: month_data.month_1.month,
+                  y: parseInt(month_data.month_1.F),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_2.month,
+                  y: parseInt(month_data.month_2.F),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_3.month,
+                  y: parseInt(month_data.month_3.F),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                }]
+              },
+              {
+                type: 'column',
                 name: 'E',
                 dataLabels: {
                   enabled: true,
@@ -5345,6 +5382,43 @@ export class DashboardComponent implements OnInit {
               },
             },
             series: [
+              {
+                type: 'column',
+                name: 'F',
+                dataLabels: {
+                  enabled: true,
+                  formatter:function() {
+                    if(this.y != 0) {
+                      return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                    }
+                  },
+                  style: {
+                    color: 'white',
+                    textOutline: 'transparent'
+                  }
+                },
+                point: {
+                  events: {
+                      click: function () {
+                          // location.href = this.options.url;
+                          window.open(this.options.url);
+                      }
+                  }
+                },
+                data: [{
+                  name: month_data.month_1.month,
+                  y: parseInt(month_data.month_1.F_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_2.month,
+                  y: parseInt(month_data.month_2.F_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_3.month,
+                  y: parseInt(month_data.month_3.F_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                }]
+              },
               {
                 type: 'column',
                 name: 'E',

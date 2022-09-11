@@ -487,12 +487,11 @@
           </div>
         </div>
         <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 423px;">
+          <div class="card card-dashboard-five" >
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
                 <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
-                <p class="card-text"></p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -507,8 +506,8 @@
             </div>
             <div class="card-body">
               <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
-              <div id="order-trend" [hidden]="hideOrderTrendAmt" style="height: 250px;"></div>
-              <div id="order-trend-opp" [hidden]="hideOrderTrendOpp" style="height: 250px;"></div>
+              <div id="order-trend" [hidden]="hideOrderTrendAmt" style="height: 300px;"></div>
+              <div id="order-trend-opp" [hidden]="hideOrderTrendOpp" style="height: 300px;"></div>
             </div>
           </div>
         </div>
@@ -539,7 +538,7 @@
                     <th class="wd-10p" style="text-align: center;">BU</th>
                     <th class="wd-10p">Value(Mn)</th>
                     <th class="wd-10p">Rank</th>
-                    <th class="wd-10p" style="text-align: right;">Closing Month</th>
+                    <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
                   </tr>
                 </thead>
                 <tbody *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
@@ -549,7 +548,7 @@
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_1.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_1.amount}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_1.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_1.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_1.month}}</strong></td> -->
                   </tr>
                   <tr>
                     <td><strong>{{top_key_projects_actuals.project_2.oppertunity}}</strong></td>
@@ -557,28 +556,28 @@
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_2.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_2.amount}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_2.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_2.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_2.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_actuals.project_3.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_3.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_3.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_3.amount}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_3.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_3.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_3.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_actuals.project_4.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_4.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_4.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_4.amount}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_4.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_4.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_4.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_actuals.project_5.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_5.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_5.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_5.amount}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_5.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
                   </tr>
                 </tbody>
                 <tbody *ngIf="top_key_projects_open" [hidden]="hide_project_open">
@@ -588,7 +587,7 @@
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_1.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_1.amount}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_1.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_1.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_1.month}}</strong></td> -->
                   </tr>
                   <tr>
                     <td><strong>{{top_key_projects_open.project_2.oppertunity}}</strong></td>
@@ -596,28 +595,28 @@
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_2.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_2.amount}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_2.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_2.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_2.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_open.project_3.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_3.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_3.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_3.amount}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_3.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_3.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_3.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_open.project_4.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_4.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_4.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_4.amount}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_4.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_4.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_4.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_open.project_5.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_5.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_5.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_5.amount}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_5.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
                   </tr>
                 </tbody>
               </table>
