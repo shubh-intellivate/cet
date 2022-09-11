@@ -3851,7 +3851,7 @@ export class DashboardComponent implements OnInit {
                 },
                 drillup: function(e) {
                   var chart = this;
-                  if(e.seriesOptions.name == 'Open' || e.seriesOptions.name == 'To Go') {
+                  if(e.seriesOptions.name == 'Open' || e.seriesOptions.name == 'To Go' || e.seriesOptions.name == 'Confirmed') {
                     chart.setTitle({ text: '<div style="text-align: right;"><span style="color:rgb(70, 121, 167); font-size:small;">Est vs Bud ('+budget_value_sign+')'+Math.abs(res.result.result.achieved.vs_budget_value)+' ['+budget_per_sign+''+Math.abs(res.result.result.achieved.vs_budget_per)+'%]<br>Est vs '+(parseInt(res.result.result.achieved.currentbc)-1)+'BC ('+vs_bc_sign+')'+Math.abs(res.result.result.achieved.vs_bc)+' ['+vs_bc_sign+''+Math.abs(res.result.result.achieved.vs_bc_per)+'%]'+'<br/>Funnel Ratio: '+res.result.result.achieved.funnel_ratio+'X</span></div>' });
                   }else{
                     chart.setTitle({ text: "" });
@@ -4359,7 +4359,7 @@ export class DashboardComponent implements OnInit {
                 },
                 drillup: function(e) {
                   var chart = this;
-                  if(e.seriesOptions.name == 'Open' || e.seriesOptions.name == 'To Go') {
+                  if(e.seriesOptions.name == 'Open' || e.seriesOptions.name == 'To Go' || e.seriesOptions.name == 'Confirmed') {
                     chart.setTitle({ text: '<div style="text-align: right;"><span style="color:rgb(70, 121, 167); font-size:small;">Est vs Bud ('+budget_value_sign+')'+Math.abs(res.result.result.achieved.vs_budget_value)+' ['+budget_per_sign+''+Math.abs(res.result.result.achieved.vs_budget_per)+'%]<br>Est vs '+(parseInt(res.result.result.achieved.currentbc)-1)+'BC ('+vs_bc_sign+')'+Math.abs(res.result.result.achieved.vs_bc)+' ['+vs_bc_sign+''+Math.abs(res.result.result.achieved.vs_bc_per)+'%]'+'</span></div>' });
                   }else{
                     chart.setTitle({ text: "" });
