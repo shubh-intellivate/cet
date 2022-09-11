@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild("toggleClass") toggleClass: ElementRef;
   @ViewChild("toggleProj") toggleProj: ElementRef;
   @ViewChild("toggleG") toggleG: ElementRef;
+  @ViewChild("toggleTrend") toggleTrend: ElementRef;
   @ViewChild("toggleSeg") toggleSeg: ElementRef;  
   @ViewChild("currency") currency: ElementRef;
   @ViewChild("toggleOrder") toggleOrder: ElementRef;
@@ -105,6 +106,8 @@ export class DashboardComponent implements OnInit {
   geoFilter: any = "India";
   selectedBuValue: any = "All BU";
   filterFiscal_year: any = '2022';
+  hideOrderTrendAmt: boolean = false;
+  hideOrderTrendOpp: boolean = true;
 
   constructor(
     private dataService : DataService
@@ -157,6 +160,16 @@ export class DashboardComponent implements OnInit {
     }else{
       this.hide_project_actuals = true;
       this.hide_project_open = false;
+    }
+  }
+
+  toggleOrderTrend(){
+    if(this.toggleTrend.nativeElement.value == 'amount'){
+      this.hideOrderTrendAmt = false;
+      this.hideOrderTrendOpp = true;
+    }else{
+      this.hideOrderTrendAmt = true;
+      this.hideOrderTrendOpp = false;
     }
   }
 
@@ -4929,7 +4942,7 @@ export class DashboardComponent implements OnInit {
                 },
             },
             xAxis: {
-                categories: [month_data.month_1.month, month_data.month_2.month, month_data.month_3.month, month_data.month_4.month, month_data.month_5.month, month_data.month_6.month]
+                categories: [month_data.month_1.month, month_data.month_2.month, month_data.month_3.month]
             },
             legend: {
               enabled: false
@@ -4946,7 +4959,7 @@ export class DashboardComponent implements OnInit {
                   }
               },
               series: {
-                pointWidth: 50,
+                pointWidth: 70,
                 cursor: 'pointer',
               },
             },
@@ -4986,18 +4999,6 @@ export class DashboardComponent implements OnInit {
                   name: month_data.month_3.month,
                   y: parseInt(month_data.month_3.E),
                   url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                },{
-                  name: month_data.month_4.month,
-                  y: parseInt(month_data.month_4.E),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                },{
-                  name: month_data.month_5.month,
-                  y: parseInt(month_data.month_5.E),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                },{
-                  name: month_data.month_6.month,
-                  y: parseInt(month_data.month_6.E),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
                 }]
                 },{
                   type: 'column',
@@ -5033,18 +5034,6 @@ export class DashboardComponent implements OnInit {
                   },{
                     name: month_data.month_3.month,
                     y: parseInt(month_data.month_3.D),
-                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                  },{
-                    name: month_data.month_4.month,
-                    y: parseInt(month_data.month_4.D),
-                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                  },{
-                    name: month_data.month_5.month,
-                    y: parseInt(month_data.month_5.D),
-                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                  },{
-                    name: month_data.month_6.month,
-                    y: parseInt(month_data.month_6.D),
                     url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
                   }]
               },{
@@ -5082,18 +5071,6 @@ export class DashboardComponent implements OnInit {
                   name: month_data.month_3.month,
                   y: parseInt(month_data.month_3.C),
                   url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                },{
-                  name: month_data.month_4.month,
-                  y: parseInt(month_data.month_4.C),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                },{
-                  name: month_data.month_5.month,
-                  y: parseInt(month_data.month_5.C),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-                },{
-                  name: month_data.month_6.month,
-                  y: parseInt(month_data.month_6.C),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
                 }]
             },{
               type: 'column',
@@ -5129,18 +5106,6 @@ export class DashboardComponent implements OnInit {
               },{
                 name: month_data.month_3.month,
                 y: parseInt(month_data.month_3.B),
-                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-              },{
-                name: month_data.month_4.month,
-                y: parseInt(month_data.month_4.B),
-                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-              },{
-                name: month_data.month_5.month,
-                y: parseInt(month_data.month_5.B),
-                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-              },{
-                name: month_data.month_6.month,
-                y: parseInt(month_data.month_6.B),
                 url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
               }]
           },{
@@ -5178,18 +5143,6 @@ export class DashboardComponent implements OnInit {
               name: month_data.month_3.month,
               y: parseInt(month_data.month_3.A),
               url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-            },{
-              name: month_data.month_4.month,
-              y: parseInt(month_data.month_4.A),
-              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-            },{
-              name: month_data.month_5.month,
-              y: parseInt(month_data.month_5.A),
-              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-            },{
-              name: month_data.month_6.month,
-              y: parseInt(month_data.month_6.A),
-              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
             }]
         },{
           type: 'column',
@@ -5225,18 +5178,6 @@ export class DashboardComponent implements OnInit {
           },{
             name: month_data.month_3.month,
             y: parseInt(month_data.month_3.S),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-          },{
-            name: month_data.month_4.month,
-            y: parseInt(month_data.month_4.S),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-          },{
-            name: month_data.month_5.month,
-            y: parseInt(month_data.month_5.S),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
-          },{
-            name: month_data.month_6.month,
-            y: parseInt(month_data.month_6.S),
             url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
           }]
       },{
@@ -5274,17 +5215,386 @@ export class DashboardComponent implements OnInit {
           name: month_data.month_3.month,
           y: parseInt(month_data.month_3.Act),
           url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+        }]
+    }],
+            drilldown: {
+              series:[
+                {
+                  type: 'column',
+                  name: "test",
+                  id: "test",
+                  colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
+                  plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                          enabled: true
+                        }
+                    }
+                  },
+                  data: [{
+                      "name": "Q1",
+                      "y": 1
+                  }, {
+                      "name": "Q2",
+                      "y": 2
+                  }, {
+                      "name": "Q3",
+                      "y": 3
+                  }, {
+                      "name": "Q4",
+                      "y": 4
+                  }]
+                },{
+                  type: 'column',
+                  name: "test",
+                  id: "test1",
+                  colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
+                  plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                          enabled: true
+                        }
+                    }
+                  },
+                  data: [{
+                      "name": "Q1",
+                      "y": 1
+                  }, {
+                      "name": "Q2",
+                      "y": 2
+                  }, {
+                      "name": "Q3",
+                      "y": 3
+                  }, {
+                      "name": "Q4",
+                      "y": 4
+                  }]
+                }
+      
+              ]
+            },
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+      
+          } as any);
+          this.chart_line = Highcharts.chart('order-trend-opp', {
+            title: {
+                text: ''
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                labels:{
+                  enabled: false
+                },
+                minorTickInterval: 100,
+                gridLineColor: 'transparent',
+                type: 'logarithmic',
+                stackLabels: {
+                  enabled: true,
+                  style: {
+                      fontWeight: 'bold',
+                      color: ( // theme
+                          Highcharts.defaultOptions.title.style &&
+                          Highcharts.defaultOptions.title.style.color
+                      ) || 'gray'
+                  },
+                  formatter: function () {
+                    return this.total;
+                  }
+                  // formatter: function () {
+                  //   return '' + Highcharts.numberFormat(this.total, 2, ',', ' ');
+                  // }
+                },
+            },
+            xAxis: {
+                categories: [month_data.month_1.month, month_data.month_2.month, month_data.month_3.month]
+            },
+            legend: {
+              enabled: false
+            },
+            colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],      
+            plotOptions: {
+              column: {
+                  stacking: 'normal',
+                  dataLabels: {
+                      enabled: true,
+                      formatter: function () {
+                        return this.total;
+                      }
+                  }
+              },
+              series: {
+                pointWidth: 70,
+                cursor: 'pointer',
+              },
+            },
+            series: [
+              {
+                type: 'column',
+                name: 'E',
+                dataLabels: {
+                  enabled: true,
+                  formatter:function() {
+                    if(this.y != 0) {
+                      return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                    }
+                  },
+                  style: {
+                    color: 'white',
+                    textOutline: 'transparent'
+                  }
+                },
+                point: {
+                  events: {
+                      click: function () {
+                          // location.href = this.options.url;
+                          window.open(this.options.url);
+                      }
+                  }
+                },
+                data: [{
+                  name: month_data.month_1.month,
+                  y: parseInt(month_data.month_1.E_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_2.month,
+                  y: parseInt(month_data.month_2.E_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_3.month,
+                  y: parseInt(month_data.month_3.E_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                }]
+                },{
+                  type: 'column',
+                  name: 'D',
+                  dataLabels: {
+                    enabled: true,
+                    formatter:function() {
+                      if(this.y != 0) {
+                        return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                      }
+                    },
+                    style: {
+                      color: 'white',
+                      textOutline: 'transparent'
+                    }
+                  },
+                  point: {
+                    events: {
+                        click: function () {
+                            // location.href = this.options.url;
+                            window.open(this.options.url);
+                        }
+                    }
+                  },
+                  data: [{
+                    name: month_data.month_1.month,
+                    y: parseInt(month_data.month_1.D_opp),
+                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  },{
+                    name: month_data.month_2.month,
+                    y: parseInt(month_data.month_2.D_opp),
+                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  },{
+                    name: month_data.month_3.month,
+                    y: parseInt(month_data.month_3.D_opp),
+                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  }]
+              },{
+                type: 'column',
+                name: 'C',
+                dataLabels: {
+                  enabled: true,
+                  formatter:function() {
+                    if(this.y != 0) {
+                      return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                    }
+                  },
+                  style: {
+                    color: 'white',
+                    textOutline: 'transparent'
+                  }
+                },
+                point: {
+                  events: {
+                      click: function () {
+                          // location.href = this.options.url;
+                          window.open(this.options.url);
+                      }
+                  }
+                },
+                data: [{
+                  name: month_data.month_1.month,
+                  y: parseInt(month_data.month_1.C_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_2.month,
+                  y: parseInt(month_data.month_2.C_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                },{
+                  name: month_data.month_3.month,
+                  y: parseInt(month_data.month_3.C_opp),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                }]
+            },{
+              type: 'column',
+              name: 'B',
+              dataLabels: {
+                enabled: true,
+                formatter:function() {
+                  if(this.y != 0) {
+                    return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                  }
+                },
+                style: {
+                  color: 'white',
+                  textOutline: 'transparent'
+                }
+              },
+              point: {
+                events: {
+                    click: function () {
+                        // location.href = this.options.url;
+                        window.open(this.options.url);
+                    }
+                }
+              },
+              data: [{
+                name: month_data.month_1.month,
+                y: parseInt(month_data.month_1.B_opp),
+                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+              },{
+                name: month_data.month_2.month,
+                y: parseInt(month_data.month_2.B_opp),
+                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+              },{
+                name: month_data.month_3.month,
+                y: parseInt(month_data.month_3.B_opp),
+                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+              }]
+          },{
+            type: 'column',
+            name: 'A',
+            dataLabels: {
+              enabled: true,
+              formatter:function() {
+                if(this.y != 0) {
+                  return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                }
+              },
+              style: {
+                color: 'white',
+                textOutline: 'transparent'
+              }
+            },
+            point: {
+              events: {
+                  click: function () {
+                      // location.href = this.options.url;
+                      window.open(this.options.url);
+                  }
+              }
+            },
+            data: [{
+              name: month_data.month_1.month,
+              y: parseInt(month_data.month_1.A_opp),
+              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+            },{
+              name: month_data.month_2.month,
+              y: parseInt(month_data.month_2.A_opp),
+              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+            },{
+              name: month_data.month_3.month,
+              y: parseInt(month_data.month_3.A_opp),
+              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+            }]
         },{
-          name: month_data.month_4.month,
-          y: parseInt(month_data.month_4.Act),
+          type: 'column',
+          name: 'S',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: month_data.month_1.month,
+            y: parseInt(month_data.month_1.S_opp),
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+          },{
+            name: month_data.month_2.month,
+            y: parseInt(month_data.month_2.S_opp),
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+          },{
+            name: month_data.month_3.month,
+            y: parseInt(month_data.month_3.S_opp),
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+          }]
+      },{
+        type: 'column',
+        name: 'Act',
+        dataLabels: {
+          enabled: true,
+          formatter:function() {
+            if(this.y != 0) {
+              return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+            }
+          },
+          style: {
+            color: 'white',
+            textOutline: 'transparent'
+          }
+        },
+        point: {
+          events: {
+              click: function () {
+                  // location.href = this.options.url;
+                  window.open(this.options.url);
+              }
+          }
+        },
+        data: [{
+          name: month_data.month_1.month,
+          y: parseInt(month_data.month_1.Act_opp),
           url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
         },{
-          name: month_data.month_5.month,
-          y: parseInt(month_data.month_5.Act),
+          name: month_data.month_2.month,
+          y: parseInt(month_data.month_2.Act_opp),
           url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
         },{
-          name: month_data.month_6.month,
-          y: parseInt(month_data.month_6.Act),
+          name: month_data.month_3.month,
+          y: parseInt(month_data.month_3.Act_opp),
           url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
         }]
     }],

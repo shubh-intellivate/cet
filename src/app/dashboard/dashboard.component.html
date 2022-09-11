@@ -168,8 +168,8 @@
                               <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NexGen Connectivity')">DU NexGen Connectivity</a></li>
                             </ul>
                           </li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">	
-                            BU Biz Enablement Services</a></li>
+                          <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">	
+                            BU Biz Enablement Services</a></li> -->
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('IP Led Biz')">	
                             IP Led Biz</a></li>
                         </ul>
@@ -487,7 +487,7 @@
           </div>
         </div>
         <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 389px;">
+          <div class="card card-dashboard-five" style="height: 423px;">
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
@@ -497,14 +497,18 @@
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
                   <div class="media-body">
-                    <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+                    <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleOrderTrend()" #toggleTrend>
+                      <option value="amount">Amount</option>
+                      <option value="opportunity">Opportunity</option>
+                    </select>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-body">
               <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
-              <div id="order-trend" style="height: 250px;"></div>
+              <div id="order-trend" [hidden]="hideOrderTrendAmt" style="height: 250px;"></div>
+              <div id="order-trend-opp" [hidden]="hideOrderTrendOpp" style="height: 250px;"></div>
             </div>
           </div>
         </div>
