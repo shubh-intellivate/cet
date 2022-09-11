@@ -27,6 +27,7 @@ export class RecordsComponent implements OnInit {
   highestValue: any;
   tableTitle: string;
   month: any;
+  fiscal_year: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -46,6 +47,7 @@ export class RecordsComponent implements OnInit {
       this.lost_reason = params.lost_reason;
       this.highestValue = params.highestValue;
       this.month = params.month;
+      this.fiscal_year = params.fiscal_year;
     })
   }
 
@@ -62,7 +64,9 @@ export class RecordsComponent implements OnInit {
       let data =  {
         "bu": this.bu == "undefined" ? '' : this.bu,
         "timeframe": this.timeframe == "undefined" ? '' : this.timeframe,
-        "account": this.account == "undefined" ? '' : this.account
+        "account": this.account == "undefined" ? '' : this.account,
+        "fiscal_year":this.fiscal_year == "undefined" ? '' : this.fiscal_year,
+        "geo":this.geo == "undefined" ? '' : this.geo,
       }
       this.dataService.getTopAccountProjects(data).subscribe(res=>{
         console.log(res);
@@ -81,7 +85,9 @@ export class RecordsComponent implements OnInit {
       let data =  {
         "bu": this.bu == "undefined" ? '' : this.bu,
         "timeframe": this.timeframe == "undefined" ? '' : this.timeframe,
-        "lost_reason": this.lost_reason == "undefined" ? '' : this.lost_reason
+        "lost_reason": this.lost_reason == "undefined" ? '' : this.lost_reason,
+        "fiscal_year":this.fiscal_year == "undefined" ? '' : this.fiscal_year,
+        "geo":this.geo == "undefined" ? '' : this.geo,
       }
       this.dataService.getLostReason(data).subscribe(res=>{
         console.log(res);

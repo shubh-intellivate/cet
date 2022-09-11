@@ -3184,23 +3184,23 @@ export class DashboardComponent implements OnInit {
                   {
                     name: this.top_key_accounts.account_1.account,
                     y: parseInt(this.top_key_accounts.account_1.amount),
-                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_1.account+'&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_1.account+'&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                   },{
                     name: this.top_key_accounts.account_2.account,
                     y: parseInt(this.top_key_accounts.account_2.amount),
-                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_2.account+'&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_2.account+'&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                   },{
                     name: this.top_key_accounts.account_3.account,
                     y: parseInt(this.top_key_accounts.account_3.amount),
-                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_3.account+'&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_3.account+'&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                   },{
                     name: this.top_key_accounts.account_4.account,
                     y: parseInt(this.top_key_accounts.account_4.amount),
-                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_4.account+'&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_4.account+'&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                   },{
                     name: this.top_key_accounts.account_5.account,
                     y: parseInt(this.top_key_accounts.account_5.amount),
-                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_5.account+'&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&account='+this.top_key_accounts.account_5.account+'&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                   },
                 ]
             }],
@@ -4835,29 +4835,29 @@ export class DashboardComponent implements OnInit {
                   data: [ {
                       name: 'Price',
                       y: parseInt(res.result.result['Price']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Price&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Price&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     },
                     {
                       name: 'Lost to Competition',
                       y: parseInt(res.result.result['Lost to Competitor']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Lost to Competition&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Lost to Competition&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }, {
                       name: 'No Budget/Lost Funding',
                       y: parseInt(res.result.result['No Budget / Lost Funding']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Budget / Lost Funding&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Budget / Lost Funding&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     },
                     {
                       name: 'No Decision/Non-Responsive',
                       y: parseInt(res.result.result['No Decision / Non-Responsive']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Decision / Non-Responsive&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Decision / Non-Responsive&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }, {
                       name: 'Dropped by BU',
                       y: parseInt(res.result.result['Dropped by BU']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Dropped by BU&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Dropped by BU&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }, {
                       name: 'Other',
                       y: parseInt(res.result.result['Other']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Other&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Other&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }
                   ]
               }
@@ -4887,7 +4887,7 @@ export class DashboardComponent implements OnInit {
 
       this.dataService.getOrderTrend(data).subscribe(
         res => {
-          var month_data = res.result.Month_data;
+          var month_data = res.result;
           this.chart_line = Highcharts.chart('order-trend', {
             title: {
                 text: ''
