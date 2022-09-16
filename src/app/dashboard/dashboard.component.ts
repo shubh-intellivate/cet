@@ -67,8 +67,8 @@ export class DashboardComponent implements OnInit {
   chart_line: any;
   top_key_projects_actuals: any;
   // base_url: any = "http://88.218.92.164/";
-  // base_url: any = "http://localhost:4200/";
-  base_url: any = "http://45.66.159.11/cet/";
+  base_url: any = "http://localhost:4200/";
+  // base_url: any = "http://45.66.159.11/cet/";
   sayDoOrderValue: any;
   top_key_accounts: any;
   sayDoSalesValue: any;
@@ -4066,7 +4066,12 @@ export class DashboardComponent implements OnInit {
                   id: 'togOrder Pipeline',
                   dataLabels: {
                     enabled: true,
-                    format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
                     distance: 20,
                     style: {
                       color: 'black',
@@ -4093,27 +4098,27 @@ export class DashboardComponent implements OnInit {
                   {
                     name: 'A',
                     y: parseInt(res.result.result.achieved.open.A),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=A&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   },
                   {
                     name: 'B',
                     y: parseInt(res.result.result.achieved.open.B),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=B&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   },
                   {
                     name: 'C',
                     y: parseInt(res.result.result.achieved.open.C),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=C&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   },
                   {
                     name: 'D',
                     y: parseInt(res.result.result.achieved.open.D),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=D&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   },
                   {
                     name: 'E',
                     y: parseInt(res.result.result.achieved.open.E),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=E&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   },
                   // {
                   //   name: 'F',
@@ -4127,7 +4132,12 @@ export class DashboardComponent implements OnInit {
                   id: 'togOrder Estimate',
                   dataLabels: {
                     enabled: true,
-                    format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
                     distance: 20,
                     style: {
                       color: 'black',
@@ -4154,32 +4164,32 @@ export class DashboardComponent implements OnInit {
                     {
                       name: 'A',
                       y: parseInt(res.result.result.achieved.toGo.A),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=A&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
                       name: 'B',
                       y: parseInt(res.result.result.achieved.toGo.B),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=B&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
                       name: 'C',
                       y: parseInt(res.result.result.achieved.toGo.C),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=C&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
                       name: 'D',
                       y: parseInt(res.result.result.achieved.toGo.D),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=D&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
                       name: 'E',
                       y: parseInt(res.result.result.achieved.toGo.E),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=E&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
                       name: 'S',
                       y: parseInt(res.result.result.achieved.toGo.S),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=F&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     }
                   ]
                 },
@@ -4189,7 +4199,12 @@ export class DashboardComponent implements OnInit {
                   id: 'Confirmed Pipeline',
                   dataLabels: {
                     enabled: true,
-                    format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
                     distance: 20,
                     style: {
                       color: 'black',
@@ -4214,19 +4229,19 @@ export class DashboardComponent implements OnInit {
                   borderColor: '#fff',
                   data: [
                   {
-                    name: 'Act',
+                    name: 'Act(Current Month)',
                     y: parseInt(res.result.result.achieved.confirmed.Act),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=Act&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview&current_month=true'
                   },
                   {
-                    name: 'Act-BC',
+                    name: 'YTD Act',
                     y: parseInt(res.result.result.achieved.confirmed.Act_BC),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=Act&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   },
                   {
                     name: 'S',
                     y: parseInt(res.result.result.achieved.confirmed.S),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=S&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   }
                   ]
                 }
@@ -4576,7 +4591,12 @@ export class DashboardComponent implements OnInit {
                   id: 'togOrder Pipeline',
                   dataLabels: {
                     enabled: true,
-                    format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
                     distance: 20,
                     style: {
                       color: 'black',
@@ -4603,32 +4623,32 @@ export class DashboardComponent implements OnInit {
                   {
                     name: 'A',
                     y: parseInt(res.result.result.achieved.open.A),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=A&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
                     name: 'B',
                     y: parseInt(res.result.result.achieved.open.B),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=B&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
                     name: 'C',
                     y: parseInt(res.result.result.achieved.open.C),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=C&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
                     name: 'D',
                     y: parseInt(res.result.result.achieved.open.D),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=D&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
                     name: 'E',
                     y: parseInt(res.result.result.achieved.open.E),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=E&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
                     name: 'F',
                     y: parseInt(res.result.result.achieved.open.F),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=F&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   }
                   ]
                 }, {
@@ -4637,7 +4657,12 @@ export class DashboardComponent implements OnInit {
                   id: 'togOrder Estimate',
                   dataLabels: {
                     enabled: true,
-                    format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
                     distance: 20,
                     style: {
                       color: 'black',
@@ -4664,32 +4689,32 @@ export class DashboardComponent implements OnInit {
                     {
                       name: 'A',
                       y: parseInt(res.result.result.achieved.toGo.A),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=A&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
                       name: 'B',
                       y: parseInt(res.result.result.achieved.toGo.B),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=B&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
                       name: 'C',
                       y: parseInt(res.result.result.achieved.toGo.C),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=C&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
                       name: 'D',
                       y: parseInt(res.result.result.achieved.toGo.D),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=D&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
                       name: 'E',
                       y: parseInt(res.result.result.achieved.toGo.E),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=E&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
                       name: 'F',
                       y: parseInt(res.result.result.achieved.toGo.F),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=toGo&rank=F&timeframe='+timeframe
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     }
                   ]
                 },
@@ -4699,7 +4724,12 @@ export class DashboardComponent implements OnInit {
                   id: 'Confirmed Pipeline',
                   dataLabels: {
                     enabled: true,
-                    format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
                     distance: 20,
                     style: {
                       color: 'black',
@@ -4726,12 +4756,12 @@ export class DashboardComponent implements OnInit {
                   {
                     name: 'Act',
                     y: parseInt(res.result.result.achieved.confirmed.Act),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=Act&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
                     name: 'A',
                     y: parseInt(res.result.result.achieved.confirmed.A),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=S&timeframe='+timeframe
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   // {
                   //   name: 'B',

@@ -170,8 +170,8 @@
                           </li>
                           <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">	
                             BU Biz Enablement Services</a></li> -->
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('IP Led Biz')">	
-                            IP Led Biz</a></li>
+                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU IP Led Biz')">	
+                            BU IP Led Biz</a></li>
                         </ul>
 
                     </div>
@@ -293,16 +293,16 @@
               </div>
             </div>
             <div class="card-body" [hidden]="orderByOpp">
-              <div [hidden]="order_amt_graph" id="chart-order-amt" style="height: 317px;"></div>
-              <div [hidden]="order_amt_per" style="margin-top:33%;height:241px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderAmtGraph()">{{orderAmtPerValue}}</span>
+              <div [hidden]="order_amt_graph" id="chart-order-amt" style="height: 300px;"></div>
+              <div [hidden]="order_amt_per" style="margin-top:33%;height:225px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderAmtGraph()">{{orderAmtPerValue}}</span>
                 <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
                   (Basis {{actual_timeframe}})
                 </div>
               </div>
             </div>
             <div class="card-body" [hidden]="orderByAmount">
-              <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 317px;"></div>
-              <div [hidden]="order_opp_per" style="margin-top:33%;height:241px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
+              <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 300px;"></div>
+              <div [hidden]="order_opp_per" style="margin-top:33%;height:225px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
                 <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
                   (Basis {{actual_timeframe}})
                 </div>
