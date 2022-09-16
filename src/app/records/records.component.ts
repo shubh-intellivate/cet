@@ -28,6 +28,7 @@ export class RecordsComponent implements OnInit {
   tableTitle: string;
   month: any;
   fiscal_year: any;
+  amount_sum: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -72,6 +73,7 @@ export class RecordsComponent implements OnInit {
         console.log(res);
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {
               this.table_headers.push(key)
@@ -93,6 +95,7 @@ export class RecordsComponent implements OnInit {
         console.log(res);
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {
               this.table_headers.push(key)
@@ -113,6 +116,7 @@ export class RecordsComponent implements OnInit {
         console.log(res);
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {
               this.table_headers.push(key)
@@ -141,6 +145,7 @@ export class RecordsComponent implements OnInit {
       this.dataService.getOrderRecords(data).subscribe(res=>{
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {
               this.table_headers.push(key)
