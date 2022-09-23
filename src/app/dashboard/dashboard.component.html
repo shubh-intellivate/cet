@@ -296,7 +296,7 @@
               <div [hidden]="order_amt_graph" id="chart-order-amt" style="height: 300px;"></div>
               <div [hidden]="order_amt_per" style="margin-top:33%;height:225px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderAmtGraph()">{{orderAmtPerValue}}</span>
                 <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  (Basis {{actual_timeframe}})
+                  ({{actual_timeframe}})
                 </div>
               </div>
             </div>
@@ -304,7 +304,7 @@
               <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 300px;"></div>
               <div [hidden]="order_opp_per" style="margin-top:33%;height:225px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
                 <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  (Basis {{actual_timeframe}})
+                  ({{actual_timeframe}})
                 </div>
               </div>
             </div>
@@ -454,7 +454,7 @@
               <div [hidden]="prev_year_saydo_order" id="chart-prev-year-saydo-order" style="height: 250px;"></div>
               <div [hidden]="prev_year_saydo_order_value" style="margin-top:30%;height:200px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showLastYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoOrderValue)">{{sayDoOrderValue}}<span *ngIf="sayDoOrderValue">%</span></span>
                 <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  (Basis {{actual_timeframe}})
+                  ({{actual_timeframe}})
                 </div>
               </div>
             </div>
@@ -480,7 +480,7 @@
               <div [hidden]="cur_year_saydo_order" id="chart-prev-year-saydo-sales" style="height: 250px;"></div>
               <div [hidden]="cur_year_saydo_order_value" style="margin-top:30%;height: 200px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showCurYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoSalesValue)">{{sayDoSalesValue}}<span *ngIf="sayDoSalesValue">%</span></span>
                 <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  (Basis {{actual_timeframe}})
+                  ({{actual_timeframe}})
                 </div>
               </div>
             </div>
@@ -670,7 +670,7 @@
         </div>
       </div>
 
-      <div class="row row-sm mg-b-20">
+      <!-- <div class="row row-sm mg-b-20">
         <div class="col-lg-3 col-xl-3 mg-t-20 mg-lg-t-0"></div>
         <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
           <div class="card card-table-one" style="height: 100%;">
@@ -729,7 +729,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xl-3 mg-t-20 mg-lg-t-0"></div>
-      </div>
+      </div> -->
     </div>
   </div>
 
