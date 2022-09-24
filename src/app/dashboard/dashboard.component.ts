@@ -396,6 +396,34 @@ export class DashboardComponent implements OnInit {
       },
   
       series: [
+        {
+          name: 'F',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          data: [{
+            name: 'EE',
+            y: parseInt(this.pipelineClassify.EE.F),
+            drilldown: ''
+          }, {
+            name: 'EN',
+            y: parseInt(this.pipelineClassify.EN.F),
+            drilldown: ''
+          }, {
+            name: 'NN',
+            y: parseInt(this.pipelineClassify.NN.F),
+            drilldown: ''
+          }]
+        },
           {
           name: 'E',
           dataLabels: {
