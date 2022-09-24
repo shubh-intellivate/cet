@@ -874,6 +874,43 @@ export class DashboardComponent implements OnInit {
       },
   
       series: [
+        {
+        name: 'F',
+        dataLabels: {
+          enabled: true,
+          formatter:function() {
+            if(this.y != 0) {
+              return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+            }
+          },
+          style: {
+            color: 'white',
+            textOutline: 'transparent'
+          }
+        },
+        data: [{
+          name: 'India',
+          y: parseInt(this.geoClassify.india.F),
+          drilldown: ''
+        }, {
+          name: 'Japan',
+          y: parseInt(this.geoClassify.japan.F),
+          drilldown: ''
+        }, {
+          name: 'USA',
+          y: parseInt(this.geoClassify.usa.F),
+          drilldown: ''
+        }, {
+          name: 'APAC',
+          y: parseInt(this.geoClassify.apac.F),
+          drilldown: ''
+        },{
+          name: 'EMEA',
+          y: parseInt(this.geoClassify.emea.F),
+          drilldown: ''
+        },
+      ]
+      },
           {
           name: 'E',
           dataLabels: {
@@ -1071,6 +1108,7 @@ export class DashboardComponent implements OnInit {
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.S),
+            // y: 10000,
             drilldown: ''
           }, {
             name: 'Japan',
