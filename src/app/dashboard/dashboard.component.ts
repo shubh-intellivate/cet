@@ -2776,12 +2776,12 @@ export class DashboardComponent implements OnInit {
       this.buFilter = bu
     }
 
-    if(timeframe == 'ytd'){
+    if(timeframe == 'YTD'){
       start_date = "2021-04-01";
       end_date = "2022-04-28";
       this.timeFilter = 'YTD';
       timeframeFilter = ''
-      timeframe = ''
+      timeframe = 'YTD'
     }else if(timeframe == 'last_month'){
       start_date = "2021-03-28";
       end_date = "2022-04-28";
