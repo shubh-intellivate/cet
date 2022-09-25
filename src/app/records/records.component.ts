@@ -29,6 +29,7 @@ export class RecordsComponent implements OnInit {
   month: any;
   fiscal_year: any;
   amount_sum: any;
+  current_month: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,6 +50,7 @@ export class RecordsComponent implements OnInit {
       this.highestValue = params.highestValue;
       this.month = params.month;
       this.fiscal_year = params.fiscal_year;
+      this.current_month = params.current_month;
     })
   }
 
@@ -137,7 +139,8 @@ export class RecordsComponent implements OnInit {
         "rank": this.rank == "undefined" ? '' : this.rank,
         "api_type": this.apiType == "undefined" ? '' : this.apiType,
         "timeframe": this.timeframe == "undefined" ? '' : this.timeframe,
-        "highestValue": this.highestValue == "undefined" ? '' : this.highestValue
+        "highestValue": this.highestValue == "undefined" ? '' : this.highestValue,
+        "current_month": this.current_month == "undefined" ? false : true
       }
       if(this.highestValue && this.highestValue != 0){
         this.tableTitle = 'Outliers';

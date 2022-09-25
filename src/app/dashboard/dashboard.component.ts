@@ -1447,6 +1447,42 @@ export class DashboardComponent implements OnInit {
       },
   
       series: [
+        {
+          name: 'F',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          data: [{
+            name: this.subProjectClassify.project1.name,
+            y: parseInt(this.subProjectClassify.project1.F),
+            drilldown: ''
+          },{
+            name: this.subProjectClassify.project2.name,
+            y: parseInt(this.subProjectClassify.project2.F),
+            drilldown: ''
+          },{
+            name: this.subProjectClassify.project3.name,
+            y: parseInt(this.subProjectClassify.project3.F),
+            drilldown: ''
+          },{
+            name: this.subProjectClassify.project4.name,
+            y: parseInt(this.subProjectClassify.project4.F),
+            drilldown: ''
+          },{
+            name: this.subProjectClassify.project5.name,
+            y: parseInt(this.subProjectClassify.project5.F),
+            drilldown: ''
+          }]
+        },
           {
           name: 'E',
           dataLabels: {
@@ -3976,7 +4012,7 @@ export class DashboardComponent implements OnInit {
                   pointWidth: 100
                 }
             },
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(143,163,213)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(81,200,244)', 'rgb(127,127,127)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                 pointFormat: '<span style="color:{point.color}">Percentage</span>: <b>{point.percentage:.0f}%</b>'
@@ -4441,7 +4477,7 @@ export class DashboardComponent implements OnInit {
                 drillup: function(e) {
                   var chart = this;
                   if(e.seriesOptions.name == 'Open' || e.seriesOptions.name == 'To Go' || e.seriesOptions.name == 'Confirmed') {
-                    chart.setTitle({ text: '<div style="text-align: right;"><span style="color:rgb(70, 121, 167); font-size:small;">Est vs Tar '+res.result.result.achieved.vs_budget_value+' ['+res.result.result.achieved.vs_budget_per+'%]<br>Est vs '+(parseInt(res.result.result.achieved.currentbc)-1)+'BC '+res.result.result.achieved.vs_bc+' ['+res.result.result.achieved.vs_bc_per+'%]'+'<br/>Funnel Ratio: '+res.result.result.achieved.funnel_ratio+'X</span></div>' });
+                    chart.setTitle({ text: '<div style="text-align: right;"><span style="color:rgb(70, 121, 167); font-size:small;">Est vs Tar '+res.result.result.achieved.vs_budget_value+' ['+res.result.result.achieved.vs_budget_per+'%]<br>Est vs '+(parseInt(res.result.result.achieved.currentbc)-1)+'BC '+res.result.result.achieved.vs_bc+' ['+res.result.result.achieved.vs_bc_per+'%]</span></div>' });
                   }else{
                     chart.setTitle({ text: "" });
                   }
@@ -4449,7 +4485,7 @@ export class DashboardComponent implements OnInit {
               }
             },
             title: {
-                text: '<div style="text-align: right;"><span style="color:rgb(70, 121, 167); font-size:small;">Est vs Tar '+res.result.result.achieved.vs_budget_value+' ['+res.result.result.achieved.vs_budget_per+'%]<br>Est vs '+(parseInt(res.result.result.achieved.currentbc)-1)+'BC '+res.result.result.achieved.vs_bc+' ['+res.result.result.achieved.vs_bc_per+'%]'+'<br/>Funnel Ratio: '+res.result.result.achieved.funnel_ratio+'X</span></div>' ,
+                text: '<div style="text-align: right;"><span style="color:rgb(70, 121, 167); font-size:small;">Est vs Tar '+res.result.result.achieved.vs_budget_value+' ['+res.result.result.achieved.vs_budget_per+'%]<br>Est vs '+(parseInt(res.result.result.achieved.currentbc)-1)+'BC '+res.result.result.achieved.vs_bc+' ['+res.result.result.achieved.vs_bc_per+'%]</span></div>' ,
                 align: 'right'
             },
             xAxis: {
@@ -4500,7 +4536,7 @@ export class DashboardComponent implements OnInit {
                   pointWidth: 100
                 }
             },
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(143,163,213)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(81,200,244)', 'rgb(127,127,127)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                 pointFormat: '<span style="color:{point.color}">Percentage</span>: <b>{point.percentage:.0f}%</b>'
@@ -5043,7 +5079,7 @@ export class DashboardComponent implements OnInit {
             legend: {
               enabled: false
             },
-            colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],      
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(143,163,213)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(46,117,182)'],      
             plotOptions: {
               column: {
                   stacking: 'normal',
@@ -5461,7 +5497,7 @@ export class DashboardComponent implements OnInit {
             legend: {
               enabled: false
             },
-            colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],      
+            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(143,163,213)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(46,117,182)'],      
             plotOptions: {
               column: {
                   stacking: 'normal',
