@@ -140,7 +140,7 @@ export class RecordsComponent implements OnInit {
         "api_type": this.apiType == "undefined" ? '' : this.apiType,
         "timeframe": this.timeframe == "undefined" ? '' : this.timeframe,
         "highestValue": this.highestValue == "undefined" ? '' : this.highestValue,
-        "current_month": this.current_month == "undefined" ? false : true
+        "current_month": this.current_month == undefined ? false : true
       }
       if(this.highestValue && this.highestValue != 0){
         this.tableTitle = 'Outliers';
