@@ -61,7 +61,7 @@ export class RecordsComponent implements OnInit {
           "lengthMenu": [[10, 15, -1], [10, 15, "All"]]
         }
       );
-    }, 3000);
+    }, 10000);
     if(this.account && this.account !=''){
       this.tableTitle = '';
       let data =  {
