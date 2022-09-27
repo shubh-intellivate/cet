@@ -179,7 +179,7 @@
             </div>
             </div>
           </div>
-          <div class="media" style="margin-left: 10px;">
+          <div class="media" style="margin-left: 10px;display: none;">
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #geo>
                 <!-- <option value="">Geo</option> -->
@@ -219,7 +219,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Order Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -242,7 +242,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Sales Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -327,7 +327,7 @@
             <div class="card-header row">
               <div class="col-lg-12">
                 <h6 class="card-title">Orders Won<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}<br>Values in Million</p>
+                <p class="card-text">{{buFilter}}<br>Values in M-INR</p>
               </div>
             </div>
             <div class="card-body">
@@ -343,7 +343,7 @@
                 <div class="card-header row">
                   <div class="col-lg-12">
                     <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                 </div>
                 <div class="card-body row">
@@ -394,7 +394,7 @@
                 <div class="card-header row">
                   <div class="col-lg-12">
                     <h6 class="card-title">Average Order <br>Size<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                 </div>
                 <div class="card-body row">
@@ -491,7 +491,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -631,7 +631,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Top 5 Key Accounts<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -652,7 +652,7 @@
             <div class="card-header row">
               <div class="col-lg-6">
                 <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
               </div>
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
@@ -675,7 +675,7 @@
         <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
           <div class="card card-table-one" style="height: 100%;">
             <h6 class="card-title">BU Performance<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-            <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+            <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -750,7 +750,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Classify(Basis Rank)</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -774,7 +774,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Geo</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -800,7 +800,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Segment</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -842,7 +842,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">F Rank</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -884,7 +884,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">New/Backlog</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                   </div>
@@ -902,7 +902,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">New Sales Trend</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                   </div>
@@ -917,7 +917,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Backlog Sales Trend</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                   </div>
@@ -947,6 +947,7 @@
                   <th>Stage</th>
                   <th>Rank</th>
                   <th>Probability</th>
+                  <th>Color</th>
                 </tr>
               </thead>
               <tbody>
@@ -954,46 +955,55 @@
                   <th scope="row">Suspect</th>
                   <td>F</td>
                   <td>0%</td>
+                  <td><i style="color: rgb(182,196,237);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Contact/Prospect</th>
                   <td>E</td>
                   <td>10%</td>
+                  <td><i style="color: rgb(162,197,238);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">RFP Responded</th>
                   <td>D</td>
                   <td>30%</td>
+                  <td><i style="color: rgb(119,135,186);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Shortlisted</th>
                   <td>C</td>
                   <td>50%</td>
+                  <td><i style="color: rgb(117,150,208);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Final Negotiation</th>
                   <td>B</td>
                   <td>70%</td>
+                  <td><i style="color: rgb(57,93,157);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Order in Process</th>
                   <td>A</td>
                   <td>90%</td>
+                  <td><i style="color: rgb(122,148,228);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">PO/LOI Received</th>
                   <td>S</td>
                   <td>100%</td>
+                  <td><i style="color: rgb(132,174,220);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Order Recorded</th>
                   <td>Act</td>
                   <td>100%</td>
+                  <td><i style="color: rgb(127,127,127);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Closed Lost</th>
                   <td>L</td>
                   <td>0%</td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

@@ -274,7 +274,8 @@ export class DashboardComponent implements OnInit {
             dataLabels: {
                 enabled: true
             }
-        }
+        },
+        cursor: 'pointer',
       },
       colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
       tooltip: {
@@ -297,14 +298,15 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          cursor: 'pointer',
           data: [{
             name: 'Open',
             y: parseInt(this.fRankOpen),
-            url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&start_date='+this.filterStart_date+'&end_date='+this.filterEnd_date+'&currency='+this.filterCurrency+'&type=open&rank=F&timeframe='+this.filterTimeframe
+            url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&type=open&rank=F&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=order_overview'
           },{
             name: 'To Go',
             y: parseInt(this.fRankTogo),
-            url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&start_date='+this.filterStart_date+'&end_date='+this.filterEnd_date+'&currency='+this.filterCurrency+'&type=toGo&rank=F&timeframe='+this.filterTimeframe
+            url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&type=toGo&rank=F&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=order_overview'
           }]
         }
       ]
@@ -389,7 +391,7 @@ export class DashboardComponent implements OnInit {
             }
         }
       },
-      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
+      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
       tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
           pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
@@ -895,7 +897,7 @@ export class DashboardComponent implements OnInit {
             }
         }
       },
-      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
+      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
       tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
           pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
@@ -1440,7 +1442,7 @@ export class DashboardComponent implements OnInit {
             }
         }
       },
-      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
+      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
       tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
           pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
@@ -2046,7 +2048,7 @@ export class DashboardComponent implements OnInit {
       legend: {
         enabled: false
       },
-      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],      
+      colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(127,127,127)'],      
       plotOptions: {
         column: {
             stacking: 'normal',
@@ -2397,7 +2399,7 @@ export class DashboardComponent implements OnInit {
       legend: {
         enabled: false
       },
-      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],      
+      colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(127,127,127)'],      
       plotOptions: {
         column: {
             stacking: 'normal',
@@ -3857,7 +3859,7 @@ export class DashboardComponent implements OnInit {
               type: 'solidgauge',
             },
             title: {
-              text: '<span style="font-size: 15px;">Target - '+ parseInt(res.result.result.totalTarget)+'<br>Actual - '+parseInt(res.result.result.achieved.value)+'</span>',
+              text: '<span style="font-size: 15px;">Target - '+ parseInt(res.result.result.totalTarget)+'<br>Act - '+parseInt(res.result.result.achieved.value)+'</span>',
             },
             credits: {
               enabled: false,
@@ -4127,7 +4129,7 @@ export class DashboardComponent implements OnInit {
                 drilldown: 'togOrder Estimate'
               }]
             }, {
-              name: 'Actual',
+              name: 'Act',
               dataLabels: {
                 enabled: true,
                 formatter:function() {
@@ -4383,7 +4385,7 @@ export class DashboardComponent implements OnInit {
               type: 'solidgauge',
             },
             title: {
-              text: '<span style="font-size: 15px;">Target - '+ parseInt(res.result.result.totalTarget)+'<br>Actual - '+parseInt(res.result.result.achieved.value)+'</span>',
+              text: '<span style="font-size: 15px;">Target - '+ parseInt(res.result.result.totalTarget)+'<br>Act - '+parseInt(res.result.result.achieved.value)+'</span>',
             },
             credits: {
               enabled: false,
@@ -4652,7 +4654,7 @@ export class DashboardComponent implements OnInit {
                 drilldown: 'togOrder Estimate'
               }]
             }, {
-              name: 'Actual',
+              name: 'Act',
               dataLabels: {
                 enabled: true,
                 formatter:function() {
@@ -5079,7 +5081,7 @@ export class DashboardComponent implements OnInit {
             legend: {
               enabled: false
             },
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(143,163,213)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(46,117,182)'],      
+            colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],      
             plotOptions: {
               column: {
                   stacking: 'normal',
