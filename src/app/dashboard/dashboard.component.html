@@ -5,23 +5,14 @@
   .blur{
     filter: blur(5px);
   }
+  /* .container{
+    max-width: 95% !important;
+  } */
 </style>
 
 <div class="az-content az-content-dashboard">
   <div class="container {{blur}}">
     <div class="az-content-body">
-      <div class="az-dashboard-one-title">
-        <div>
-          <h2 class="az-dashboard-title">Hi Shilpa, welcome back!</h2>
-          <!-- <p class="az-dashboard-text">CET Dashboard</p> -->
-          <p class="az-dashboard-text" style="margin-top: 12px;font-size: 18px;">
-            <span style="color: blue">India & DU Dashboard</span> / <a routerLink="/branches" style="color: black;">Branches Dashboard</a>
-          </p>
-        </div>
-        <div class="az-content-header-right">
-        </div>
-      </div>
-
       <div class="az-dashboard-nav">
         <nav class="nav">
           <div class="media">
@@ -110,32 +101,6 @@
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
-                          <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NMEC')">DU NMEC</a></li> -->
-                          <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">	
-                            DU Digital Platform</a></li> -->
-                          <!-- <li class="dropdown-submenu">
-                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Public Solutions (Consol.)')">DU Public Solutions (Consol.)</a>
-                            <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Public Safety')">DU Public Solutions - Public Safety</a></li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Aviation')">DU Public Solutions - Aviation</a></li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Others')">DU Public Solutions - Others</a></li>
-                            </ul>
-                          </li> -->
-                          <!-- <li class="dropdown-submenu">
-                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU ESDU (Consol.)')">DU ESDU (Consol.)</a>
-                            <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
-                            </ul>
-                          </li> -->
-                          <!-- <li class="dropdown-submenu">
-                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU SA&S (Consol.)')">DU SA&S (Consol.)</a>
-                            <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU SA&S - Australia MS')">DU SA&S - Australia MS</a></li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Others')">	
-                                DU SA&S - Others</a></li>
-                            </ul>
-                          </li> -->
                           <li class="dropdown-submenu">
                             <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
                             <ul class="dropdown-menu">
@@ -164,12 +129,9 @@
                                     <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Others')">DU SAS - Others  & SEI SD</a></li>
                                 </ul>
                               </li>
-                              <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('Solution Factory')">Solution Factory</a></li> -->
                               <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NexGen Connectivity')">DU NexGen Connectivity</a></li>
                             </ul>
                           </li>
-                          <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">	
-                            BU Biz Enablement Services</a></li> -->
                           <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU IP Led Biz')">	
                             BU IP Led Biz</a></li>
                         </ul>
@@ -520,24 +482,47 @@
             <div class="row">
               <div class="col-md-12">
                 <div style="text-align: center;">
-                  <h3 class="card-title" style="font-size: 1rem;">Top 5 Key Projects<span *ngIf="currentBC">({{currentBC}}BC)</span></h3>
+                  <h3 class="card-title" style="font-size: 1rem;">Top 7 Key Projects<span *ngIf="currentBC">({{currentBC}}BC)</span></h3>
                   {{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>
                   <select class="" style="border-width: 0px;" (change)="toggleProjects()" #toggleProj>
-                    <option value="actual">Actual</option>
-                    <option value="open">Open</option>
+                    <option value="actual">Actual from SF</option>
+                    <option value="open">Open from SF</option>
+                    <option value="open_from_bc">Open from BC</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="table-responsive">
               <table class="table" style="table-layout: fixed; width: 100%">
-                <thead>
+                <thead *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
                   <tr>
                     <th class="wd-30p">Project</th>
                     <th class="wd-30p">Account</th>
                     <th class="wd-10p" style="text-align: center;">BU</th>
                     <th class="wd-10p">Value(Mn)</th>
-                    <th class="wd-10p">Rank</th>
+                    <th class="wd-10p" style="text-align: center;">Rank</th>
+                    <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                  </tr>
+                </thead>
+                <thead *ngIf="top_key_projects_open" [hidden]="hide_project_open">
+                  <tr>
+                    <th class="wd-30p">Project</th>
+                    <th class="wd-30p">Account</th>
+                    <th class="wd-10p" style="text-align: center;">BU</th>
+                    <th class="wd-10p">Value(Mn)</th>
+                    <th class="wd-10p" style="text-align: center;">Rank</th>
+                    <th class="wd-10p" style="text-align: center;">Stage</th>
+                    <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                  </tr>
+                </thead>
+                <thead *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
+                  <tr>
+                    <th class="wd-30p">Project</th>
+                    <th class="wd-30p">Account</th>
+                    <th class="wd-10p" style="text-align: center;">BU</th>
+                    <th class="wd-10p">Value(Mn)</th>
+                    <th class="wd-10p" style="text-align: center;">Rank</th>
+                    <th class="wd-10p" style="text-align: center;">Risk</th>
                     <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
                   </tr>
                 </thead>
@@ -547,7 +532,7 @@
                     <td><strong>{{top_key_projects_actuals.project_1.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_1.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_1.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_1.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_1.rank | uppercase}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_1.month}}</strong></td> -->
                   </tr>
                   <tr>
@@ -555,28 +540,42 @@
                     <td><strong>{{top_key_projects_actuals.project_2.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_2.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_2.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_2.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_2.rank | uppercase}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_2.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_actuals.project_3.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_3.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_3.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_3.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_3.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_3.rank | uppercase}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_3.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_actuals.project_4.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_4.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_4.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_4.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_4.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_4.rank | uppercase}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_4.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_actuals.project_5.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_5.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_5.bu}}</strong></td>
                     <td><strong>{{top_key_projects_actuals.project_5.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_5.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_5.rank | uppercase}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_actuals.project_6.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_actuals.project_6.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_6.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_actuals.project_6.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_6.rank | uppercase}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_actuals.project_7.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_actuals.project_7.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_7.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_actuals.project_7.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_7.rank | uppercase}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
                   </tr>
                 </tbody>
@@ -586,7 +585,8 @@
                     <td><strong>{{top_key_projects_open.project_1.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_1.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_1.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_1.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.stage}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_1.month}}</strong></td> -->
                   </tr>
                   <tr>
@@ -594,29 +594,108 @@
                     <td><strong>{{top_key_projects_open.project_2.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_2.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_2.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_2.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.stage}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_2.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_open.project_3.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_3.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_3.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_3.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_3.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.stage}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_3.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_open.project_4.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_4.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_4.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_4.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_4.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.stage}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_4.month}}</strong></td> -->
                   </tr><tr>
                     <td><strong>{{top_key_projects_open.project_5.oppertunity}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_5.account}}</strong></td>
                     <td style="text-align: left;"><strong>{{top_key_projects_open.project_5.bu}}</strong></td>
                     <td><strong>{{top_key_projects_open.project_5.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_5.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.stage}}</strong></td>
                     <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                  </tr>
+                </tbody>
+                <tbody *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
+                  <tr>
+                    <td><strong>{{top_key_projects_open_bc.project_1.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_1.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_1.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_1.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_1.rank | uppercase}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_1.risk}}</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>{{top_key_projects_open_bc.project_2.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_2.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_2.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_2.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_2.rank | uppercase}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_2.risk}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_2.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_open_bc.project_3.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_3.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_3.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_3.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_3.rank | uppercase}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_3.risk}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_3.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_open_bc.project_4.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_4.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_4.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_4.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_4.rank | uppercase}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_4.risk}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_4.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_open_bc.project_5.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_5.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_5.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_5.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_5.rank | uppercase}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_5.risk}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_open_bc.project_6.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_6.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_6.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_6.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_6.rank | uppercase}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_6.risk}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                  </tr><tr>
+                    <td><strong>{{top_key_projects_open_bc.project_7.oppertunity}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_7.account}}</strong></td>
+                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_7.bu}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_7.amount}}</strong></td>
+                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_7.rank | uppercase}}</strong></td>
+                    <td><strong>{{top_key_projects_open_bc.project_7.risk}}</strong></td>
+                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
                   </tr>
                 </tbody>
               </table>
@@ -657,14 +736,18 @@
               <div class="col-lg-6">
                 <div class="media" style="float: right;">
                   <div class="media-body">
-                    <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+                    <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleLostOpp()" #toggleLost>
+                      <option value="amount">Amount</option>
+                      <option value="opportunity">Opportunity</option>
+                    </select>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-body">
               <div class="az-content-label az-content-label-sm mg-b-15"></div>
-              <div id="chart-pie-lost-opp" style="height: 250px;"></div>
+              <div id="chart-pie-lost-opp" [hidden]="hideLostAmt" style="height: 250px;"></div>
+              <div id="chart-pie-lost-opp-number" [hidden]="hideLostOpp" style="height: 250px;"></div>
             </div>
           </div>
         </div>

@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild("toggleProj") toggleProj: ElementRef;
   @ViewChild("toggleG") toggleG: ElementRef;
   @ViewChild("toggleTrend") toggleTrend: ElementRef;
+  @ViewChild("toggleLost") toggleLost: ElementRef;
   @ViewChild("toggleSeg") toggleSeg: ElementRef;  
   @ViewChild("currency") currency: ElementRef;
   @ViewChild("toggleOrder") toggleOrder: ElementRef;
@@ -90,6 +91,7 @@ export class DashboardComponent implements OnInit {
   top_key_projects_open: any;
   hide_project_actuals: boolean = false;
   hide_project_open: boolean = true;
+  hide_project_open_bc: boolean = true;
   salesBreakdown: any;
   fRankModal: any="none";
   filterBu: any = '';
@@ -108,6 +110,10 @@ export class DashboardComponent implements OnInit {
   filterFiscal_year: any = '2022';
   hideOrderTrendAmt: boolean = false;
   hideOrderTrendOpp: boolean = true;
+  top_key_projects_open_bc: any;
+  hideLostAmt: boolean = false;
+  hideLostOpp: boolean = true;
+  chart_lost_opp_number: Highcharts.Chart;
 
   constructor(
     private dataService : DataService
@@ -157,9 +163,15 @@ export class DashboardComponent implements OnInit {
     if(this.toggleProj.nativeElement.value == 'actual'){
       this.hide_project_actuals = false;
       this.hide_project_open = true;
-    }else{
+      this.hide_project_open_bc = true;
+    }else if(this.toggleProj.nativeElement.value == 'open'){
       this.hide_project_actuals = true;
       this.hide_project_open = false;
+      this.hide_project_open_bc = true;
+    }else{
+      this.hide_project_actuals = true;
+      this.hide_project_open = true;
+      this.hide_project_open_bc = false;
     }
   }
 
@@ -170,6 +182,16 @@ export class DashboardComponent implements OnInit {
     }else{
       this.hideOrderTrendAmt = true;
       this.hideOrderTrendOpp = false;
+    }
+  }
+
+  toggleLostOpp(){
+    if(this.toggleLost.nativeElement.value == 'amount'){
+      this.hideLostAmt = false;
+      this.hideLostOpp = true;
+    }else{
+      this.hideLostAmt = true;
+      this.hideLostOpp = false;
     }
   }
 
@@ -2779,67 +2801,53 @@ export class DashboardComponent implements OnInit {
     }
 
     if(timeframe == 'YTD'){
-      start_date = "2021-04-01";
-      end_date = "2022-04-28";
+      start_date = "";
+      end_date = "";
       this.timeFilter = 'YTD';
       timeframeFilter = ''
       timeframe = 'YTD'
-    }else if(timeframe == 'last_month'){
-      start_date = "2021-03-28";
-      end_date = "2022-04-28";
-      timeframeFilter = ''
     }else if(timeframe == 'Q1'){
       start_date = "";
       end_date = "";
       this.timeFilter = 'Q1';
       timeframeFilter = 'Q1'
-      // this.actual_timeframe = 'Q1'
     }else if(timeframe == 'Q2'){
       start_date = "";
       end_date = "";
       this.timeFilter = 'Q2';
       timeframeFilter = 'Q2'
-      // this.actual_timeframe = 'Q2'
     }else if(timeframe == 'Q3'){
       start_date = "";
       end_date = "";
       this.timeFilter = 'Q3';
       timeframeFilter = 'Q3'
-      // this.actual_timeframe = 'Q2'
     }else if(timeframe == 'Q4'){
       start_date = "";
       end_date = "";
       this.timeFilter = 'Q4';
       timeframeFilter = 'Q4'
-      // this.actual_timeframe = 'Q2'
     }else if(timeframe == '1H'){
       start_date = "";
       end_date = "";
       this.timeFilter = '1H';
       timeframeFilter = '1H'
-      // this.actual_timeframe = '1H'
     }else if(timeframe == '2H'){
       start_date = "";
       end_date = "";
       this.timeFilter = '2H';
       timeframeFilter = '1H'
-      // this.actual_timeframe = '1H'
     }else if(timeframe == 'annual'){
       start_date = "";
       end_date = "";
       timeframeFilter = ''
       this.timeFilter = 'Annual';
       timeframe = ''
-      // this.actual_timeframe = '1H'
     }else if(timeframe == 'ytd'){
       start_date = "";
       end_date = "";
       timeframeFilter = ''
       this.timeFilter = 'YTD';
       timeframe = ''
-      // this.actual_timeframe = '1H'
-    }else if(timeframe == 'custom'){
-      this.customDateFilter ="block";
     }
     this.filterBu = bu;
     this.filterStart_date = start_date;
@@ -3176,6 +3184,7 @@ export class DashboardComponent implements OnInit {
         if(res.result.status == true){
           this.top_key_projects_actuals = res.result.result.Actual;
           this.top_key_projects_open = res.result.result.Open;
+          this.top_key_projects_open_bc = res.result.result.open_from_bc;
         }
       }
     );    
@@ -4912,6 +4921,15 @@ export class DashboardComponent implements OnInit {
           ['Other', parseInt(res.result.result['Other_sum'])],
           
         ];
+        var number_of_opp_number = [
+          ['Price', parseInt(res.result.number['Price_sum'])],
+          ['Lost to Competition', parseInt(res.result.number['Lost to Competitor_sum'])],
+          ['No Budget/Lost Funding', parseInt(res.result.number['No Budget / Lost Funding_sum'])],
+          ['No Decision/Non-Responsive', parseInt(res.result.number['No Decision / Non-Responsive_sum'])],
+          ['Dropped by BU', parseInt(res.result.number['Dropped by BU_sum'])],
+          ['Other', parseInt(res.result.number['Other_sum'])],
+          
+        ];
         this.chart_lost_opp = Highcharts.chart('chart-pie-lost-opp', {
           chart: {
               type: 'pie'
@@ -4971,6 +4989,7 @@ export class DashboardComponent implements OnInit {
                   no_of_opp = d[1]
                 }
               })
+              console.log(point)
               return `${point.name}: ${no_of_opp}(${point.y}%)`
             }
           },
@@ -4990,29 +5009,136 @@ export class DashboardComponent implements OnInit {
                   },
                   data: [ {
                       name: 'Price',
-                      y: parseInt(res.result.result['Price']),
+                      y: parseFloat(res.result.result['Price']),
                       url: this.base_url+'records?bu='+bu+'&lost_reason=Price&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     },
                     {
                       name: 'Lost to Competition',
-                      y: parseInt(res.result.result['Lost to Competitor']),
+                      y: parseFloat(res.result.result['Lost to Competitor']),
                       url: this.base_url+'records?bu='+bu+'&lost_reason=Lost to Competition&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }, {
                       name: 'No Budget/Lost Funding',
-                      y: parseInt(res.result.result['No Budget / Lost Funding']),
+                      y: parseFloat(res.result.result['No Budget / Lost Funding']),
                       url: this.base_url+'records?bu='+bu+'&lost_reason=No Budget / Lost Funding&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     },
                     {
                       name: 'No Decision/Non-Responsive',
-                      y: parseInt(res.result.result['No Decision / Non-Responsive']),
+                      y: parseFloat(res.result.result['No Decision / Non-Responsive']),
                       url: this.base_url+'records?bu='+bu+'&lost_reason=No Decision / Non-Responsive&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }, {
                       name: 'Dropped by BU',
-                      y: parseInt(res.result.result['Dropped by BU']),
+                      y: parseFloat(res.result.result['Dropped by BU']),
                       url: this.base_url+'records?bu='+bu+'&lost_reason=Dropped by BU&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }, {
                       name: 'Other',
-                      y: parseInt(res.result.result['Other']),
+                      y: parseFloat(res.result.result['Other']),
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Other&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
+                    }
+                  ]
+              }
+          ]
+        } as any);
+        this.chart_lost_opp_number = Highcharts.chart('chart-pie-lost-opp-number', {
+          chart: {
+              type: 'pie'
+          },
+          colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
+          title: {
+              text: res.result.number.percentage+'%<br>'+res.result.number.Total,
+              align: 'center',
+              verticalAlign: 'middle',
+              x: -145
+          },
+          accessibility: {
+              announceNewData: {
+                  enabled: true
+              },
+              point: {
+                  valueSuffix: '%'
+              }
+          },
+          plotOptions: {
+            pie: {
+              size:'100%'
+            },
+            series: {
+                dataLabels: {
+                    enabled: false,
+                    format: '{point.y:.1f}%'
+                },
+                cursor: 'pointer',
+            }
+          },
+          tooltip: {
+              // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
+              // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+              formatter(){
+                let point = this,
+                    no_of_opp;
+                  number_of_opp_number.forEach(d => {
+                  if(d[0] == point.point['name']){
+                    no_of_opp = d[1]
+                  }
+                })
+                return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br># of Opp: ${no_of_opp}Mn`
+              }
+          },
+          legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            itemMarginTop: 10,
+            itemMarginBottom: 10,
+            labelFormatter: function () {
+              let point = this,
+              no_of_opp;
+              number_of_opp_number.forEach(d => {
+                if(d[0] == point.name){
+                  no_of_opp = d[1]
+                }
+              })
+              return `${point.name}: ${no_of_opp}(${point.y}%)`
+            }
+          },
+          series: [
+              {
+                  name: "Percentage",
+                  showInLegend: true,
+                  colorByPoint: true,
+                  innerSize: '50%',
+                  point: {
+                    events: {
+                        click: function () {
+                            // location.href = this.options.url;
+                            window.open(this.options.url);
+                        }
+                    }
+                  },
+                  data: [ {
+                      name: 'Price',
+                      y: parseFloat(res.result.number['Price']),
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Price&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
+                    },
+                    {
+                      name: 'Lost to Competition',
+                      y: parseFloat(res.result.number['Lost to Competitor']),
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Lost to Competition&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
+                    }, {
+                      name: 'No Budget/Lost Funding',
+                      y: parseFloat(res.result.number['No Budget / Lost Funding']),
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Budget / Lost Funding&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
+                    },
+                    {
+                      name: 'No Decision/Non-Responsive',
+                      y: parseFloat(res.result.number['No Decision / Non-Responsive']),
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Decision / Non-Responsive&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
+                    }, {
+                      name: 'Dropped by BU',
+                      y: parseFloat(res.result.number['Dropped by BU']),
+                      url: this.base_url+'records?bu='+bu+'&lost_reason=Dropped by BU&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
+                    }, {
+                      name: 'Other',
+                      y: parseFloat(res.result.number['Other']),
                       url: this.base_url+'records?bu='+bu+'&lost_reason=Other&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
                     }
                   ]
