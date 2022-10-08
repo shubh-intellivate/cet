@@ -137,6 +137,18 @@ export class DataService {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/required_order_run_rate", postData, this.httpOptions)
   }
 
+  public getSalesRunRate(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/current_sales_run_rate", postData, this.httpOptions)
+  }
+
+  public getSalesEstimatedRunRate(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/estimated_sales_run_rate", postData, this.httpOptions)
+  }
+
+  public getSalesRequiredRunRate(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/required_sales_run_rate", postData, this.httpOptions)
+  }
+
   public getTopKeyProjects(postData: any): Observable<any> {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/project_and_account/project", postData, this.httpOptions)
   }

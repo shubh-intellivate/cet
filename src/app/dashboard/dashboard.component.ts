@@ -114,6 +114,9 @@ export class DashboardComponent implements OnInit {
   hideLostAmt: boolean = false;
   hideLostOpp: boolean = true;
   chart_lost_opp_number: Highcharts.Chart;
+  salesRunRate: any;
+  salesEstimatedRunRate: any;
+  salesRequiredRunRate: any;
 
   constructor(
     private dataService : DataService
@@ -135,6 +138,9 @@ export class DashboardComponent implements OnInit {
     this.getOrderRunRate('','','','','','','2022');
     this.getEstimatedRunRate('','','','','','','2022');
     this.getRequiredRunRate('','','','','','','2022');
+    this.getSalesRunRate('','','','','','','2022');
+    this.getSalesEstimatedRunRate('','','','','','','2022');
+    this.getSalesRequiredRunRate('','','','','','','2022');
     this.getTopKeyProjects('','','','','','','2022');
     this.getTopKeyAccounts('','','','','','','2022');
     this.getSayDoOrder('','','','','','','2022');
@@ -147,6 +153,24 @@ export class DashboardComponent implements OnInit {
   ngAfterViewInit(){
     // this.chart_lost_opp.reflow();
     // this.chart_line.reflow();
+  }
+
+  showTab(evt, cityName, title) {
+    // this.sgaCategoryTitle = title;
+    const tabs = Array.from(
+      document.getElementsByClassName('tabs') as HTMLCollectionOf<HTMLElement>,
+    );
+    const tablinks = Array.from(
+      document.getElementsByClassName("tablink") as HTMLCollectionOf<HTMLElement>,
+    );
+    tabs.forEach(tab => {
+      tab.style.display = 'none';
+    });
+    tablinks.forEach(tablink => {
+      tablink.className = tablink.className.replace(" w3-grey", "");
+    });
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " w3-grey";
   }
 
   openOrderInfo(){
@@ -325,11 +349,13 @@ export class DashboardComponent implements OnInit {
             name: 'Open',
             y: parseInt(this.fRankOpen),
             url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&type=open&rank=F&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=order_overview'
-          },{
-            name: 'To Go',
-            y: parseInt(this.fRankTogo),
-            url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&type=toGo&rank=F&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=order_overview'
-          }]
+          },
+          // {
+          //   name: 'To Go',
+          //   y: parseInt(this.fRankTogo),
+          //   url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&type=toGo&rank=F&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=order_overview'
+          // }
+        ]
         }
       ]
     }
@@ -2868,6 +2894,9 @@ export class DashboardComponent implements OnInit {
     this.getOrderRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.getEstimatedRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.getRequiredRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getSalesRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getSalesEstimatedRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getSalesRequiredRunRate(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.getTopKeyProjects(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.getTopKeyAccounts(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.getSayDoOrder(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
@@ -3582,6 +3611,87 @@ export class DashboardComponent implements OnInit {
       res => {
         if(res.result.status == "true"){
           this.requiredRunRate = res.result.result.runrate;
+        }
+      }
+    );    
+  }
+
+  getSalesRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
+
+    this.dataService.getSalesRunRate(data).subscribe(
+      res => {
+        if(res.result.status == "true"){
+          this.salesRunRate = res.result.result.runrate;
+        }
+      }
+    );    
+  }
+
+  getSalesEstimatedRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
+
+    this.dataService.getSalesEstimatedRunRate(data).subscribe(
+      res => {
+        if(res.result.status == "true"){
+          this.salesEstimatedRunRate = res.result.result.runrate;
+        }
+      }
+    );    
+  }
+
+  getSalesRequiredRunRate(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
+
+    this.dataService.getSalesRequiredRunRate(data).subscribe(
+      res => {
+        if(res.result.status == "true"){
+          this.salesRequiredRunRate = res.result.result.runrate;
         }
       }
     );    
@@ -4939,7 +5049,7 @@ export class DashboardComponent implements OnInit {
               text: res.result.percentage+'%<br>'+res.result.Sum,
               align: 'center',
               verticalAlign: 'middle',
-              x: -145
+              x: -155
           },
           accessibility: {
               announceNewData: {

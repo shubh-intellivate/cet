@@ -5,9 +5,54 @@
   .blur{
     filter: blur(5px);
   }
-  /* .container{
-    max-width: 95% !important;
-  } */
+  .w3-bar{
+      border-bottom: 1px solid #cdd4e0;
+      margin-bottom: 20px;
+      background-color: #ccc;
+      width: 100%;
+      overflow: hidden;
+    }
+    .w3-bar-item:hover{
+      background-color: rgb(127,127,127) !important;
+    }
+    .w3-bar-item{
+      border-right: 1px solid;
+    }
+    .w3-grey{
+      background-color: #7987a1 !important;
+      color: white !important;
+    }
+    .w3-bar .w3-button {
+        white-space: normal;
+        border: none;
+        display: inline-block;
+        padding: 8px 16px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        background-color: inherit;
+        text-align: center;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .w3-bar .w3-bar-item {
+        padding: 8px 16px;
+        float: left;
+        width: auto;
+        border: none;
+        display: block;
+        outline: 0;
+    }
+    /* .card-dashboard-five .card-title {
+        font-size: 12px !important;
+    }
+    .card-dashboard-five .card-text {
+        font-size: 11px !important;
+    } */
+    .container{
+      max-width: 95% !important;
+    }
 </style>
 
 <div class="az-content az-content-dashboard">
@@ -175,583 +220,623 @@
           <a class="nav-link" routerLink="/"><i class="fas fa-elli psis-h"></i></a>
         </nav> -->
       </div>
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Order Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="openPipelineModal()" *ngIf="pipelineClassify">Pipeline</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="javascript:void(0)" (click)="openFRankModal()" *ngIf="pipelineClassify">Rank F</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="javascript:void(0)" (click)="createChartGaugeOrder()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span title="Rank Info" (click)="openOrderInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div id="chart-gauge-order" style="height: 250px;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Sales Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="openSalesModal()" *ngIf="salesBreakdown">Sales breakdown</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="javascript:void(0)" (click)="createChartGaugeSales()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span title="Rank Info" (click)="openSalesInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div id="chart-gauge-sales" style="height: 250px;"></div>
-            </div>
-          </div>
-        </div>
+      <div class="w3-bar">
+        <button class="w3-bar-item w3-button tablink w3-grey" (click)="showTab($event, 'Order', 'Order')">Order</button>
+        <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Sales', 'Sales')">Sales</button>
+        <!-- <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'BI Performance', 'BI Performance')">BI Performance</button> -->
       </div>
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-8">
-                <h6 class="card-title">Order Conversion<span *ngIf="currentBC">({{currentBC}}BC)</span></h6> 
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <select (change)="toggleOrderConversion()" style="width: 100px;" #toggleOrder>
-                      <option>By Amount</option>
-                      <option>By Number of Opportunities</option>
-                    </select>
+      <div id="Order" class="tabs">
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Order Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="openPipelineModal()" *ngIf="pipelineClassify">Pipeline</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="openFRankModal()" *ngIf="pipelineClassify">Suspect</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="createChartGaugeOrder()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span title="Rank Info" (click)="openOrderInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4" [hidden]="orderByAmount">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="showOrderOppPercentage()">Reset</a>
+              <div class="card-body">
+                <div id="chart-gauge-order" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-10">
+                  <h6 class="card-title">Order Conversion<span *ngIf="currentBC">({{currentBC}}BC)</span></h6> 
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <select (change)="toggleOrderConversion()" style="width: 100px;" #toggleOrder>
+                        <option>By Amount</option>
+                        <option>By Number of Opportunities</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2" [hidden]="orderByAmount">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showOrderOppPercentage()">Reset</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2" [hidden]="orderByOpp">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showOrderAmtPercentage()">Reset</a>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4" [hidden]="orderByOpp">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="showOrderAmtPercentage()">Reset</a>
+              <div class="card-body" [hidden]="orderByOpp">
+                <div [hidden]="order_amt_graph" id="chart-order-amt" style="height: 231px;"></div>
+                <div [hidden]="order_amt_per" style="margin-top:33%;height:139px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderAmtGraph()">{{orderAmtPerValue}}</span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
+                  </div>
+                </div>
+              </div>
+              <div class="card-body" [hidden]="orderByAmount">
+                <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 231x;"></div>
+                <div [hidden]="order_opp_per" style="margin-top:33%;height:139px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card-body" [hidden]="orderByOpp">
-              <div [hidden]="order_amt_graph" id="chart-order-amt" style="height: 300px;"></div>
-              <div [hidden]="order_amt_per" style="margin-top:33%;height:225px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderAmtGraph()">{{orderAmtPerValue}}</span>
-                <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  ({{actual_timeframe}})
+          </div>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-10">
+                  <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
+                </div>
+                <div class="col-lg-2">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showPrevYearSaydoValue()">Reset</a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="card-body" [hidden]="orderByAmount">
-              <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 300px;"></div>
-              <div [hidden]="order_opp_per" style="margin-top:33%;height:225px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
-                <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  ({{actual_timeframe}})
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15">Order</div>
+                <div [hidden]="prev_year_saydo_order" id="chart-prev-year-saydo-order" style="height: 240px;"></div>
+                <div [hidden]="prev_year_saydo_order_value" style="margin-top:41%;height:142px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showLastYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoOrderValue)">{{sayDoOrderValue}}<span *ngIf="sayDoOrderValue">%</span></span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 220px;">
-            <div class="card-header row">
-              <div class="col-lg-12">
-                <h6 class="card-title">Projected Conversion rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15"></div>
-              <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{bidWinRate}}</span></div>
-            </div>
-          </div>
-          <div class="card card-dashboard-five mg-t-20" style="height: 220px;">
-            <div class="card-header row">
-              <div class="col-lg-12">
-                <h6 class="card-title">Orders Won<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}<br>Values in M-INR</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15">Last Month ({{ordersBookedMonth}})</div>
-              <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=order_booked_last_month&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{ordersBookedLastMonth}}</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="row row-sm">
-            <div class="col-lg-8 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five" style="height: 220px;">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-                  </div>
-                </div>
-                <div class="card-body row">
-                  <div class="col-lg-4" style="text-align: center;">
-                    <div class="az-content-label az-content-label-sm">Current</div>
-                    <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{orderRunRate}}</span></div>
-                  </div><div class="col-lg-4" style="text-align: center;">
-                    <div class="az-content-label az-content-label-sm">Required</div>
-                    <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{requiredRunRate}}</span></div>
-                  </div>
-                  <div class="col-lg-4" style="text-align: center;">
-                    <div class="az-content-label az-content-label-sm">Estimated</div>
-                    <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{estimatedRunRate}}</span></div>
-                  </div>
+  
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" style="height: 130px;">
+              <div class="card-header row">
+                <div class="col-lg-12">
+                  <h6 class="card-title">Projected Conversion rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
                 </div>
               </div>
+              <div class="card-body" style="padding: 0px !important;">
+                <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{bidWinRate}}</span></div>
+              </div>
             </div>
-            <div class="col-lg-4 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five" style="height: 220px;">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">New Customers Acquired<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
-                  </div>
+            <div class="card card-dashboard-five mg-t-20" style="height: 130px;">
+              <div class="card-header row">
+                <div class="col-lg-12">
+                  <h6 class="card-title">New Customers Acquired<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
                 </div>
-                <div class="card-body">
-                  <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);margin-top: 20px;"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=new_customer_acquired&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{newCustomers}}</a></div>
+              </div>
+              <div class="card-body" style="padding: 0px !important;">
+                <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=new_customer_acquired&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{newCustomers}}</a></div>
+              </div>
+            </div>
+            <div class="card card-dashboard-five mg-t-20" style="height: 150px;">
+              <div class="card-header row">
+                <div class="col-lg-12">
+                  <h6 class="card-title">Average Order Cycle Time<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Months</p>
                 </div>
+              </div>
+              <div class="card-body" style="padding: 0px !important;">
+                <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{avgOrderCycle}}</span></div>
               </div>
             </div>
           </div>
-          <div class="row row-sm mg-b-20 mg-t-20">
-            <div class="col-lg-4 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five" style="height: 220px;">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">Average Order Cycle Time<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Months</p>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="row row-sm">
+              <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="height: 210px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                    </div>
                   </div>
-                </div>
-                <div class="card-body">
-                  <div style="height:72px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{avgOrderCycle}}</span></div>
+                  <div class="card-body row">
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Current</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{orderRunRate}}</span></div>
+                    </div><div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Required</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{requiredRunRate}}</span></div>
+                    </div>
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Estimated</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{estimatedRunRate}}</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-8 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five" style="height: 220px;">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">Average Order <br>Size<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+            <div class="row row-sm mg-t-20">
+              <div class="col-lg-6">
+                <div class="card card-dashboard-five" style="height: 220px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Orders Won<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{buFilter}}<br>Values in M-INR</p>
+                    </div>
+                  </div>
+                  <div class="card-body" style="padding-top: 15px !important;">
+                    <div class="az-content-label az-content-label-sm mg-b-15" style="font-size: 11px !important;">Last Month ({{ordersBookedMonth}})</div>
+                    <div style="text-align:center; font-weight: 900;font-size: 2.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=order_booked_last_month&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{ordersBookedLastMonth}}</a></div>
                   </div>
                 </div>
-                <div class="card-body row">
-                  <div class="col-lg-6" style="text-align: center;">
-                    <!-- <div class="az-content-label az-content-label-sm">Simple</div> -->
-                    <div style="height:72px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{avgOrderSize}}</a></div>
+                
+              </div>
+              <div class="col-lg-6">
+                <div class="card card-dashboard-five" style="height: 220px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Average Order <br>Size<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                    </div>
                   </div>
-                  <div class="col-lg-6" style="text-align: center;">
-                    <div class="row" style="margin-top: -18px;margin-left:20px;">
+                  <div class="card-body row">
+                    <div class="col-lg-6" style="text-align: center;">
+                      <!-- <div class="az-content-label az-content-label-sm">Simple</div> -->
+                      <div style="height:72px;margin-top: 15px;text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{avgOrderSize}}</a></div>
+                    </div>
+                    <div class="col-lg-6" style="text-align: center;">
+                      <div class="row" style="margin-left:10px;">
+                          <div class="az-content-label az-content-label-sm">
+                            <div class="row">
+                              Max
+                            </div>
+                            <div class="row">
+                              <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">{{maxOrderSizeValue}}</div>
+                              <!-- <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">630</div> -->
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row" style="margin-left:10px;">
                         <div class="az-content-label az-content-label-sm">
                           <div class="row">
-                            Max Value
+                            Min
                           </div>
                           <div class="row">
-                            <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">{{maxOrderSizeValue}}</div>
-                            <!-- <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">630</div> -->
+                            <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">{{minOrderSizeValue}}</div>
+                            <!-- <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">0.15</div> -->
                           </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-left:20px;">
-                      <div class="az-content-label az-content-label-sm">
-                        <div class="row">
-                          Min Value
-                        </div>
-                        <div class="row">
-                          <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">{{minOrderSizeValue}}</div>
-                          <!-- <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">0.15</div> -->
-                        </div>
-                      </div>
-                  </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="showPrevYearSaydoValue()">Reset</a>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" >
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleOrderTrend()" #toggleTrend>
+                        <option value="amount">Amount</option>
+                        <option value="opportunity">Opportunity</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15">Order</div>
-              <div [hidden]="prev_year_saydo_order" id="chart-prev-year-saydo-order" style="height: 250px;"></div>
-              <div [hidden]="prev_year_saydo_order_value" style="margin-top:30%;height:200px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showLastYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoOrderValue)">{{sayDoOrderValue}}<span *ngIf="sayDoOrderValue">%</span></span>
-                <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  ({{actual_timeframe}})
-                </div>
+              <div class="card-body">
+                <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
+                <div id="order-trend" [hidden]="hideOrderTrendAmt" style="height: 325px;"></div>
+                <div id="order-trend-opp" [hidden]="hideOrderTrendOpp" style="height: 325px;"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="showCurYearSaydoValue()">Reset</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15">Sales</div>
-              <div [hidden]="cur_year_saydo_order" id="chart-prev-year-saydo-sales" style="height: 250px;"></div>
-              <div [hidden]="cur_year_saydo_order_value" style="margin-top:30%;height: 200px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showCurYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoSalesValue)">{{sayDoSalesValue}}<span *ngIf="sayDoSalesValue">%</span></span>
-                <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  ({{actual_timeframe}})
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" >
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleOrderTrend()" #toggleTrend>
-                      <option value="amount">Amount</option>
-                      <option value="opportunity">Opportunity</option>
+  
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-12 col-xl-12 mg-t-20 mg-lg-t-0">
+            <div class="card card-table-one">
+              <div class="row">
+                <div class="col-md-12">
+                  <div style="text-align: center;">
+                    <h3 class="card-title" style="font-size: 1rem;">Top 7 Key Projects<span *ngIf="currentBC">({{currentBC}}BC)</span></h3>
+                    {{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>
+                    <select class="" style="border-width: 0px;" (change)="toggleProjects()" #toggleProj>
+                      <option value="actual">Actual (BC)</option>
+                      <option value="open">Open (SF)</option>
+                      <option value="open_from_bc">Open (BC)</option>
                     </select>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
-              <div id="order-trend" [hidden]="hideOrderTrendAmt" style="height: 300px;"></div>
-              <div id="order-trend-opp" [hidden]="hideOrderTrendOpp" style="height: 300px;"></div>
+              <div class="table-responsive">
+                <table class="table" style="table-layout: fixed; width: 100%">
+                  <thead *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
+                    <tr>
+                      <th class="wd-30p">Project</th>
+                      <th class="wd-30p">Account</th>
+                      <th class="wd-10p" style="text-align: center;">BU</th>
+                      <th class="wd-10p">Value(Mn)</th>
+                      <th class="wd-10p" style="text-align: center;">Rank</th>
+                      <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                    </tr>
+                  </thead>
+                  <thead *ngIf="top_key_projects_open" [hidden]="hide_project_open">
+                    <tr>
+                      <th class="wd-30p">Project</th>
+                      <th class="wd-30p">Account</th>
+                      <th class="wd-10p" style="text-align: center;">BU</th>
+                      <th class="wd-10p">Value(Mn)</th>
+                      <th class="wd-10p" style="text-align: center;">Rank</th>
+                      <th class="wd-10p" style="text-align: center;">Stage</th>
+                      <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                    </tr>
+                  </thead>
+                  <thead *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
+                    <tr>
+                      <th class="wd-30p">Project</th>
+                      <th class="wd-30p">Account</th>
+                      <th class="wd-10p" style="text-align: center;">BU</th>
+                      <th class="wd-10p">Value(Mn)</th>
+                      <th class="wd-10p" style="text-align: center;">Rank</th>
+                      <th class="wd-10p" style="text-align: center;">Risk</th>
+                      <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
+                    <tr>
+                      <td><strong>{{top_key_projects_actuals.project_1.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_1.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_1.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_1.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_1.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_1.month}}</strong></td> -->
+                    </tr>
+                    <tr>
+                      <td><strong>{{top_key_projects_actuals.project_2.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_2.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_2.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_2.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_2.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_2.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_3.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_3.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_3.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_3.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_3.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_3.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_4.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_4.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_4.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_4.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_4.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_4.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_5.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_5.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_5.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_5.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_5.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_6.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_6.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_6.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_6.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_6.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_7.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_7.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_7.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_7.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_7.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="top_key_projects_open" [hidden]="hide_project_open">
+                    <tr>
+                      <td><strong>{{top_key_projects_open.project_1.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_1.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_1.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_1.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_1.month}}</strong></td> -->
+                    </tr>
+                    <tr>
+                      <td><strong>{{top_key_projects_open.project_2.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_2.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_2.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_2.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_2.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_3.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_3.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_3.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_3.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_3.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_4.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_4.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_4.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_4.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_4.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_5.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_5.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_5.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_5.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
+                    <tr>
+                      <td><strong>{{top_key_projects_open_bc.project_1.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_1.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_1.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_1.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_1.rank | uppercase}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_1.risk}}</strong></td>
+                    </tr>
+                    <tr>
+                      <td><strong>{{top_key_projects_open_bc.project_2.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_2.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_2.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_2.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_2.rank | uppercase}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_2.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_2.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_3.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_3.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_3.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_3.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_3.rank | uppercase}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_3.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_3.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_4.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_4.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_4.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_4.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_4.rank | uppercase}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_4.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_4.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_5.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_5.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_5.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_5.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_5.rank | uppercase}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_5.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_6.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_6.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_6.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_6.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_6.rank | uppercase}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_6.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_7.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_7.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_7.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_7.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_7.rank | uppercase}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_7.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-       
-      </div>
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-12 col-xl-12 mg-t-20 mg-lg-t-0">
-          <div class="card card-table-one">
-            <div class="row">
-              <div class="col-md-12">
-                <div style="text-align: center;">
-                  <h3 class="card-title" style="font-size: 1rem;">Top 7 Key Projects<span *ngIf="currentBC">({{currentBC}}BC)</span></h3>
-                  {{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>
-                  <select class="" style="border-width: 0px;" (change)="toggleProjects()" #toggleProj>
-                    <option value="actual">Actual from SF</option>
-                    <option value="open">Open from SF</option>
-                    <option value="open_from_bc">Open from BC</option>
-                  </select>
+  
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Top 5 Key Accounts<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15">Order Value</div>
+                <div id="chart-top-accounts" style="height: 250px;"></div>
+              </div>
             </div>
-            <div class="table-responsive">
-              <table class="table" style="table-layout: fixed; width: 100%">
-                <thead *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
-                  <tr>
-                    <th class="wd-30p">Project</th>
-                    <th class="wd-30p">Account</th>
-                    <th class="wd-10p" style="text-align: center;">BU</th>
-                    <th class="wd-10p">Value(Mn)</th>
-                    <th class="wd-10p" style="text-align: center;">Rank</th>
-                    <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
-                  </tr>
-                </thead>
-                <thead *ngIf="top_key_projects_open" [hidden]="hide_project_open">
-                  <tr>
-                    <th class="wd-30p">Project</th>
-                    <th class="wd-30p">Account</th>
-                    <th class="wd-10p" style="text-align: center;">BU</th>
-                    <th class="wd-10p">Value(Mn)</th>
-                    <th class="wd-10p" style="text-align: center;">Rank</th>
-                    <th class="wd-10p" style="text-align: center;">Stage</th>
-                    <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
-                  </tr>
-                </thead>
-                <thead *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
-                  <tr>
-                    <th class="wd-30p">Project</th>
-                    <th class="wd-30p">Account</th>
-                    <th class="wd-10p" style="text-align: center;">BU</th>
-                    <th class="wd-10p">Value(Mn)</th>
-                    <th class="wd-10p" style="text-align: center;">Rank</th>
-                    <th class="wd-10p" style="text-align: center;">Risk</th>
-                    <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
-                  </tr>
-                </thead>
-                <tbody *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
-                  <tr>
-                    <td><strong>{{top_key_projects_actuals.project_1.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_1.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_1.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_1.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_1.rank | uppercase}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_1.month}}</strong></td> -->
-                  </tr>
-                  <tr>
-                    <td><strong>{{top_key_projects_actuals.project_2.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_2.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_2.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_2.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_2.rank | uppercase}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_2.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_3.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_3.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_3.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_3.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_3.rank | uppercase}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_3.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_4.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_4.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_4.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_4.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_4.rank | uppercase}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_4.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_5.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_5.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_5.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_5.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_5.rank | uppercase}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_6.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_6.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_6.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_6.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_6.rank | uppercase}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_7.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_7.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_7.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_7.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_7.rank | uppercase}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
-                  </tr>
-                </tbody>
-                <tbody *ngIf="top_key_projects_open" [hidden]="hide_project_open">
-                  <tr>
-                    <td><strong>{{top_key_projects_open.project_1.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_1.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_1.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_1.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.rank | uppercase}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.stage}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_1.month}}</strong></td> -->
-                  </tr>
-                  <tr>
-                    <td><strong>{{top_key_projects_open.project_2.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_2.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_2.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_2.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.rank | uppercase}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.stage}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_2.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_3.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_3.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_3.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_3.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.rank | uppercase}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.stage}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_3.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_4.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_4.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_4.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_4.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.rank | uppercase}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.stage}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_4.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_5.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_5.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_5.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_5.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.rank | uppercase}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.stage}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
-                  </tr>
-                </tbody>
-                <tbody *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
-                  <tr>
-                    <td><strong>{{top_key_projects_open_bc.project_1.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_1.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_1.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_1.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_1.rank | uppercase}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_1.risk}}</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>{{top_key_projects_open_bc.project_2.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_2.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_2.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_2.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_2.rank | uppercase}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_2.risk}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_2.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open_bc.project_3.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_3.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_3.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_3.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_3.rank | uppercase}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_3.risk}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_3.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open_bc.project_4.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_4.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_4.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_4.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_4.rank | uppercase}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_4.risk}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_4.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open_bc.project_5.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_5.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_5.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_5.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_5.rank | uppercase}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_5.risk}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open_bc.project_6.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_6.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_6.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_6.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_6.rank | uppercase}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_6.risk}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open_bc.project_7.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_7.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_7.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_7.amount}}</strong></td>
-                    <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_7.rank | uppercase}}</strong></td>
-                    <td><strong>{{top_key_projects_open_bc.project_7.risk}}</strong></td>
-                    <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
-                  </tr>
-                </tbody>
-              </table>
+          </div>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" style="height: 100%;">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleLostOpp()" #toggleLost>
+                        <option value="amount">Amount</option>
+                        <option value="opportunity">Opportunity</option>
+                      </select>
+                      <br>
+                      <a href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&lost_reason=All&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&fiscal_year={{filterFiscal_year}}" target="_blank" style="float: right;text-align: right;margin-right: 10px;">View All</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15"></div>
+                <div id="chart-pie-lost-opp" [hidden]="hideLostAmt" style="height: 250px;"></div>
+                <div id="chart-pie-lost-opp-number" [hidden]="hideLostOpp" style="height: 250px;"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Top 5 Key Accounts<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+      <div id="Sales" class="tabs" style="display:none">
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Sales Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="openSalesModal()" *ngIf="salesBreakdown">Sales breakdown</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="createChartGaugeSales()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span title="Rank Info" (click)="openSalesInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+              <div class="card-body">
+                <div id="chart-gauge-sales" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showCurYearSaydoValue()">Reset</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15">Sales</div>
+                <div [hidden]="cur_year_saydo_order" id="chart-prev-year-saydo-sales" style="height: 240px;"></div>
+                <div [hidden]="cur_year_saydo_order_value" style="margin-top:35%;height: 159px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showCurYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoSalesValue)">{{sayDoSalesValue}}<span *ngIf="sayDoSalesValue">%</span></span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15">Order Value</div>
-              <div id="chart-top-accounts" style="height: 250px;"></div>
-            </div>
           </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 100%;">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleLostOpp()" #toggleLost>
-                      <option value="amount">Amount</option>
-                      <option value="opportunity">Opportunity</option>
-                    </select>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="row row-sm">
+              <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="height: 210px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                    </div>
+                  </div>
+                  <div class="card-body row">
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Current</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{salesRunRate}}</span></div>
+                    </div><div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Required</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{salesRequiredRunRate}}</span></div>
+                    </div>
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Estimated</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{salesEstimatedRunRate}}</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15"></div>
-              <div id="chart-pie-lost-opp" [hidden]="hideLostAmt" style="height: 250px;"></div>
-              <div id="chart-pie-lost-opp-number" [hidden]="hideLostOpp" style="height: 250px;"></div>
-            </div>
           </div>
         </div>
       </div>
+
+      <div id="BI Performance" class="tabs" style="display:none">
+        BI
+      </div>
+
 
       <!-- <div class="row row-sm mg-b-20">
         <div class="col-lg-3 col-xl-3 mg-t-20 mg-lg-t-0"></div>
@@ -913,7 +998,7 @@
       <div class="modal-content" style="margin-top: -20px;">
         <div class="modal-header">
           <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
-          <h4 class="modal-title">F Rank Analysis({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
+          <h4 class="modal-title">Suspect Analysis({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
           <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closeFRankModal()">
             <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
           </button>
@@ -924,22 +1009,17 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">F Rank</h6>
+                    <h6 class="card-title">Rank F</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
-                      <!-- <div class="media-body">
-                        <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleClassify()" #toggleClass>
-                          <option value="rank">Rank</option>
-                          <option value="classify">Classify</option>
-                        </select>
-                      </div> -->
                     </div>
                   </div>
                 </div>
                 <div class="card-body">
-                  <div id="f-rank" style="height: 200px;"></div>
+                  <div id="f-rank" *ngIf="fRankOpen > 0" style="height: 200px;"></div>
+                  <div *ngIf="fRankOpen == 0" style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);">NA</div>
                 </div>
               </div>
             </div>
