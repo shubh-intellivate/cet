@@ -4343,6 +4343,11 @@ export class DashboardComponent implements OnInit {
                     y: parseInt(res.result.result.achieved.open.E),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   },
+                  {
+                    name: 'S',
+                    y: parseInt(res.result.result.achieved.confirmed.S),
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
+                  }
                   // {
                   //   name: 'F',
                   //   y: parseInt(res.result.result.achieved.open.F),
@@ -4460,11 +4465,6 @@ export class DashboardComponent implements OnInit {
                     name: 'YTD Act',
                     y: parseInt(res.result.result.achieved.confirmed.Act_BC),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
-                  },
-                  {
-                    name: 'S',
-                    y: parseInt(res.result.result.achieved.confirmed.S),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   }
                   ]
                 }
