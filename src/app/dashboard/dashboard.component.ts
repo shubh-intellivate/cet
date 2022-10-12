@@ -3732,7 +3732,7 @@ export class DashboardComponent implements OnInit {
           }else{
             this.orderOppPerValue = res.result.result.percentage+'%';
           }
-          this.actual_timeframe = res.result.result.actual_time_frame;
+          // this.actual_timeframe = res.result.result.actual_time_frame;
           var xaxis = []
           var yaxis = []
           res.result.result.drilldown.forEach(element => {
@@ -5280,6 +5280,8 @@ export class DashboardComponent implements OnInit {
       this.dataService.getOrderTrend(data).subscribe(
         res => {
           var month_data = res.result;
+          console.log("month_data")
+          console.log(month_data)
           this.chart_line = Highcharts.chart('order-trend', {
             title: {
                 text: ''
@@ -5312,7 +5314,7 @@ export class DashboardComponent implements OnInit {
                 },
             },
             xAxis: {
-                categories: [month_data.month_1.month, month_data.month_2.month, month_data.month_3.month]
+                categories: [month_data.month_1.month, month_data.month_2.month, month_data.month_3.month, month_data.month_4.month, month_data.month_5.month]
             },
             legend: {
               enabled: false
@@ -5360,15 +5362,23 @@ export class DashboardComponent implements OnInit {
                 data: [{
                   name: month_data.month_1.month,
                   y: parseInt(month_data.month_1.F),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&month='+month_data.month_1.month
                 },{
                   name: month_data.month_2.month,
                   y: parseInt(month_data.month_2.F),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&month='+month_data.month_2.month
                 },{
                   name: month_data.month_3.month,
                   y: parseInt(month_data.month_3.F),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&month='+month_data.month_3.month
+                },{
+                  name: month_data.month_4.month,
+                  y: parseInt(month_data.month_4.F),
+                  url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&month='+month_data.month_4.month
+                },{
+                  name: month_data.month_5.month,
+                  y: parseInt(month_data.month_5.F),
+                  url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&month='+month_data.month_5.month
                 }]
               },
               {
@@ -5397,15 +5407,23 @@ export class DashboardComponent implements OnInit {
                 data: [{
                   name: month_data.month_1.month,
                   y: parseInt(month_data.month_1.E),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month='+month_data.month_1.month
                 },{
                   name: month_data.month_2.month,
                   y: parseInt(month_data.month_2.E),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month='+month_data.month_2.month
                 },{
                   name: month_data.month_3.month,
                   y: parseInt(month_data.month_3.E),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month='+month_data.month_3.month
+                },{
+                  name: month_data.month_4.month,
+                  y: parseInt(month_data.month_4.E),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month='+month_data.month_4.month
+                },{
+                  name: month_data.month_5.month,
+                  y: parseInt(month_data.month_5.E),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month='+month_data.month_5.month
                 }]
                 },{
                   type: 'column',
@@ -5433,15 +5451,23 @@ export class DashboardComponent implements OnInit {
                   data: [{
                     name: month_data.month_1.month,
                     y: parseInt(month_data.month_1.D),
-                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                    url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&month='+month_data.month_1.month
                   },{
                     name: month_data.month_2.month,
                     y: parseInt(month_data.month_2.D),
-                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                    url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&month='+month_data.month_2.month
                   },{
                     name: month_data.month_3.month,
                     y: parseInt(month_data.month_3.D),
-                    url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                    url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&month='+month_data.month_3.month
+                  },{
+                    name: month_data.month_4.month,
+                    y: parseInt(month_data.month_4.D),
+                    url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&month='+month_data.month_4.month
+                  },{
+                    name: month_data.month_5.month,
+                    y: parseInt(month_data.month_5.D),
+                    url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&month='+month_data.month_5.month
                   }]
               },{
                 type: 'column',
@@ -5469,15 +5495,23 @@ export class DashboardComponent implements OnInit {
                 data: [{
                   name: month_data.month_1.month,
                   y: parseInt(month_data.month_1.C),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&month='+month_data.month_1.month
                 },{
                   name: month_data.month_2.month,
                   y: parseInt(month_data.month_2.C),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&month='+month_data.month_2.month
                 },{
                   name: month_data.month_3.month,
                   y: parseInt(month_data.month_3.C),
-                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                  url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&month='+month_data.month_3.month
+                },{
+                  name: month_data.month_4.month,
+                  y: parseInt(month_data.month_4.C),
+                  url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&month='+month_data.month_4.month
+                },{
+                  name: month_data.month_5.month,
+                  y: parseInt(month_data.month_5.C),
+                  url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&month='+month_data.month_5.month
                 }]
             },{
               type: 'column',
@@ -5505,15 +5539,23 @@ export class DashboardComponent implements OnInit {
               data: [{
                 name: month_data.month_1.month,
                 y: parseInt(month_data.month_1.B),
-                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&month='+month_data.month_1.month
               },{
                 name: month_data.month_2.month,
                 y: parseInt(month_data.month_2.B),
-                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&month='+month_data.month_2.month
               },{
                 name: month_data.month_3.month,
                 y: parseInt(month_data.month_3.B),
-                url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+                url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&month='+month_data.month_3.month
+              },{
+                name: month_data.month_4.month,
+                y: parseInt(month_data.month_4.B),
+                url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&month='+month_data.month_4.month
+              },{
+                name: month_data.month_5.month,
+                y: parseInt(month_data.month_5.B),
+                url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&month='+month_data.month_5.month
               }]
           },{
             type: 'column',
@@ -5541,15 +5583,23 @@ export class DashboardComponent implements OnInit {
             data: [{
               name: month_data.month_1.month,
               y: parseInt(month_data.month_1.A),
-              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+              url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_1.month
             },{
               name: month_data.month_2.month,
               y: parseInt(month_data.month_2.A),
-              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+              url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_2.month
             },{
               name: month_data.month_3.month,
               y: parseInt(month_data.month_3.A),
-              url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+              url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_3.month
+            },{
+              name: month_data.month_4.month,
+              y: parseInt(month_data.month_4.A),
+              url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_4.month
+            },{
+              name: month_data.month_5.month,
+              y: parseInt(month_data.month_5.A),
+              url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_5.month
             }]
         },{
           type: 'column',
@@ -5576,16 +5626,24 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: month_data.month_1.month,
-            y: parseInt(month_data.month_1.S),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+            y: parseInt(month_data.month_1.A),
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_1.month
           },{
             name: month_data.month_2.month,
-            y: parseInt(month_data.month_2.S),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+            y: parseInt(month_data.month_2.A),
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_2.month
           },{
             name: month_data.month_3.month,
-            y: parseInt(month_data.month_3.S),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+            y: parseInt(month_data.month_3.A),
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_3.month
+          },{
+            name: month_data.month_4.month,
+            y: parseInt(month_data.month_4.A),
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_4.month
+          },{
+            name: month_data.month_5.month,
+            y: parseInt(month_data.month_5.A),
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_5.month
           }]
       },{
         type: 'column',
@@ -5613,15 +5671,23 @@ export class DashboardComponent implements OnInit {
         data: [{
           name: month_data.month_1.month,
           y: parseInt(month_data.month_1.Act),
-          url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+          url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&month='+month_data.month_1.month
         },{
           name: month_data.month_2.month,
           y: parseInt(month_data.month_2.Act),
-          url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+          url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&month='+month_data.month_2.month
         },{
           name: month_data.month_3.month,
           y: parseInt(month_data.month_3.Act),
-          url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month=October'
+          url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&month='+month_data.month_3.month
+        },{
+          name: month_data.month_4.month,
+          y: parseInt(month_data.month_4.Act),
+          url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&month='+month_data.month_4.month
+        },{
+          name: month_data.month_5.month,
+          y: parseInt(month_data.month_5.Act),
+          url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&month='+month_data.month_5.month
         }]
     }],
             drilldown: {
