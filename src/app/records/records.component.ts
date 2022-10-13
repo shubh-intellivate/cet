@@ -38,8 +38,6 @@ export class RecordsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.bu = params.bu;
       this.geo = params.geo;
-      this.start_date = params.start_date;
-      this.end_date = params.end_date;
       this.currency = params.currency;
       this.type = params.type;
       this.rank = params.rank;
@@ -112,7 +110,8 @@ export class RecordsComponent implements OnInit {
         "bu": this.bu == "undefined" ? '' : this.bu,
         "timeframe": this.timeframe == "undefined" ? '' : this.timeframe,
         "rank": this.rank == "undefined" ? '' : this.rank,
-        "month": this.month == "undefined" ? '' : this.month
+        "month": this.month == "undefined" ? '' : this.month,
+        "fiscal_year":this.fiscal_year == "undefined" ? '' : this.fiscal_year
       }
       this.dataService.getOrderTrendRows(data).subscribe(res=>{
         console.log(res);
@@ -131,8 +130,6 @@ export class RecordsComponent implements OnInit {
       this.tableTitle = '';
       let data =  {
         "bu": this.bu == "undefined" ? '' : this.bu,
-        "start_date": this.start_date == "undefined" ? '' : this.start_date,
-        "end_date": this.end_date == "undefined" ? '' : this.end_date,
         "geo": this.geo == "undefined" ? '' : this.geo,
         "currency": this.currency == "undefined" ? '' : this.currency,
         "type": this.type == "undefined" ? '' : this.type,

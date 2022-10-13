@@ -205,7 +205,7 @@
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #currency>
                 <!-- <option value="">Currency</option> -->
-                <option value="">INR(Mn)</option>
+                <option value="">M-INR</option>
                 <!-- <option>Dollar(Mn)</option> -->
               </select>
             </div>
@@ -347,7 +347,7 @@
                 </div>
               </div>
               <div class="card-body" style="padding: 0px !important;">
-                <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=new_customer_acquired&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{newCustomers}}</a></div>
+                <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=new_customer_acquired&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{newCustomers}}</a></div>
               </div>
             </div>
             <div class="card card-dashboard-five mg-t-20" style="height: 150px;">
@@ -359,7 +359,7 @@
               </div>
               <div class="card-body" style="padding-top: 0px !important;">
                 <div class="az-content-label az-content-label-sm" style="font-size: 11px !important;">Last Month ({{ordersBookedMonth}})</div>
-                <div style="text-align:center; font-weight: 900;font-size: 2.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=order_booked_last_month&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{ordersBookedLastMonth}}</a></div>
+                <div style="text-align:center; font-weight: 900;font-size: 2.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=order_booked_last_month&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{ordersBookedLastMonth}}</a></div>
               </div>
             </div>
           </div>
@@ -414,7 +414,7 @@
                   <div class="card-body row" style="    padding-top: 0px !important;">
                     <div class="col-lg-7" style="text-align: center;">
                       <!-- <div class="az-content-label az-content-label-sm">Simple</div> -->
-                      <div style="height:72px;margin-top: 15px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{avgOrderSize}}</a></div>
+                      <div style="height:72px;margin-top: 15px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{avgOrderSize}}</a></div>
                     </div>
                     <div class="col-lg-5" style="text-align: center;">
                       <div class="row" style="margin-left:10px;">
@@ -495,7 +495,7 @@
                       <th class="wd-30p">Project</th>
                       <th class="wd-30p">Account</th>
                       <th class="wd-10p" style="text-align: center;">BU</th>
-                      <th class="wd-10p">Value(Mn)</th>
+                      <th class="wd-10p">Value(M-INR)</th>
                       <th class="wd-10p" style="text-align: center;">Rank</th>
                       <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
                     </tr>
@@ -642,7 +642,7 @@
                       <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_1.bu}}</strong></td>
                       <td><strong>{{top_key_projects_open_bc.project_1.amount}}</strong></td>
                       <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_1.rank | uppercase}}</strong></td>
-                      <td><strong>{{top_key_projects_open_bc.project_1.risk}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_1.risk}}</strong></td>
                     </tr>
                     <tr>
                       <td><strong>{{top_key_projects_open_bc.project_2.oppertunity}}</strong></td>
@@ -650,7 +650,7 @@
                       <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_2.bu}}</strong></td>
                       <td><strong>{{top_key_projects_open_bc.project_2.amount}}</strong></td>
                       <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_2.rank | uppercase}}</strong></td>
-                      <td><strong>{{top_key_projects_open_bc.project_2.risk}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_2.risk}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_2.month}}</strong></td> -->
                     </tr><tr>
                       <td><strong>{{top_key_projects_open_bc.project_3.oppertunity}}</strong></td>
@@ -658,7 +658,7 @@
                       <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_3.bu}}</strong></td>
                       <td><strong>{{top_key_projects_open_bc.project_3.amount}}</strong></td>
                       <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_3.rank | uppercase}}</strong></td>
-                      <td><strong>{{top_key_projects_open_bc.project_3.risk}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_3.risk}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_3.month}}</strong></td> -->
                     </tr><tr>
                       <td><strong>{{top_key_projects_open_bc.project_4.oppertunity}}</strong></td>
@@ -666,7 +666,7 @@
                       <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_4.bu}}</strong></td>
                       <td><strong>{{top_key_projects_open_bc.project_4.amount}}</strong></td>
                       <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_4.rank | uppercase}}</strong></td>
-                      <td><strong>{{top_key_projects_open_bc.project_4.risk}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_4.risk}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_4.month}}</strong></td> -->
                     </tr><tr>
                       <td><strong>{{top_key_projects_open_bc.project_5.oppertunity}}</strong></td>
@@ -674,7 +674,7 @@
                       <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_5.bu}}</strong></td>
                       <td><strong>{{top_key_projects_open_bc.project_5.amount}}</strong></td>
                       <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_5.rank | uppercase}}</strong></td>
-                      <td><strong>{{top_key_projects_open_bc.project_5.risk}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_5.risk}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
                     </tr><tr>
                       <td><strong>{{top_key_projects_open_bc.project_6.oppertunity}}</strong></td>
@@ -682,7 +682,7 @@
                       <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_6.bu}}</strong></td>
                       <td><strong>{{top_key_projects_open_bc.project_6.amount}}</strong></td>
                       <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_6.rank | uppercase}}</strong></td>
-                      <td><strong>{{top_key_projects_open_bc.project_6.risk}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_6.risk}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
                     </tr><tr>
                       <td><strong>{{top_key_projects_open_bc.project_7.oppertunity}}</strong></td>
@@ -690,7 +690,7 @@
                       <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_7.bu}}</strong></td>
                       <td><strong>{{top_key_projects_open_bc.project_7.amount}}</strong></td>
                       <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_7.rank | uppercase}}</strong></td>
-                      <td><strong>{{top_key_projects_open_bc.project_7.risk}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_7.risk}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
                     </tr>
                   </tbody>
@@ -701,7 +701,6 @@
         </div>
   
         <div class="row row-sm mg-b-20">
-          <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
           <div class="col-lg-6 mg-t-20 mg-lg-t-0">
             <div class="card card-dashboard-five">
               <div class="card-header row">
@@ -723,7 +722,33 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" style="height: 100%;">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleLostOpp()" #toggleLost>
+                        <option value="amount">Amount</option>
+                        <option value="opportunity">Opportunity</option>
+                      </select>
+                      <br>
+                      <a href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&lost_reason=All&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&fiscal_year={{filterFiscal_year}}" target="_blank" style="float: right;text-align: right;margin-right: 10px;">View All</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15"></div>
+                <div id="chart-pie-lost-opp" [hidden]="hideLostAmt" style="height: 250px;"></div>
+                <div id="chart-pie-lost-opp-number" [hidden]="hideLostOpp" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -824,7 +849,7 @@
                         <option value="opportunity">Opportunity</option>
                       </select>
                       <br>
-                      <a href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&lost_reason=All&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&fiscal_year={{filterFiscal_year}}" target="_blank" style="float: right;text-align: right;margin-right: 10px;">View All</a>
+                      <a href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&lost_reason=All&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&fiscal_year={{filterFiscal_year}}" target="_blank" style="float: right;text-align: right;margin-right: 10px;">View All</a>
                     </div>
                   </div>
                 </div>
