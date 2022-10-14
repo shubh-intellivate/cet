@@ -68,8 +68,8 @@ export class DashboardComponent implements OnInit {
   chart_line: any;
   top_key_projects_actuals: any;
   // base_url: any = "http://88.218.92.164/";
-  // base_url: any = "http://localhost:4200/";
-  base_url: any = "http://45.66.159.11/cet/";
+  base_url: any = "http://localhost:4200/";
+  // base_url: any = "http://45.66.159.11/cet/";
   sayDoOrderValue: any;
   top_key_accounts: any;
   sayDoSalesValue: any;
@@ -377,6 +377,11 @@ export class DashboardComponent implements OnInit {
     this.segment_class_show = true;
     this.toggleSeg.nativeElement.value = 'rank';
     this.toggleG.nativeElement.value = 'rank'
+    var bu = this.filterBu;
+    var geo = this.filterGeo;
+    var currency = this.filterCurrency;
+    var fiscal_year = this.filterFiscal_year;
+    var timeframe = this.filterTimeframe;
     var classify_pipeline = {
       chart: {
         type: 'column',
@@ -423,6 +428,7 @@ export class DashboardComponent implements OnInit {
       plotOptions: {
           series: {
               borderWidth: 0,
+              cursor: 'pointer',
               dataLabels: {
                   enabled: true,
                   formatter:function() {
@@ -460,18 +466,26 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },
           {
@@ -488,18 +502,26 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
           name: 'D',
@@ -515,18 +537,26 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
           name: 'C',
@@ -542,18 +572,26 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
           name: 'B',
@@ -569,18 +607,26 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
           name: 'A',
@@ -596,18 +642,26 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
           name: 'S',
@@ -623,18 +677,26 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
           name: 'Act',
@@ -650,238 +712,256 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'EE',
             y: parseInt(this.pipelineClassify.EE.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
             y: parseInt(this.pipelineClassify.EN.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
             y: parseInt(this.pipelineClassify.NN.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         }
       ]
     }
     Highcharts.chart('classify-pipeline-rank', classify_pipeline as any);
-    var classify_pipeline_class = {
-      chart: {
-        type: 'column',
-      },
-      title: {
-          text: '' ,
-          align: 'right'
-      },
-      accessibility: {
-          announceNewData: {
-              enabled: true
-          }
-      },
-      xAxis: {
-          type: 'category'
-      },
-      yAxis: {
-          title: {
-              text: ''
-          },
-          gridLineColor: 'transparent',
-          type: 'logarithmic',
-          minorTickInterval: 100,
-          stackLabels: {
-            enabled: true,
-            style: {
-                fontWeight: 'bold',
-                color: ( // theme
-                    Highcharts.defaultOptions.title.style &&
-                    Highcharts.defaultOptions.title.style.color
-                ) || 'gray'
-            },
-            formatter: function () {
-              return this.total;
-            }
-        },labels:{
-          enabled: false
-        }
+    // var classify_pipeline_class = {
+    //   chart: {
+    //     type: 'column',
+    //   },
+    //   title: {
+    //       text: '' ,
+    //       align: 'right'
+    //   },
+    //   accessibility: {
+    //       announceNewData: {
+    //           enabled: true
+    //       }
+    //   },
+    //   xAxis: {
+    //       type: 'category'
+    //   },
+    //   yAxis: {
+    //       title: {
+    //           text: ''
+    //       },
+    //       gridLineColor: 'transparent',
+    //       type: 'logarithmic',
+    //       minorTickInterval: 100,
+    //       stackLabels: {
+    //         enabled: true,
+    //         style: {
+    //             fontWeight: 'bold',
+    //             color: ( // theme
+    //                 Highcharts.defaultOptions.title.style &&
+    //                 Highcharts.defaultOptions.title.style.color
+    //             ) || 'gray'
+    //         },
+    //         formatter: function () {
+    //           return this.total;
+    //         }
+    //     },labels:{
+    //       enabled: false
+    //     }
   
-      },
-      legend: {
-          enabled: false
-      },
-      plotOptions: {
-          series: {
-              borderWidth: 0,
-              pointWidth: 50,
-              dataLabels: {
-                  enabled: true,
-                  formatter:function() {
-                    if(this.y != 0) {
-                      return this.y;
-                    }
-                  }
-              }
-          },
-          column: {
-            stacking: 'normal',
-            dataLabels: {
-                enabled: true
-            }
-        }
-      },
-      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
-      tooltip: {
-          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
-      },
+    //   },
+    //   legend: {
+    //       enabled: false
+    //   },
+    //   plotOptions: {
+    //       series: {
+    //           borderWidth: 0,
+    //           pointWidth: 50,
+    //           dataLabels: {
+    //               enabled: true,
+    //               formatter:function() {
+    //                 if(this.y != 0) {
+    //                   return this.y;
+    //                 }
+    //               }
+    //           }
+    //       },
+    //       column: {
+    //         stacking: 'normal',
+    //         dataLabels: {
+    //             enabled: true
+    //         }
+    //       },
+    //       cursor: 'pointer',
+    //   },
+    //   colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
+    //   tooltip: {
+    //       headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+    //       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
+    //   },
   
-      series: [
-          {
-          name: 'EE',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          data: [{
-            name: 'Act',
-            y: parseInt(this.pipelineClassify.Act.EE),
-            drilldown: ''
-          },{
-            name: 'A',
-            y: parseInt(this.pipelineClassify.A.EE),
-            drilldown: ''
-          },{
-            name: 'S',
-            y: parseInt(this.pipelineClassify.S.EE),
-            drilldown: ''
-          },{
-            name: 'B',
-            y: parseInt(this.pipelineClassify.B.EE),
-            drilldown: ''
-          },{
-            name: 'C',
-            y: parseInt(this.pipelineClassify.C.EE),
-            drilldown: ''
-          },{
-            name: 'D',
-            y: parseInt(this.pipelineClassify.D.EE),
-            drilldown: ''
-          },{
-            name: 'E',
-            y: parseInt(this.pipelineClassify.E.EE),
-            drilldown: ''
-          },{
-            name: 'F',
-            y: parseInt(this.pipelineClassify.F.EE),
-            drilldown: ''
-          }]
-        },{
-          name: 'EN',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          data: [{
-            name: 'Act',
-            y: parseInt(this.pipelineClassify.Act.EN),
-            drilldown: ''
-          },{
-            name: 'A',
-            y: parseInt(this.pipelineClassify.A.EN),
-            drilldown: ''
-          },{
-            name: 'S',
-            y: parseInt(this.pipelineClassify.S.EN),
-            drilldown: ''
-          },{
-            name: 'B',
-            y: parseInt(this.pipelineClassify.B.EN),
-            drilldown: ''
-          },{
-            name: 'C',
-            y: parseInt(this.pipelineClassify.C.EN),
-            drilldown: ''
-          },{
-            name: 'D',
-            y: parseInt(this.pipelineClassify.D.EN),
-            drilldown: ''
-          },{
-            name: 'E',
-            y: parseInt(this.pipelineClassify.E.EN),
-            drilldown: ''
-          },{
-            name: 'F',
-            y: parseInt(this.pipelineClassify.F.EN),
-            drilldown: ''
-          }]
-        },{
-          name: 'NN',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          data: [{
-            name: 'Act',
-            y: parseInt(this.pipelineClassify.Act.NN),
-            drilldown: ''
-          },{
-            name: 'A',
-            y: parseInt(this.pipelineClassify.A.NN),
-            drilldown: ''
-          },{
-            name: 'S',
-            y: parseInt(this.pipelineClassify.S.NN),
-            drilldown: ''
-          },{
-            name: 'B',
-            y: parseInt(this.pipelineClassify.B.NN),
-            drilldown: ''
-          },{
-            name: 'C',
-            y: parseInt(this.pipelineClassify.C.NN),
-            drilldown: ''
-          },{
-            name: 'D',
-            y: parseInt(this.pipelineClassify.D.NN),
-            drilldown: ''
-          },{
-            name: 'E',
-            y: parseInt(this.pipelineClassify.E.NN),
-            drilldown: ''
-          },{
-            name: 'F',
-            y: parseInt(this.pipelineClassify.F.NN),
-            drilldown: ''
-          }]
-        },
-      ]
-    }
-    Highcharts.chart('classify-pipeline-class', classify_pipeline_class as any);
+    //   series: [
+    //       {
+    //       name: 'EE',
+    //       cursor: 'pointer',
+    //       dataLabels: {
+    //         enabled: true,
+    //         formatter:function() {
+    //           if(this.y != 0) {
+    //             return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+    //           }
+    //         },
+    //         style: {
+    //           color: 'white',
+    //           textOutline: 'transparent'
+    //         }
+    //       },
+    //       point: {
+    //         events: {
+    //             click: function () {
+    //                 // location.href = this.options.url;
+    //                 window.open(this.options.url);
+    //             }
+    //         }
+    //       },
+    //       data: [{
+    //         name: 'Act',
+    //         y: parseInt(this.pipelineClassify.Act.EE),
+    //         url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=EE&'
+    //       },{
+    //         name: 'A',
+    //         y: parseInt(this.pipelineClassify.A.EE),
+    //         drilldown: ''
+    //       },{
+    //         name: 'S',
+    //         y: parseInt(this.pipelineClassify.S.EE),
+    //         drilldown: ''
+    //       },{
+    //         name: 'B',
+    //         y: parseInt(this.pipelineClassify.B.EE),
+    //         drilldown: ''
+    //       },{
+    //         name: 'C',
+    //         y: parseInt(this.pipelineClassify.C.EE),
+    //         drilldown: ''
+    //       },{
+    //         name: 'D',
+    //         y: parseInt(this.pipelineClassify.D.EE),
+    //         drilldown: ''
+    //       },{
+    //         name: 'E',
+    //         y: parseInt(this.pipelineClassify.E.EE),
+    //         drilldown: ''
+    //       },{
+    //         name: 'F',
+    //         y: parseInt(this.pipelineClassify.F.EE),
+    //         drilldown: ''
+    //       }]
+    //     },{
+    //       name: 'EN',
+    //       dataLabels: {
+    //         enabled: true,
+    //         formatter:function() {
+    //           if(this.y != 0) {
+    //             return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+    //           }
+    //         },
+    //         style: {
+    //           color: 'white',
+    //           textOutline: 'transparent'
+    //         }
+    //       },
+    //       data: [{
+    //         name: 'Act',
+    //         y: parseInt(this.pipelineClassify.Act.EN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'A',
+    //         y: parseInt(this.pipelineClassify.A.EN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'S',
+    //         y: parseInt(this.pipelineClassify.S.EN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'B',
+    //         y: parseInt(this.pipelineClassify.B.EN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'C',
+    //         y: parseInt(this.pipelineClassify.C.EN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'D',
+    //         y: parseInt(this.pipelineClassify.D.EN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'E',
+    //         y: parseInt(this.pipelineClassify.E.EN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'F',
+    //         y: parseInt(this.pipelineClassify.F.EN),
+    //         drilldown: ''
+    //       }]
+    //     },{
+    //       name: 'NN',
+    //       dataLabels: {
+    //         enabled: true,
+    //         formatter:function() {
+    //           if(this.y != 0) {
+    //             return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+    //           }
+    //         },
+    //         style: {
+    //           color: 'white',
+    //           textOutline: 'transparent'
+    //         }
+    //       },
+    //       data: [{
+    //         name: 'Act',
+    //         y: parseInt(this.pipelineClassify.Act.NN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'A',
+    //         y: parseInt(this.pipelineClassify.A.NN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'S',
+    //         y: parseInt(this.pipelineClassify.S.NN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'B',
+    //         y: parseInt(this.pipelineClassify.B.NN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'C',
+    //         y: parseInt(this.pipelineClassify.C.NN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'D',
+    //         y: parseInt(this.pipelineClassify.D.NN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'E',
+    //         y: parseInt(this.pipelineClassify.E.NN),
+    //         drilldown: ''
+    //       },{
+    //         name: 'F',
+    //         y: parseInt(this.pipelineClassify.F.NN),
+    //         drilldown: ''
+    //       }]
+    //     },
+    //   ]
+    // }
+    // Highcharts.chart('classify-pipeline-class', classify_pipeline_class as any);
     var geo_pipeline = {
       chart: {
         type: 'column',
@@ -929,6 +1009,7 @@ export class DashboardComponent implements OnInit {
           series: {
               borderWidth: 0,
               pointWidth: 50,
+              cursor: 'pointer',
               dataLabels: {
                   enabled: true,
                   formatter:function() {
@@ -966,26 +1047,34 @@ export class DashboardComponent implements OnInit {
             textOutline: 'transparent'
           }
         },
+        point: {
+          events: {
+              click: function () {
+                  // location.href = this.options.url;
+                  window.open(this.options.url);
+              }
+          }
+        },
         data: [{
           name: 'India',
           y: parseInt(this.geoClassify.india.F),
-          drilldown: ''
+          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
         }, {
           name: 'Japan',
           y: parseInt(this.geoClassify.japan.F),
-          drilldown: ''
+          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
         }, {
           name: 'USA',
           y: parseInt(this.geoClassify.usa.F),
-          drilldown: ''
+          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
         }, {
           name: 'APAC',
           y: parseInt(this.geoClassify.apac.F),
-          drilldown: ''
+          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
         },{
           name: 'EMEA',
           y: parseInt(this.geoClassify.emea.F),
-          drilldown: ''
+          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
         },
       ]
       },
@@ -1003,26 +1092,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },  {
@@ -1039,26 +1136,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },  {
@@ -1075,26 +1180,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },  {
@@ -1111,26 +1224,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.B),
-            drilldown: ''
-          }, {
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
+          },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },    {
@@ -1147,26 +1268,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },{
@@ -1183,27 +1312,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.S),
-            // y: 10000,
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.S),
-            drilldown: ''
-          }, {
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
+          },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },  {
@@ -1220,26 +1356,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.Act),
-            drilldown: ''
-          }, {
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
+          },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },
@@ -1293,6 +1437,7 @@ export class DashboardComponent implements OnInit {
           series: {
               borderWidth: 0,
               pointWidth: 50,
+              cursor: 'pointer',
               dataLabels: {
                   enabled: true,
                   formatter:function() {
@@ -1330,26 +1475,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo_classify&api_type=order_overview&classify=ee'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo_classify&api_type=order_overview&classify=ee'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo_classify&api_type=order_overview&classify=ee'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo_classify&api_type=order_overview&classify=ee'
           },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo_classify&api_type=order_overview&classify=ee'
           },
         ]
         },{
@@ -1366,26 +1519,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo_classify&api_type=order_overview&classify=en'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo_classify&api_type=order_overview&classify=en'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo_classify&api_type=order_overview&classify=en'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo_classify&api_type=order_overview&classify=en'
           },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo_classify&api_type=order_overview&classify=en'
           },
         ]
         },{
@@ -1402,26 +1563,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: 'India',
             y: parseInt(this.geoClassify.india.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo_classify&api_type=order_overview&classify=nn'
           }, {
             name: 'Japan',
             y: parseInt(this.geoClassify.japan.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo_classify&api_type=order_overview&classify=nn'
           }, {
             name: 'USA',
             y: parseInt(this.geoClassify.usa.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo_classify&api_type=order_overview&classify=nn'
           }, {
             name: 'APAC',
             y: parseInt(this.geoClassify.apac.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo_classify&api_type=order_overview&classify=nn'
           },{
             name: 'EMEA',
             y: parseInt(this.geoClassify.emea.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo_classify&api_type=order_overview&classify=nn'
           },
         ]
         },
@@ -1474,6 +1643,7 @@ export class DashboardComponent implements OnInit {
       plotOptions: {
           series: {
               borderWidth: 0,
+              cursor: 'pointer',
               dataLabels: {
                   enabled: true,
                   formatter:function() {
@@ -1511,26 +1681,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.F),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },
           {
@@ -1547,26 +1725,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.E),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
           name: 'D',
@@ -1582,26 +1768,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.D),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
           name: 'C',
@@ -1617,26 +1811,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.C),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
           name: 'B',
@@ -1652,26 +1854,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.B),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
           name: 'A',
@@ -1687,26 +1897,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.A),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
           name: 'S',
@@ -1722,26 +1940,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.S),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
           name: 'Act',
@@ -1757,26 +1983,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.Act),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         }
       ]
@@ -1828,6 +2062,7 @@ export class DashboardComponent implements OnInit {
       plotOptions: {
           series: {
               borderWidth: 0,
+              cursor: 'pointer',
               dataLabels: {
                   enabled: true,
                   formatter:function() {
@@ -1865,26 +2100,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project1.name+'&classify=ee'
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project2.name+'&classify=ee'
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project3.name+'&classify=ee'
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project4.name+'&classify=ee'
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.EE),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project5.name+'&classify=ee'
           }]
         },{
           name: 'EN',
@@ -1900,26 +2143,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project1.name+'&classify=en'
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project2.name+'&classify=en'
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project3.name+'&classify=en'
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project4.name+'&classify=en'
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.EN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project5.name+'&classify=en'
           }]
         },{
           name: 'NN',
@@ -1935,26 +2186,34 @@ export class DashboardComponent implements OnInit {
               textOutline: 'transparent'
             }
           },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
           data: [{
             name: this.subProjectClassify.project1.name,
             y: parseInt(this.subProjectClassify.project1.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project1.name+'&classify=nn'
           },{
             name: this.subProjectClassify.project2.name,
             y: parseInt(this.subProjectClassify.project2.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project2.name+'&classify=nn'
           },{
             name: this.subProjectClassify.project3.name,
             y: parseInt(this.subProjectClassify.project3.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project3.name+'&classify=nn'
           },{
             name: this.subProjectClassify.project4.name,
             y: parseInt(this.subProjectClassify.project4.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project4.name+'&classify=nn'
           },{
             name: this.subProjectClassify.project5.name,
             y: parseInt(this.subProjectClassify.project5.NN),
-            drilldown: ''
+            url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment_classify&api_type=order_overview&segment='+this.subProjectClassify.project5.name+'&classify=nn'
           }]
         }
       ]
@@ -5319,7 +5578,7 @@ export class DashboardComponent implements OnInit {
             legend: {
               enabled: false
             },
-            colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],      
+            colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)','rgb(127,127,127)'],      
             plotOptions: {
               column: {
                   stacking: 'normal',

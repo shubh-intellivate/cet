@@ -30,6 +30,9 @@ export class RecordsComponent implements OnInit {
   fiscal_year: any;
   amount_sum: any;
   current_month: any;
+  classify: string;
+  segment: string;
+  country: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,6 +52,9 @@ export class RecordsComponent implements OnInit {
       this.month = params.month;
       this.fiscal_year = params.fiscal_year;
       this.current_month = params.current_month;
+      this.classify = params.classify;
+      this.segment = params.segment;
+      this.country = params.country;
     })
   }
 
@@ -137,6 +143,10 @@ export class RecordsComponent implements OnInit {
         "api_type": this.apiType == "undefined" ? '' : this.apiType,
         "timeframe": this.timeframe == "undefined" ? '' : this.timeframe,
         "highestValue": this.highestValue == "undefined" ? '' : this.highestValue,
+        "classify": this.classify == "undefined" ? '' : this.classify,
+        "segment": this.segment == "undefined" ? '' : this.segment,
+        "country": this.country == "undefined" ? '' : this.country,
+        "fiscal_year": this.fiscal_year == "undefined" ? '' : this.fiscal_year,
         "current_month": this.current_month == undefined ? false : true
       }
       if(this.highestValue && this.highestValue != 0){
