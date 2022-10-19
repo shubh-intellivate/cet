@@ -33,6 +33,7 @@ export class RecordsComponent implements OnInit {
   classify: string;
   segment: string;
   country: string;
+  page_title: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -79,6 +80,7 @@ export class RecordsComponent implements OnInit {
         console.log(res);
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.page_title = res.result.widget_name;
           this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {
@@ -101,6 +103,7 @@ export class RecordsComponent implements OnInit {
         console.log(res);
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.page_title = res.result.widget_name;
           this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {
@@ -123,6 +126,7 @@ export class RecordsComponent implements OnInit {
         console.log(res);
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.page_title = res.result.widget_name;
           this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {
@@ -155,6 +159,7 @@ export class RecordsComponent implements OnInit {
       this.dataService.getOrderRecords(data).subscribe(res=>{
         if(res.result.status == "true"){
           this.table_data = res.result.data
+          this.page_title = res.result.widget_name;
           this.amount_sum = res.result.amount_sum + 'Mn'
           this.table_data.every(element => {
             for (let key in element) {

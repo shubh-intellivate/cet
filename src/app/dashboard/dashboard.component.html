@@ -63,8 +63,8 @@
           <div class="media">
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #fiscal_year>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
+                <option value="2022">FY 2022</option>
+                <option value="2021">FY 2021</option>
               </select>
             </div>
           </div>
@@ -111,7 +111,7 @@
               <input type="text" #bu>
             </div>
           </div>
-          <div class="media" style="margin-left: 20px;">
+          <div class="media" style="margin-left: 20px;margin-right: 13px;">
             <div class="media-body">
               <div class="container btn btn-secondary dropdown-toggle">
                 <div class="row">
@@ -289,7 +289,7 @@
                 </div>
               </div>
               <div class="card-body" [hidden]="orderByAmount">
-                <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 231x;"></div>
+                <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 231px;"></div>
                 <div [hidden]="order_opp_per" style="margin-top:33%;height:139px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
                   <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
                     ({{actual_timeframe}})

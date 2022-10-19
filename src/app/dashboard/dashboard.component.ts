@@ -4250,8 +4250,8 @@ export class DashboardComponent implements OnInit {
             pane: {
               startAngle: -90,
               endAngle: 90,
-              center: ['50%', '85%'],
-              size: '150%',
+              center: ['50%', '99%'],
+              size: '195%',
               background: {
                   innerRadius: '60%',
                   outerRadius: '100%',
