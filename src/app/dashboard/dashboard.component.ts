@@ -5788,7 +5788,7 @@ export class DashboardComponent implements OnInit {
                 },
             },
             xAxis: {
-                categories: [month_data.month_1.month, month_data.month_2.month, month_data.month_3.month, month_data.month_4.month, month_data.month_5.month]
+                categories: [month_data.month_1.month, month_data.month_2.month, month_data.month_3.month, month_data.month_4.month, month_data.month_5.month, month_data.month_6.month]
             },
             legend: {
               enabled: false
@@ -5853,6 +5853,10 @@ export class DashboardComponent implements OnInit {
                   name: month_data.month_5.month,
                   y: parseInt(month_data.month_5.E),
                   url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month='+month_data.month_5.month+'&fiscal_year='+fiscal_year
+                },{
+                  name: month_data.month_6.month,
+                  y: parseInt(month_data.month_6.E),
+                  url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&month='+month_data.month_6.month+'&fiscal_year='+fiscal_year
                 }]
                 },{
                   type: 'column',
@@ -5897,6 +5901,10 @@ export class DashboardComponent implements OnInit {
                     name: month_data.month_5.month,
                     y: parseInt(month_data.month_5.D),
                     url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&month='+month_data.month_5.month+'&fiscal_year='+fiscal_year
+                  },{
+                    name: month_data.month_6.month,
+                    y: parseInt(month_data.month_6.D),
+                    url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&month='+month_data.month_6.month+'&fiscal_year='+fiscal_year
                   }]
               },{
                 type: 'column',
@@ -5941,6 +5949,10 @@ export class DashboardComponent implements OnInit {
                   name: month_data.month_5.month,
                   y: parseInt(month_data.month_5.C),
                   url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&month='+month_data.month_5.month+'&fiscal_year='+fiscal_year
+                },{
+                  name: month_data.month_6.month,
+                  y: parseInt(month_data.month_6.C),
+                  url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&month='+month_data.month_6.month+'&fiscal_year='+fiscal_year
                 }]
             },{
               type: 'column',
@@ -5985,6 +5997,10 @@ export class DashboardComponent implements OnInit {
                 name: month_data.month_5.month,
                 y: parseInt(month_data.month_5.B),
                 url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&month='+month_data.month_5.month+'&fiscal_year='+fiscal_year
+              },{
+                name: month_data.month_6.month,
+                y: parseInt(month_data.month_6.B),
+                url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&month='+month_data.month_6.month+'&fiscal_year='+fiscal_year
               }]
           },{
             type: 'column',
@@ -6029,6 +6045,10 @@ export class DashboardComponent implements OnInit {
               name: month_data.month_5.month,
               y: parseInt(month_data.month_5.A),
               url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_5.month+'&fiscal_year='+fiscal_year
+            },{
+              name: month_data.month_6.month,
+              y: parseInt(month_data.month_6.A),
+              url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&month='+month_data.month_6.month+'&fiscal_year='+fiscal_year
             }]
         },{
         type: 'column',
@@ -6073,6 +6093,10 @@ export class DashboardComponent implements OnInit {
           name: month_data.month_5.month,
           y: parseInt(month_data.month_5.Act),
           url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&month='+month_data.month_5.month+'&fiscal_year='+fiscal_year
+        },{
+          name: month_data.month_6.month,
+          y: parseInt(month_data.month_6.Act),
+          url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&month='+month_data.month_6.month+'&fiscal_year='+fiscal_year
         }]
     }],
             drilldown: {
