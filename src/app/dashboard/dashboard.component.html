@@ -834,6 +834,70 @@
 
       <div id="BI Performance" class="tabs" style="display:none">
         <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" style="height: 100%;">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">BU Performance<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="wd-30p">BU</th>
+                        <th>Status</th>
+                        <th>Order conversion</th>
+                        <th>Say-Do</th>
+                        <th>Run rate(M-INR)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>AIPF</strong></td>
+                        <td class="rag" style="background-color: #B0D08B;"></td>
+                        <td><i style="color: red;" class="fas fa-caret-down"></i><strong>134</strong> (1.51%)</td>
+                        <td>33.58%</td>
+                        <td>15.47</td>
+                      </tr>
+                      <tr>
+                        <td><strong>SMFG</strong></td>
+                        <td class="rag" style="background-color: #B0D08B;"></td>
+                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>290</strong> (3.30%)</td>
+                        <td>9.22%</td>
+                        <td>7.99</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Display</strong></td>
+                        <td class="rag" style="background-color: #F0787B;"></td>
+                        <td><i style="color: red;" class="fas fa-caret-down"></i><strong>250</strong> (3.00%)</td>
+                        <td>20.75%</td>
+                        <td>2.40</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Logistics</strong></td>
+                        <td class="rag" style="background-color: #B0D08B;"></td>
+                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
+                        <td>32.07%</td>
+                        <td>15.09</td>
+                      </tr>
+                      <tr>
+                        <td><strong>JCCS</strong></td>
+                        <td class="rag" style="background-color: #F2C979;"></td>
+                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
+                        <td>32.07%</td>
+                        <td>15.09</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="col-lg-6 mg-t-20 mg-lg-t-0">
             <div class="card card-dashboard-five" style="height: 100%;">
               <div class="card-header row">
@@ -858,70 +922,6 @@
                 <div class="az-content-label az-content-label-sm mg-b-15"></div>
                 <div id="chart-pie-lost-opp-bi" [hidden]="hideLostAmt" style="height: 250px;"></div>
                 <div id="chart-pie-lost-opp-number-bi" [hidden]="hideLostOpp" style="height: 250px;"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
-            <div class="card card-dashboard-five" style="height: 100%;">
-              <div class="card-header row">
-                <div class="col-lg-6">
-                  <h6 class="card-title">BU Performance<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-                </div>
-                <div class="col-lg-6">
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="wd-30p">BU</th>
-                        <th>Status</th>
-                        <th>Order conversion</th>
-                        <th>Say-Do</th>
-                        <th>Run rate</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><strong>AIPF</strong></td>
-                        <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td><i style="color: red;" class="fas fa-caret-down"></i><strong>134</strong> (1.51%)</td>
-                        <td>33.58%</td>
-                        <td>15.47Mn</td>
-                      </tr>
-                      <tr>
-                        <td><strong>SMFG</strong></td>
-                        <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>290</strong> (3.30%)</td>
-                        <td>9.22%</td>
-                        <td>7.99Mn</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Display</strong></td>
-                        <td class="rag" style="background-color: #F0787B;"></td>
-                        <td><i style="color: red;" class="fas fa-caret-down"></i><strong>250</strong> (3.00%)</td>
-                        <td>20.75%</td>
-                        <td>2.40Mn</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Logistics</strong></td>
-                        <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                        <td>32.07%</td>
-                        <td>15.09Mn</td>
-                      </tr>
-                      <tr>
-                        <td><strong>JCCS</strong></td>
-                        <td class="rag" style="background-color: #F2C979;"></td>
-                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                        <td>32.07%</td>
-                        <td>15.09Mn</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </div>
           </div>

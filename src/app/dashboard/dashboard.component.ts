@@ -4,7 +4,6 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsSolidGauge from 'highcharts/modules/solid-gauge';
 import Drilldown from 'highcharts/modules/drilldown';
 import { DataService } from '../services/data.service';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormGroup, FormControl} from '@angular/forms';
 Drilldown(Highcharts);
 
@@ -452,42 +451,42 @@ export class DashboardComponent implements OnInit {
       },
   
       series: [
-        {
-          name: 'F',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: 'EE',
-            y: parseInt(this.pipelineClassify.EE.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
-          }, {
-            name: 'EN',
-            y: parseInt(this.pipelineClassify.EN.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
-          }, {
-            name: 'NN',
-            y: parseInt(this.pipelineClassify.NN.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
-          }]
-        },
+        // {
+        //   name: 'F',
+        //   dataLabels: {
+        //     enabled: true,
+        //     formatter:function() {
+        //       if(this.y != 0) {
+        //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+        //       }
+        //     },
+        //     style: {
+        //       color: 'white',
+        //       textOutline: 'transparent'
+        //     }
+        //   },
+        //   point: {
+        //     events: {
+        //         click: function () {
+        //             // location.href = this.options.url;
+        //             window.open(this.options.url);
+        //         }
+        //     }
+        //   },
+        //   data: [{
+        //     name: 'EE',
+        //     y: parseInt(this.pipelineClassify.EE.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
+        //   }, {
+        //     name: 'EN',
+        //     y: parseInt(this.pipelineClassify.EN.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
+        //   }, {
+        //     name: 'NN',
+        //     y: parseInt(this.pipelineClassify.NN.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
+        //   }]
+        // },
           {
           name: 'E',
           dataLabels: {
@@ -1033,51 +1032,51 @@ export class DashboardComponent implements OnInit {
       },
   
       series: [
-        {
-        name: 'F',
-        dataLabels: {
-          enabled: true,
-          formatter:function() {
-            if(this.y != 0) {
-              return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-            }
-          },
-          style: {
-            color: 'white',
-            textOutline: 'transparent'
-          }
-        },
-        point: {
-          events: {
-              click: function () {
-                  // location.href = this.options.url;
-                  window.open(this.options.url);
-              }
-          }
-        },
-        data: [{
-          name: 'India',
-          y: parseInt(this.geoClassify.india.F),
-          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
-        }, {
-          name: 'Japan',
-          y: parseInt(this.geoClassify.japan.F),
-          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
-        }, {
-          name: 'USA',
-          y: parseInt(this.geoClassify.usa.F),
-          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
-        }, {
-          name: 'APAC',
-          y: parseInt(this.geoClassify.apac.F),
-          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
-        },{
-          name: 'EMEA',
-          y: parseInt(this.geoClassify.emea.F),
-          url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
-        },
-      ]
-      },
+      //   {
+      //   name: 'F',
+      //   dataLabels: {
+      //     enabled: true,
+      //     formatter:function() {
+      //       if(this.y != 0) {
+      //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+      //       }
+      //     },
+      //     style: {
+      //       color: 'white',
+      //       textOutline: 'transparent'
+      //     }
+      //   },
+      //   point: {
+      //     events: {
+      //         click: function () {
+      //             // location.href = this.options.url;
+      //             window.open(this.options.url);
+      //         }
+      //     }
+      //   },
+      //   data: [{
+      //     name: 'India',
+      //     y: parseInt(this.geoClassify.india.F),
+      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
+      //   }, {
+      //     name: 'Japan',
+      //     y: parseInt(this.geoClassify.japan.F),
+      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
+      //   }, {
+      //     name: 'USA',
+      //     y: parseInt(this.geoClassify.usa.F),
+      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
+      //   }, {
+      //     name: 'APAC',
+      //     y: parseInt(this.geoClassify.apac.F),
+      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
+      //   },{
+      //     name: 'EMEA',
+      //     y: parseInt(this.geoClassify.emea.F),
+      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
+      //   },
+      // ]
+      // },
           {
           name: 'E',
           dataLabels: {
@@ -1667,50 +1666,50 @@ export class DashboardComponent implements OnInit {
       },
   
       series: [
-        {
-          name: 'F',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: this.subProjectClassify.project1.name,
-            y: parseInt(this.subProjectClassify.project1.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
-          },{
-            name: this.subProjectClassify.project2.name,
-            y: parseInt(this.subProjectClassify.project2.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
-          },{
-            name: this.subProjectClassify.project3.name,
-            y: parseInt(this.subProjectClassify.project3.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
-          },{
-            name: this.subProjectClassify.project4.name,
-            y: parseInt(this.subProjectClassify.project4.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
-          },{
-            name: this.subProjectClassify.project5.name,
-            y: parseInt(this.subProjectClassify.project5.F),
-            url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
-          }]
-        },
+        // {
+        //   name: 'F',
+        //   dataLabels: {
+        //     enabled: true,
+        //     formatter:function() {
+        //       if(this.y != 0) {
+        //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+        //       }
+        //     },
+        //     style: {
+        //       color: 'white',
+        //       textOutline: 'transparent'
+        //     }
+        //   },
+        //   point: {
+        //     events: {
+        //         click: function () {
+        //             // location.href = this.options.url;
+        //             window.open(this.options.url);
+        //         }
+        //     }
+        //   },
+        //   data: [{
+        //     name: this.subProjectClassify.project1.name,
+        //     y: parseInt(this.subProjectClassify.project1.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
+        //   },{
+        //     name: this.subProjectClassify.project2.name,
+        //     y: parseInt(this.subProjectClassify.project2.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
+        //   },{
+        //     name: this.subProjectClassify.project3.name,
+        //     y: parseInt(this.subProjectClassify.project3.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
+        //   },{
+        //     name: this.subProjectClassify.project4.name,
+        //     y: parseInt(this.subProjectClassify.project4.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
+        //   },{
+        //     name: this.subProjectClassify.project5.name,
+        //     y: parseInt(this.subProjectClassify.project5.F),
+        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
+        //   }]
+        // },
           {
           name: 'E',
           dataLabels: {
@@ -3077,7 +3076,6 @@ export class DashboardComponent implements OnInit {
     var end_date = ''
     var timeframeFilter = ''
     this.buFilterLink = bu;
-
 
     if(bu == ''){
       this.buFilter = 'All BU'
@@ -4776,8 +4774,8 @@ export class DashboardComponent implements OnInit {
             pane: {
               startAngle: -90,
               endAngle: 90,
-              center: ['50%', '85%'],
-              size: '150%',
+              center: ['50%', '99%'],
+              size: '195%',
               background: {
                   innerRadius: '60%',
                   outerRadius: '100%',
@@ -4940,10 +4938,10 @@ export class DashboardComponent implements OnInit {
                 name: 'Target',
                 y: parseInt(res.result.result.achieved.salesBudget),
                 drilldown: ''
-              }, {
-                name: 'Pipeline',
-                y: 0,
-                drilldown: ''
+              // }, {
+              //   name: 'Pipeline',
+              //   y: 0,
+              //   drilldown: ''
               }, {
                 name: 'Estimate',
                 y: 0,
@@ -4967,10 +4965,10 @@ export class DashboardComponent implements OnInit {
                 name: 'Target',
                 y: 0,
                 drilldown: ''
-              }, {
-                name: 'Pipeline',
-                y: parseInt(res.result.result.achieved.open.value),
-                drilldown: 'togOrder Pipeline'
+              // }, {
+              //   name: 'Pipeline',
+              //   y: parseInt(res.result.result.achieved.open.value),
+              //   drilldown: 'togOrder Pipeline'
               }, {
                 name: 'Estimate',
                 y: 0,
@@ -4994,10 +4992,10 @@ export class DashboardComponent implements OnInit {
                 name: 'Target',
                 y: 0,
                 drilldown: ''
-              }, {
-                name: 'Pipeline',
-                y: parseInt(res.result.result.achieved.confirmed.value),
-                drilldown: 'Confirmed Pipeline'
+              // }, {
+              //   name: 'Pipeline',
+              //   y: parseInt(res.result.result.achieved.confirmed.value),
+              //   drilldown: 'Confirmed Pipeline'
               }, {
                 name: 'Estimate',
                 y: 0,
@@ -5021,10 +5019,10 @@ export class DashboardComponent implements OnInit {
                 name: 'Target',
                 y: 0,
                 drilldown: ''
-              }, {
-                name: 'Pipeline',
-                y: 0,
-                drilldown: ''
+              // }, {
+              //   name: 'Pipeline',
+              //   y: 0,
+              //   drilldown: ''
               }, {
                 name: 'Estimate',
                 y: parseInt(res.result.result.achieved.toGo.value),
@@ -5049,10 +5047,10 @@ export class DashboardComponent implements OnInit {
                 name: 'Target',
                 y: 0,
                 drilldown: ''
-              }, {
-                name: 'Pipeline',
-                y: 0,
-                drilldown: ''
+              // }, {
+              //   name: 'Pipeline',
+              //   y: 0,
+              //   drilldown: ''
               }, {
                 name: 'Estimate',
                 y: parseInt(res.result.result.achieved.actual),
@@ -5126,12 +5124,12 @@ export class DashboardComponent implements OnInit {
                     name: 'E',
                     y: parseInt(res.result.result.achieved.open.E),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
-                  },
-                  {
-                    name: 'F',
-                    y: parseInt(res.result.result.achieved.open.F),
-                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   }
+                  // {
+                  //   name: 'F',
+                  //   y: parseInt(res.result.result.achieved.open.F),
+                  //   url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
+                  // }
                   ]
                 }, {
                   name: 'Order Estimate',
@@ -5192,12 +5190,12 @@ export class DashboardComponent implements OnInit {
                       name: 'E',
                       y: parseInt(res.result.result.achieved.toGo.E),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
-                    },
-                    {
-                      name: 'F',
-                      y: parseInt(res.result.result.achieved.toGo.F),
-                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     }
+                    // {
+                    //   name: 'F',
+                    //   y: parseInt(res.result.result.achieved.toGo.F),
+                    //   url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
+                    // }
                   ]
                 },
                 {
@@ -5358,7 +5356,6 @@ export class DashboardComponent implements OnInit {
                   no_of_opp = d[1]
                 }
               })
-              console.log(point)
               return `${point.name}: ${no_of_opp}(${point.y}%)`
             }
           },
@@ -5573,7 +5570,6 @@ export class DashboardComponent implements OnInit {
                   no_of_opp = d[1]
                 }
               })
-              console.log(point)
               return `${point.name}: ${no_of_opp}(${point.y}%)`
             }
           },
@@ -5754,8 +5750,6 @@ export class DashboardComponent implements OnInit {
       this.dataService.getOrderTrend(data).subscribe(
         res => {
           var month_data = res.result;
-          console.log("month_data")
-          console.log(month_data)
           this.chart_line = Highcharts.chart('order-trend', {
             title: {
                 text: ''
