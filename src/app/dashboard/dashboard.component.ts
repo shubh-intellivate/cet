@@ -444,7 +444,7 @@ export class DashboardComponent implements OnInit {
             }
         }
       },
-      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
+      colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
       tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
           pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
@@ -1025,7 +1025,7 @@ export class DashboardComponent implements OnInit {
             }
         }
       },
-      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
+      colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
       tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
           pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
@@ -1659,7 +1659,7 @@ export class DashboardComponent implements OnInit {
             }
         }
       },
-      colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
+      colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
       tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
           pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
@@ -6073,7 +6073,7 @@ export class DashboardComponent implements OnInit {
             legend: {
               enabled: false
             },
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(143,163,213)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(46,117,182)'],      
+            colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)','rgb(127,127,127)'],      
             plotOptions: {
               column: {
                   stacking: 'normal',
