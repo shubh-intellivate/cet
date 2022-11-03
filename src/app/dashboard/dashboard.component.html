@@ -839,58 +839,87 @@
               <div class="card-header row">
                 <div class="col-lg-6">
                   <h6 class="card-title">BU Performance<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/1H<br>Values in M-INR</p>
                 </div>
                 <div class="col-lg-6">
                 </div>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table table-no-padding">
                     <thead>
                       <tr>
                         <th class="wd-30p">BU</th>
                         <th>Status</th>
                         <th>Order conversion</th>
-                        <th>Say-Do</th>
                         <th>Run rate(M-INR)</th>
+                        <th>Say-Do Ratio</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td><strong>AIPF</strong></td>
-                        <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td><i style="color: red;" class="fas fa-caret-down"></i><strong>134</strong> (1.51%)</td>
-                        <td>33.58%</td>
-                        <td>15.47</td>
+                        <td><strong>CNS</strong></td>
+                        <td class="rag" style="background-color: #F2C979;"></td>
+                        <!-- <td><i style="color: red;" class="fas fa-caret-down"></i>5%</td> -->
+                        <td>5%</td>
+                        <td>203</td>
+                        <td>88%</td>
                       </tr>
                       <tr>
-                        <td><strong>SMFG</strong></td>
+                        <td><strong>Submarine</strong></td>
+                        <td class="rag" style="background-color: white;"></td>
+                        <td></td>
+                        <td>62</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Public Safety</strong></td>
+                        <td class="rag" style="background-color: #F0787B;"></td>
+                        <td>89%</td>
+                        <td>754</td>
+                        <td>76%</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Transportation </strong></td>
+                        <td class="rag" style="background-color: #F0787B;"></td>
+                        <td>25%</td>
+                        <td>149</td>
+                        <td>74%</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Logistics </strong></td>
+                        <td class="rag" style="background-color: #F0787B;"></td>
+                        <td>3%</td>
+                        <td>35</td>
+                        <td>44%</td>
+                      </tr>
+                      <tr>
+                        <td><strong>AIPF</strong></td>
                         <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>290</strong> (3.30%)</td>
-                        <td>9.22%</td>
-                        <td>7.99</td>
+                        <td>27%</td>
+                        <td>275</td>
+                        <td>98%</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Smfg</strong></td>
+                        <td class="rag" style="background-color: #F0787B;"></td>
+                        <td>71%</td>
+                        <td>41</td>
+                        <td>60%</td>
                       </tr>
                       <tr>
                         <td><strong>Display</strong></td>
-                        <td class="rag" style="background-color: #F0787B;"></td>
-                        <td><i style="color: red;" class="fas fa-caret-down"></i><strong>250</strong> (3.00%)</td>
-                        <td>20.75%</td>
-                        <td>2.40</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Logistics</strong></td>
                         <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                        <td>32.07%</td>
-                        <td>15.09</td>
+                        <td>21%</td>
+                        <td>18</td>
+                        <td>107%</td>
                       </tr>
                       <tr>
-                        <td><strong>JCCS</strong></td>
-                        <td class="rag" style="background-color: #F2C979;"></td>
-                        <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                        <td>32.07%</td>
-                        <td>15.09</td>
+                        <td><strong>PNS</strong></td>
+                        <td class="rag" style="background-color: white;"></td>
+                        <td></td>
+                        <td>43</td>
+                        <td></td>
                       </tr>
                     </tbody>
                   </table>
