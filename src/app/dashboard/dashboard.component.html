@@ -834,7 +834,7 @@
 
       <div id="BI Performance" class="tabs" style="display:none">
         <div class="row row-sm mg-b-20">
-          <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
+          <div class="col-lg-12 col-xl-12 mg-t-20 mg-lg-t-0">
             <div class="card card-dashboard-five" style="height: 100%;">
               <div class="card-header row">
                 <div class="col-lg-6">
@@ -849,10 +849,11 @@
                   <table class="table table-no-padding">
                     <thead>
                       <tr>
-                        <th class="wd-30p">BU</th>
-                        <th>Status</th>
+                        <th>BU</th>
+                        <th class="wd-10p">Status</th>
+                        <th class="wd-10p"></th>
                         <th>Order conversion</th>
-                        <th>Run rate(M-INR)</th>
+                        <th>Current Run rate(M-INR)</th>
                         <th>Say-Do Ratio</th>
                       </tr>
                     </thead>
@@ -860,6 +861,7 @@
                       <tr>
                         <td><strong>CNS</strong></td>
                         <td class="rag" style="background-color: #F2C979;"></td>
+                        <td></td>
                         <!-- <td><i style="color: red;" class="fas fa-caret-down"></i>5%</td> -->
                         <td>5%</td>
                         <td>203</td>
@@ -869,12 +871,14 @@
                         <td><strong>Submarine</strong></td>
                         <td class="rag" style="background-color: white;"></td>
                         <td></td>
+                        <td></td>
                         <td>62</td>
                         <td></td>
                       </tr>
                       <tr>
                         <td><strong>Public Safety</strong></td>
                         <td class="rag" style="background-color: #F0787B;"></td>
+                        <td></td>
                         <td>89%</td>
                         <td>754</td>
                         <td>76%</td>
@@ -882,6 +886,7 @@
                       <tr>
                         <td><strong>Transportation </strong></td>
                         <td class="rag" style="background-color: #F0787B;"></td>
+                        <td></td>
                         <td>25%</td>
                         <td>149</td>
                         <td>74%</td>
@@ -889,6 +894,7 @@
                       <tr>
                         <td><strong>Logistics </strong></td>
                         <td class="rag" style="background-color: #F0787B;"></td>
+                        <td></td>
                         <td>3%</td>
                         <td>35</td>
                         <td>44%</td>
@@ -896,6 +902,7 @@
                       <tr>
                         <td><strong>AIPF</strong></td>
                         <td class="rag" style="background-color: #B0D08B;"></td>
+                        <td></td>
                         <td>27%</td>
                         <td>275</td>
                         <td>98%</td>
@@ -903,6 +910,7 @@
                       <tr>
                         <td><strong>Smfg</strong></td>
                         <td class="rag" style="background-color: #F0787B;"></td>
+                        <td></td>
                         <td>71%</td>
                         <td>41</td>
                         <td>60%</td>
@@ -910,6 +918,7 @@
                       <tr>
                         <td><strong>Display</strong></td>
                         <td class="rag" style="background-color: #B0D08B;"></td>
+                        <td></td>
                         <td>21%</td>
                         <td>18</td>
                         <td>107%</td>
@@ -918,39 +927,13 @@
                         <td><strong>PNS</strong></td>
                         <td class="rag" style="background-color: white;"></td>
                         <td></td>
+                        <td></td>
                         <td>43</td>
                         <td></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-            <div class="card card-dashboard-five" style="height: 100%;">
-              <div class="card-header row">
-                <div class="col-lg-6">
-                  <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-                </div>
-                <div class="col-lg-6">
-                  <div class="media" style="float: right;">
-                    <div class="media-body">
-                      <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleLostOpp()" #toggleLost>
-                        <option value="amount">Amount</option>
-                        <option value="opportunity">Opportunity</option>
-                      </select>
-                      <br>
-                      <a href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&lost_reason=All&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&fiscal_year={{filterFiscal_year}}" target="_blank" style="float: right;text-align: right;margin-right: 10px;">View All</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="az-content-label az-content-label-sm mg-b-15"></div>
-                <div id="chart-pie-lost-opp-bi" [hidden]="hideLostAmt" style="height: 250px;"></div>
-                <div id="chart-pie-lost-opp-number-bi" [hidden]="hideLostOpp" style="height: 250px;"></div>
               </div>
             </div>
           </div>

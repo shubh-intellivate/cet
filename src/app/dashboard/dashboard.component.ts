@@ -4529,7 +4529,7 @@ export class DashboardComponent implements OnInit {
               }, {
                 name: 'Estimate',
                 y: parseInt(res.result.result.achieved.actual),
-                drilldown: ''
+                drilldown: 'actual estimate'
               }]
             }],
             drilldown: {
@@ -4720,6 +4720,48 @@ export class DashboardComponent implements OnInit {
                   },
                   {
                     name: 'YTD Act',
+                    y: parseInt(res.result.result.achieved.confirmed.Act_BC),
+                    url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
+                  }
+                  ]
+                },
+                {
+                  name: 'A-Estimate',
+                  type: 'pie',
+                  id: 'actual estimate',
+                  dataLabels: {
+                    enabled: true,
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    distance: 20,
+                    style: {
+                      color: 'black',
+                      textOutline: 'transparent'
+                    },
+                  },
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function () {
+                              // location.href = this.options.url;
+                              window.open(this.options.url);
+                          }
+                      }
+                  },
+                  tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.percentage: .2f} %</b><br/>'
+                  },
+                  size: 180,
+                  borderWidth: 3,
+                  borderColor: '#fff',
+                  data: [
+                  {
+                    name: 'Act',
                     y: parseInt(res.result.result.achieved.confirmed.Act_BC),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                   }
@@ -5054,7 +5096,7 @@ export class DashboardComponent implements OnInit {
               }, {
                 name: 'Estimate',
                 y: parseInt(res.result.result.achieved.actual),
-                drilldown: ''
+                drilldown: 'actual Estimate'
               }]
             }],
             drilldown: {
@@ -5249,6 +5291,47 @@ export class DashboardComponent implements OnInit {
                   //   url: this.base_url+'records?bu='+bu+'&geo='+geo+'&start_date='+start_date+'&end_date='+end_date+'&currency='+currency+'&type=open&rank=S&timeframe='+timeframe
                   // }
                   ]
+                }, {
+                  name: 'Order Estimate',
+                  type: 'pie',
+                  id: 'actual Estimate',
+                  dataLabels: {
+                    enabled: true,
+                    formatter: function() {
+                      if (this.y > 0) {
+                        return this.point.name + ' ' +this.point.y
+                      }
+                    },
+                    // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
+                    distance: 20,
+                    style: {
+                      color: 'black',
+                      textOutline: 'transparent'
+                    },
+                  },
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function () {
+                              // location.href = this.options.url;
+                              window.open(this.options.url);
+                          }
+                      }
+                  },
+                  tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.percentage: .2f} %</b><br/>'
+                  },
+                  size: 180,
+                  borderWidth: 3,
+                  borderColor: '#fff',
+                  data: [
+                    {
+                      name: 'Act',
+                      y: parseInt(res.result.result.achieved.actual),
+                      url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
+                    }
+                  ]
                 }
               ]
             }
@@ -5405,220 +5488,6 @@ export class DashboardComponent implements OnInit {
           ]
         } as any);
         this.chart_lost_opp_number = Highcharts.chart('chart-pie-lost-opp-number', {
-          chart: {
-              type: 'pie'
-          },
-          colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
-          title: {
-              text: res.result.number.percentage+'%<br>'+res.result.number.Total,
-              align: 'center',
-              verticalAlign: 'middle',
-              x: -145
-          },
-          accessibility: {
-              announceNewData: {
-                  enabled: true
-              },
-              point: {
-                  valueSuffix: '%'
-              }
-          },
-          plotOptions: {
-            pie: {
-              size:'100%'
-            },
-            series: {
-                dataLabels: {
-                    enabled: false,
-                    format: '{point.y:.1f}%'
-                },
-                cursor: 'pointer',
-            }
-          },
-          tooltip: {
-              // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
-              // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-              formatter(){
-                let point = this,
-                    no_of_opp;
-                  number_of_opp_number.forEach(d => {
-                  if(d[0] == point.point['name']){
-                    no_of_opp = d[1]
-                  }
-                })
-                return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br># of Opp: ${no_of_opp}Mn`
-              }
-          },
-          legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            itemMarginTop: 10,
-            itemMarginBottom: 10,
-            labelFormatter: function () {
-              let point = this,
-              no_of_opp;
-              number_of_opp_number.forEach(d => {
-                if(d[0] == point.name){
-                  no_of_opp = d[1]
-                }
-              })
-              return `${point.name}: ${no_of_opp}(${point.y}%)`
-            }
-          },
-          series: [
-              {
-                  name: "Percentage",
-                  showInLegend: true,
-                  colorByPoint: true,
-                  innerSize: '50%',
-                  point: {
-                    events: {
-                        click: function () {
-                            // location.href = this.options.url;
-                            window.open(this.options.url);
-                        }
-                    }
-                  },
-                  data: [ {
-                      name: 'Price',
-                      y: parseFloat(res.result.number['Price']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Price&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    },
-                    {
-                      name: 'Lost to Competition',
-                      y: parseFloat(res.result.number['Lost to Competitor']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Lost to Competition&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }, {
-                      name: 'No Budget/Lost Funding',
-                      y: parseFloat(res.result.number['No Budget / Lost Funding']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Budget / Lost Funding&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    },
-                    {
-                      name: 'No Decision/Non-Responsive',
-                      y: parseFloat(res.result.number['No Decision / Non-Responsive']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Decision / Non-Responsive&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }, {
-                      name: 'Dropped by BU',
-                      y: parseFloat(res.result.number['Dropped by BU']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Dropped by BU&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }, {
-                      name: 'Other',
-                      y: parseFloat(res.result.number['Other']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Other&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }
-                  ]
-              }
-          ]
-        } as any);
-        this.chart_lost_opp = Highcharts.chart('chart-pie-lost-opp-bi', {
-          chart: {
-              type: 'pie'
-          },
-          colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
-          title: {
-              text: res.result.percentage+'%<br>'+res.result.Sum,
-              align: 'center',
-              verticalAlign: 'middle',
-              x: -155
-          },
-          accessibility: {
-              announceNewData: {
-                  enabled: true
-              },
-              point: {
-                  valueSuffix: '%'
-              }
-          },
-          plotOptions: {
-            pie: {
-              size:'100%'
-            },
-            series: {
-                dataLabels: {
-                    enabled: false,
-                    format: '{point.y:.1f}%'
-                },
-                cursor: 'pointer',
-            }
-          },
-          tooltip: {
-              // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
-              // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-              formatter(){
-                let point = this,
-                    no_of_opp;
-                number_of_opp.forEach(d => {
-                  if(d[0] == point.point['name']){
-                    no_of_opp = d[1]
-                  }
-                })
-                return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Amount: ${no_of_opp}Mn`
-              }
-          },
-          legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            itemMarginTop: 10,
-            itemMarginBottom: 10,
-            labelFormatter: function () {
-              let point = this,
-              no_of_opp;
-              number_of_opp.forEach(d => {
-                if(d[0] == point.name){
-                  no_of_opp = d[1]
-                }
-              })
-              return `${point.name}: ${no_of_opp}(${point.y}%)`
-            }
-          },
-          series: [
-              {
-                  name: "Percentage",
-                  showInLegend: true,
-                  colorByPoint: true,
-                  innerSize: '50%',
-                  point: {
-                    events: {
-                        click: function () {
-                            // location.href = this.options.url;
-                            window.open(this.options.url);
-                        }
-                    }
-                  },
-                  data: [ {
-                      name: 'Price',
-                      y: parseFloat(res.result.result['Price']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Price&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    },
-                    {
-                      name: 'Lost to Competition',
-                      y: parseFloat(res.result.result['Lost to Competitor']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Lost to Competition&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }, {
-                      name: 'No Budget/Lost Funding',
-                      y: parseFloat(res.result.result['No Budget / Lost Funding']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Budget / Lost Funding&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    },
-                    {
-                      name: 'No Decision/Non-Responsive',
-                      y: parseFloat(res.result.result['No Decision / Non-Responsive']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=No Decision / Non-Responsive&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }, {
-                      name: 'Dropped by BU',
-                      y: parseFloat(res.result.result['Dropped by BU']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Dropped by BU&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }, {
-                      name: 'Other',
-                      y: parseFloat(res.result.result['Other']),
-                      url: this.base_url+'records?bu='+bu+'&lost_reason=Other&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&geo='+geo
-                    }
-                  ]
-              }
-          ]
-        } as any);
-        this.chart_lost_opp_number = Highcharts.chart('chart-pie-lost-opp-number-bi', {
           chart: {
               type: 'pie'
           },
