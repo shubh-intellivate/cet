@@ -626,12 +626,12 @@
                       <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
                     </tr><tr>
-                      <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
-                      <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
-                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
-                      <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
-                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
-                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_7.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_7.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_7.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_7.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_7.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_7.stage}}</strong></td>
                       <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
                     </tr>
                   </tbody>
@@ -846,90 +846,168 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-no-padding">
+                  <table class="table table-bordered table-no-padding">
                     <thead>
                       <tr>
+                        <!-- <th class="wd-10p">Status</th> -->
                         <th>BU</th>
-                        <th class="wd-10p">Status</th>
-                        <th class="wd-10p"></th>
-                        <th>Order conversion</th>
-                        <th>Current Run rate(M-INR)</th>
-                        <th>Say-Do Ratio</th>
+                        <th>Status</th>
+                        <th>Order conversion Ratio</th>
+                        <th>Current Run rate - Order</th>
+                        <th>Current Run rate - Sales</th>
+                        <th>Required Run rate - Order</th>
+                        <th>Required Run rate - Sales</th>
+                        <th>Estimated Run rate - Order</th>
+                        <th>Estimated Run rate - Sales</th>
+                        <th>Say-Do Ratio - Order</th>
+                        <th>Say-Do Ratio - Sales</th>
+                        <th>Order Pipeline (basis SF) <br><span style="font-weight: 400;">Var (Oct - Sep)</span></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
                         <td><strong>CNS</strong></td>
-                        <td class="rag" style="background-color: #F2C979;"></td>
-                        <td></td>
-                        <!-- <td><i style="color: red;" class="fas fa-caret-down"></i>5%</td> -->
+                        <td class="rag" style="background-color: #F0787B;"></td>
                         <td>5%</td>
                         <td>203</td>
-                        <td>88%</td>
+                        <td>65</td>
+                        <td>124</td>
+                        <td>268</td>
+                        <td style="color: #F0787B">75</td>
+                        <td style="color: #F0787B">232</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>88%</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>86%</td>
+                        <td><i style="color: #B0D08B;font-size: 1.5em;" class="fas fa-caret-up fa-3"></i>6700</td>
                       </tr>
                       <tr>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
                         <td><strong>Submarine</strong></td>
-                        <td class="rag" style="background-color: white;"></td>
-                        <td></td>
-                        <td></td>
+                        <td class="rag" style="background-color: #B0D08B;"></td>
+                        <td>87%</td>
                         <td>62</td>
-                        <td></td>
+                        <td>128</td>
+                        <td>NA</td>
+                        <td>592</td>
+                        <td>0</td>
+                        <td>605</td>
+                        <td><i style="color: rgb(235, 204, 69);" class="fas fa-circle"></i>87%</td>
+                        <td><i style="color: #B0D08B;" class="fas fa-circle"></i>99%</td>
+                        <td>No Change</td>
                       </tr>
                       <tr>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
                         <td><strong>Public Safety</strong></td>
-                        <td class="rag" style="background-color: #F0787B;"></td>
-                        <td></td>
+                        <td class="rag" style="background-color: #B0D08B;"></td>
                         <td>89%</td>
                         <td>754</td>
-                        <td>76%</td>
+                        <td>59</td>
+                        <td>229</td>
+                        <td>585</td>
+                        <td>265</td>
+                        <td>595</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>76%</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>26%</td>
+                        <td><i style="color: red;font-size: 1.5em;" class="fas fa-caret-down fa-3"></i>-100</td>
                       </tr>
                       <tr>
-                        <td><strong>Transportation </strong></td>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
+                        <td><strong>Transportation</strong></td>
                         <td class="rag" style="background-color: #F0787B;"></td>
-                        <td></td>
                         <td>25%</td>
                         <td>149</td>
-                        <td>74%</td>
+                        <td>116</td>
+                        <td>376</td>
+                        <td>301</td>
+                        <td style="color: #F0787B">206</td>
+                        <td style="color: #F0787B">149</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>74%</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>82%</td>
+                        <td><i style="color: #B0D08B;font-size: 1.5em;" class="fas fa-caret-up fa-3"></i>1127</td>
                       </tr>
                       <tr>
-                        <td><strong>Logistics </strong></td>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
+                        <td><strong>Logistics</strong></td>
                         <td class="rag" style="background-color: #F0787B;"></td>
-                        <td></td>
                         <td>3%</td>
                         <td>35</td>
-                        <td>44%</td>
+                        <td>100</td>
+                        <td>133</td>
+                        <td>176</td>
+                        <td style="color: #F0787B">69</td>
+                        <td style="color: #F0787B">115</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>44%</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>82%</td>
+                        <td><i style="color: red;font-size: 1.5em;" class="fas fa-caret-down fa-3"></i>-777</td>
                       </tr>
                       <tr>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
                         <td><strong>AIPF</strong></td>
-                        <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td></td>
+                        <td class="rag" style="background-color: rgb(235, 204, 69);"></td>
                         <td>27%</td>
                         <td>275</td>
-                        <td>98%</td>
+                        <td>110</td>
+                        <td>87</td>
+                        <td>175</td>
+                        <td style="color: #F0787B">30</td>
+                        <td style="color: #F0787B">71</td>
+                        <td><i style="color: #B0D08B;" class="fas fa-circle"></i>98%</td>
+                        <td><i style="color: #B0D08B;" class="fas fa-circle"></i>81%</td>
+                        <td><i style="color: red;font-size: 1.5em;" class="fas fa-caret-down fa-3"></i>-4664</td>
                       </tr>
                       <tr>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
                         <td><strong>Smfg</strong></td>
-                        <td class="rag" style="background-color: #F0787B;"></td>
-                        <td></td>
+                        <td class="rag" style="background-color: #B0D08B;"></td>
                         <td>71%</td>
                         <td>41</td>
-                        <td>60%</td>
+                        <td>28</td>
+                        <td>22</td>
+                        <td>35</td>
+                        <td>31</td>
+                        <td>39</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>60%</td>
+                        <td><i style="color: #B0D08B" class="fas fa-circle"></i>99%</td>
+                        <td><i style="color: red;font-size: 1.5em;" class="fas fa-caret-down fa-3"></i>-5</td>
                       </tr>
                       <tr>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
                         <td><strong>Display</strong></td>
                         <td class="rag" style="background-color: #B0D08B;"></td>
-                        <td></td>
                         <td>21%</td>
                         <td>18</td>
-                        <td>107%</td>
+                        <td>19</td>
+                        <td>24</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td >24</td>
+                        <td><i style="color: #B0D08B;" class="fas fa-circle"></i>107%</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>129%</td>
+                        <td><i style="color: red;font-size: 1.5em;" class="fas fa-caret-down fa-3"></i>-174</td>
                       </tr>
                       <tr>
+                        <!-- <td class="rag" style="background-color: #B0D08B;"></td> -->
+                        <!-- <td class="rag" style="background-color: #F0787B;"></td> -->
                         <td><strong>PNS</strong></td>
-                        <td class="rag" style="background-color: white;"></td>
-                        <td></td>
-                        <td></td>
+                        <td class="rag" style="background-color: #B0D08B;"></td>
+                        <td>125%</td>
                         <td>43</td>
-                        <td></td>
+                        <td>45</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>12</td>
+                        <td>17</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>128%</td>
+                        <td><i style="color: red;" class="fas fa-circle"></i>132%</td>
+                        <td><i style="color: #B0D08B;font-size: 1.5em;" class="fas fa-caret-up fa-3"></i>27</td>
                       </tr>
                     </tbody>
                   </table>
