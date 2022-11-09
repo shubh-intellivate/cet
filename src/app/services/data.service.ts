@@ -12,11 +12,10 @@ export class DataService {
   httpOptions = {
     headers: new HttpHeaders({
       'Referrer-Policy': 'no-referrer-when-downgrade',
-      'Access-Control-Allow-Origin': 'http://88.218.92.164/',
+      'Access-Control-Allow-Origin': 'http://45.66.159.11/',
       'Access-Control-Allow-Methods': 'GET,POST',
       'Access-Control-Allow-Credentials': 'true',
-      'Authorization': 'Basic ' + btoa('sanjay:abc@xyz')
-      // 'Authorization': 'Basic ' + btoa('shubhendru:Shubhendru@123')
+      'Authorization': 'Basic ' + btoa('shubhendru:Shubh@123')
     })
   }
 
@@ -167,6 +166,17 @@ export class DataService {
 
   public getNewCustomersAcquired(postData: any): Observable<any> {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/new_customer_acquired", postData, this.httpOptions)
+  }
+
+  public login(username: any, password: any): Observable<any> {
+
+    var postData = {
+      "user_name": username,
+      "password": password
+    }
+
+    return this.http.post("https://morpheusdev.service-now.com/api/intp/usergroupaccesscheckvalidation", postData, this.httpOptions)
+
   }
 
 }

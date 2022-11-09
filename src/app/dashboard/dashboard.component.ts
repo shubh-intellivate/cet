@@ -116,6 +116,9 @@ export class DashboardComponent implements OnInit {
   salesRunRate: any;
   salesEstimatedRunRate: any;
   salesRequiredRunRate: any;
+  group_names: string;
+  user_groups: Array<String> = [];
+  access_bu_du: string;
 
   constructor(
     private dataService : DataService
@@ -123,6 +126,20 @@ export class DashboardComponent implements OnInit {
   
 
   ngOnInit() {
+    this.group_names = localStorage.getItem('groups');
+    this.access_bu_du = localStorage.getItem('access_bu_du');
+    var groupArr = this.group_names.split(' , ');
+    groupArr.forEach(element => {
+      var temp = element.split(' - ');
+      if(temp.length > 1 && temp[0] == 'CET'){
+        this.user_groups.push(temp[1])
+      }
+    });
+    if(this.access_bu_du == 'All'){
+      this.filterBu = '';
+    }else{
+      this.filterBu = this.access_bu_du;
+    }
     this.getBuNames();
     this.getBuByBranch();
     this.getBuNamesGrouping();

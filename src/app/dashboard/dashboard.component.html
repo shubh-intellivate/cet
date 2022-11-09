@@ -53,6 +53,9 @@
     .container{
       max-width: 95% !important;
     }
+    .hideCategory{
+      display: none !important;
+    }
 </style>
 
 <div class="az-content az-content-dashboard">
@@ -120,67 +123,123 @@
                           {{selectedBuValue}}
                         </button>
                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')">All</a></li>
-                          <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS (Consol)')">CNS (Consol)</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS')">BU CNS</a></li>
-                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS 5G')">BU CNS 5G</a></li>
-                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS NWSL')">BU CNS NWSL</a></li>
-                            </ul>
-                          </li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Transportation')">BU Transportation</a></li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Submarine')">BU Submarine</a></li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Smart Mfg.')">BU Smart Mfg.</a></li>
-                          <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Safety BU')">BU Public Safety (Consol)</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety - Aviation')">BU Public Safety - Aviation</a></li>
-                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety')">BU Public Safety</a></li>
-                            </ul>
-                          </li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU PNS Business')">BU PNS Business</a></li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU NEC Labs')">BU NEC Labs</a></li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Logistics')">BU Logistics</a></li>
-                          <!-- <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU JCCS')">BU JCCS</a></li> -->
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
-                          <li class="dropdown-submenu">
-                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
-                            <ul class="dropdown-menu">
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU JCCS')">DU JCCS</a></li>
-                              <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">DU Digital Platform</a></li>
-                              <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU ESDU (Consol.)')">DU ESDU (Consol.)</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
-                                    <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
-                                </ul>
-                              </li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NMEC')">DU NMEC</a></li>
-                              <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU Public Solutions (Consol.)')">DU Public Solutions (Consol.)</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Aviation')">DU Public Solutions - Aviation</a></li>
-                                    <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Others')">DU Public Solutions - Others</a></li>
-                                    <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Public Safety')">DU Public Solutions - Public Safety</a></li>
-                                </ul>
-                              </li>
-                              <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU SA&S (Consol.)')">DU SA&S (Consol.)</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Australia MS')">DU SA&S - Australia MS</a></li>
-                                    <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Others')">DU SAS - Others  & SEI SD</a></li>
-                                </ul>
-                              </li>
-                              <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NexGen Connectivity')">DU NexGen Connectivity</a></li>
-                            </ul>
-                          </li>
-                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU IP Led Biz')">	
-                            BU IP Led Biz</a></li>
-                        </ul>
+                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')" *ngIf="access_bu_du == 'All'">All</a></li>
 
+                          <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('CNS (Consol)') > -1 ? '': 'hideCategory'">
+
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS (Consol)')">CNS (Consol)</a>
+
+                            <ul class="dropdown-menu">
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU CNS') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU CNS')">BU CNS</a></li>
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU CNS 5G') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU CNS 5G')">BU CNS 5G</a></li>
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU CNS NWSL') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU CNS NWSL')">BU CNS NWSL</a></li>
+
+                            </ul>
+
+                          </li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Transportation') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Transportation')">BU Transportation</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Submarine') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Submarine')">BU Submarine</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Smart Mfg.') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Smart Mfg.')">BU Smart Mfg.</a></li>
+
+                          <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('BU Public Safety (Consol)') > -1 ? '': 'hideCategory'">
+
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Safety BU')">BU Public Safety (Consol)</a>
+
+                            <ul class="dropdown-menu">
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Public Safety-Aviation') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety-Aviation')">BU Public Safety-Aviation</a></li>
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Public Safety') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety')">BU Public Safety</a></li>
+
+                            </ul>
+
+                          </li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU PNS Business') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU PNS Business')">BU PNS Business</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU NEC Labs') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU NEC Labs')">BU NEC Labs</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Logistics') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Logistics')">BU Logistics</a></li>
+                          
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Display Business') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Biz Enablement Services') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
+
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU AIPF BU') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
+
+                          <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('GDC') > -1 ? '': 'hideCategory'">
+
+                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
+
+                            <ul class="dropdown-menu">
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU JCCS') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU JCCS')">DU JCCS</a></li>
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Digital Platform') > -1 ? '': 'hideCategory'"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">DU Digital Platform</a></li>
+
+                              <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('DU ESDU (Consol.)') > -1 ? '': 'hideCategory'">
+
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU ESDU (Consol.)')">DU ESDU (Consol.)</a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Enterprise Solutions') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Global Retail') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
+
+                                </ul>
+
+                              </li>
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU NMEC') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU NMEC')">DU NMEC</a></li>
+
+                              <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('DU Public Solutions (Consol.)') > -1 ? '': 'hideCategory'">
+
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU Public Solutions (Consol.)')">DU Public Solutions (Consol.)</a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Public Solutions-Aviation') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions-Aviation')">DU Public Solutions-Aviation</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Public Solutions-Others') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions-Others')">DU Public Solutions-Others</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Public Solutions-Public Safety') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions-Public Safety')">DU Public Solutions-Public Safety</a></li>
+
+                                </ul>
+
+                              </li>
+
+                              <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('DU SA&S (Consol.)') > -1 ? '': 'hideCategory'">
+
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU SA&S (Consol.)')">DU SA&S (Consol.)</a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU SA&S-Australia MS') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU SA&S-Australia MS')">DU SA&S-Australia MS</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU SAS-Others & SEI SD') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU SA&S-Others & SEI SD')">DU SAS-Others & SEI SD</a></li>
+
+                                </ul>
+
+                              </li>
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU NexGen Connectivity') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU NexGen Connectivity')">DU NexGen Connectivity</a></li>
+
+                            </ul>
+
+                          </li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU IP Led Biz') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU IP Led Biz')">	
+                            BU IP Led Biz</a></li>
+
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordsComponent } from './records/records.component';
 import { BranchesComponent } from './branches/branches.component';
 import { DataTablesModule } from 'angular-datatables';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { DataTablesModule } from 'angular-datatables';
     CetComponent,
     RecordsComponent,
     BranchesComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

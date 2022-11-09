@@ -16,12 +16,12 @@ export class AppComponent implements OnInit {
     // Removing Sidebar, Navbar, Footer for Documentation, Error and Auth pages
     router.events.forEach((event) => { 
       if(event instanceof NavigationStart) {
-        if((event['url'] == '/general-pages/signin') || (event['url'] == '/general-pages/signup') || (event['url'] == '/general-pages/page-404') ) {
-          this.showHeader = false;
-          this.showFooter = false;
-        } else {
+        if((event['url'] == '/dashboard') || (event['url'] == '/branches')) {
           this.showHeader = true;
           this.showFooter = true;
+        } else {
+          this.showHeader = false;
+          this.showFooter = false;
         }
 
         if(window.matchMedia('(max-width: 991px)').matches) {
