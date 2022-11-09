@@ -3750,7 +3750,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.getBidWinRate(data).subscribe(
       res => {
         if(res.result.status == "true"){
-          this.bidWinRate = res.result.result.winrate + '%';
+          this.bidWinRate = res.result.result.winrate;
         }
       }
     );    
