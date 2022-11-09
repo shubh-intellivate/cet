@@ -12,7 +12,7 @@ export class DataService {
   httpOptions = {
     headers: new HttpHeaders({
       'Referrer-Policy': 'no-referrer-when-downgrade',
-      'Access-Control-Allow-Origin': 'http://45.66.159.11/',
+      'Access-Control-Allow-Origin': 'hhttp://88.218.92.164/',
       'Access-Control-Allow-Methods': 'GET,POST',
       'Access-Control-Allow-Credentials': 'true',
       'Authorization': 'Basic ' + btoa('shubhendru:Shubh@123')
