@@ -168,6 +168,10 @@ export class DataService {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/new_customer_acquired", postData, this.httpOptions)
   }
 
+  public getSalesBreakdownRows(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/sales_breakdown_row", postData, this.httpOptions)
+  }
+
   public login(username: any, password: any): Observable<any> {
 
     var postData = {

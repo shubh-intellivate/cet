@@ -757,231 +757,7 @@ export class DashboardComponent implements OnInit {
       ]
     }
     Highcharts.chart('classify-pipeline-rank', classify_pipeline as any);
-    // var classify_pipeline_class = {
-    //   chart: {
-    //     type: 'column',
-    //   },
-    //   title: {
-    //       text: '' ,
-    //       align: 'right'
-    //   },
-    //   accessibility: {
-    //       announceNewData: {
-    //           enabled: true
-    //       }
-    //   },
-    //   xAxis: {
-    //       type: 'category'
-    //   },
-    //   yAxis: {
-    //       title: {
-    //           text: ''
-    //       },
-    //       gridLineColor: 'transparent',
-    //       type: 'logarithmic',
-    //       minorTickInterval: 100,
-    //       stackLabels: {
-    //         enabled: true,
-    //         style: {
-    //             fontWeight: 'bold',
-    //             color: ( // theme
-    //                 Highcharts.defaultOptions.title.style &&
-    //                 Highcharts.defaultOptions.title.style.color
-    //             ) || 'gray'
-    //         },
-    //         formatter: function () {
-    //           return this.total;
-    //         }
-    //     },labels:{
-    //       enabled: false
-    //     }
-  
-    //   },
-    //   legend: {
-    //       enabled: false
-    //   },
-    //   plotOptions: {
-    //       series: {
-    //           borderWidth: 0,
-    //           pointWidth: 50,
-    //           dataLabels: {
-    //               enabled: true,
-    //               formatter:function() {
-    //                 if(this.y != 0) {
-    //                   return this.y;
-    //                 }
-    //               }
-    //           }
-    //       },
-    //       column: {
-    //         stacking: 'normal',
-    //         dataLabels: {
-    //             enabled: true
-    //         }
-    //       },
-    //       cursor: 'pointer',
-    //   },
-    //   colors: ['rgb(182,196,237)', 'rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
-    //   tooltip: {
-    //       headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-    //       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
-    //   },
-  
-    //   series: [
-    //       {
-    //       name: 'EE',
-    //       cursor: 'pointer',
-    //       dataLabels: {
-    //         enabled: true,
-    //         formatter:function() {
-    //           if(this.y != 0) {
-    //             return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-    //           }
-    //         },
-    //         style: {
-    //           color: 'white',
-    //           textOutline: 'transparent'
-    //         }
-    //       },
-    //       point: {
-    //         events: {
-    //             click: function () {
-    //                 // location.href = this.options.url;
-    //                 window.open(this.options.url);
-    //             }
-    //         }
-    //       },
-    //       data: [{
-    //         name: 'Act',
-    //         y: parseInt(this.pipelineClassify.Act.EE),
-    //         url:  this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=EE&'
-    //       },{
-    //         name: 'A',
-    //         y: parseInt(this.pipelineClassify.A.EE),
-    //         drilldown: ''
-    //       },{
-    //         name: 'S',
-    //         y: parseInt(this.pipelineClassify.S.EE),
-    //         drilldown: ''
-    //       },{
-    //         name: 'B',
-    //         y: parseInt(this.pipelineClassify.B.EE),
-    //         drilldown: ''
-    //       },{
-    //         name: 'C',
-    //         y: parseInt(this.pipelineClassify.C.EE),
-    //         drilldown: ''
-    //       },{
-    //         name: 'D',
-    //         y: parseInt(this.pipelineClassify.D.EE),
-    //         drilldown: ''
-    //       },{
-    //         name: 'E',
-    //         y: parseInt(this.pipelineClassify.E.EE),
-    //         drilldown: ''
-    //       },{
-    //         name: 'F',
-    //         y: parseInt(this.pipelineClassify.F.EE),
-    //         drilldown: ''
-    //       }]
-    //     },{
-    //       name: 'EN',
-    //       dataLabels: {
-    //         enabled: true,
-    //         formatter:function() {
-    //           if(this.y != 0) {
-    //             return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-    //           }
-    //         },
-    //         style: {
-    //           color: 'white',
-    //           textOutline: 'transparent'
-    //         }
-    //       },
-    //       data: [{
-    //         name: 'Act',
-    //         y: parseInt(this.pipelineClassify.Act.EN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'A',
-    //         y: parseInt(this.pipelineClassify.A.EN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'S',
-    //         y: parseInt(this.pipelineClassify.S.EN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'B',
-    //         y: parseInt(this.pipelineClassify.B.EN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'C',
-    //         y: parseInt(this.pipelineClassify.C.EN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'D',
-    //         y: parseInt(this.pipelineClassify.D.EN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'E',
-    //         y: parseInt(this.pipelineClassify.E.EN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'F',
-    //         y: parseInt(this.pipelineClassify.F.EN),
-    //         drilldown: ''
-    //       }]
-    //     },{
-    //       name: 'NN',
-    //       dataLabels: {
-    //         enabled: true,
-    //         formatter:function() {
-    //           if(this.y != 0) {
-    //             return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-    //           }
-    //         },
-    //         style: {
-    //           color: 'white',
-    //           textOutline: 'transparent'
-    //         }
-    //       },
-    //       data: [{
-    //         name: 'Act',
-    //         y: parseInt(this.pipelineClassify.Act.NN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'A',
-    //         y: parseInt(this.pipelineClassify.A.NN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'S',
-    //         y: parseInt(this.pipelineClassify.S.NN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'B',
-    //         y: parseInt(this.pipelineClassify.B.NN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'C',
-    //         y: parseInt(this.pipelineClassify.C.NN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'D',
-    //         y: parseInt(this.pipelineClassify.D.NN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'E',
-    //         y: parseInt(this.pipelineClassify.E.NN),
-    //         drilldown: ''
-    //       },{
-    //         name: 'F',
-    //         y: parseInt(this.pipelineClassify.F.NN),
-    //         drilldown: ''
-    //       }]
-    //     },
-    //   ]
-    // }
-    // Highcharts.chart('classify-pipeline-class', classify_pipeline_class as any);
+   
     var geo_pipeline = {
       chart: {
         type: 'column',
@@ -2244,6 +2020,11 @@ export class DashboardComponent implements OnInit {
   openSalesModal(){
     this.blur = "blur";
     this.salesModal = "block";
+    var bu = this.filterBu;
+    var geo = this.filterGeo;
+    var currency = this.filterCurrency;
+    var fiscal_year = this.filterFiscal_year;
+    var timeframe = this.filterTimeframe;
     var amount_arr = [
       ['New', this.salesBreakdown.New.value],
       ['Backlog', this.salesBreakdown.Backlog.value]
@@ -2327,11 +2108,13 @@ export class DashboardComponent implements OnInit {
               },
               data: [ {
                   name: 'New',
-                  y: parseInt(this.salesBreakdown.New.percentage)
+                  y: parseInt(this.salesBreakdown.New.percentage),
+                  url: this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time='
                 },
                 {
                   name: 'Backlog',
-                  y: parseInt(this.salesBreakdown.Backlog.percentage)
+                  y: parseInt(this.salesBreakdown.Backlog.percentage),
+                  url: this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time='
                 }
               ]
           }
@@ -2417,16 +2200,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.New.Q1.E)
+            y: parseInt(this.salesBreakdown.New.Q1.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.New.Q2.E)
+            y: parseInt(this.salesBreakdown.New.Q2.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.New.Q3.E)
+            y: parseInt(this.salesBreakdown.New.Q3.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.New.Q4.E)
+            y: parseInt(this.salesBreakdown.New.Q4.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q4'
           }]
         },
         {
@@ -2454,16 +2241,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.New.Q1.D)
+            y: parseInt(this.salesBreakdown.New.Q1.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.New.Q2.D)
+            y: parseInt(this.salesBreakdown.New.Q2.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.New.Q3.D)
+            y: parseInt(this.salesBreakdown.New.Q3.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.New.Q4.D)
+            y: parseInt(this.salesBreakdown.New.Q4.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q4'
           }]
         },
         {
@@ -2491,16 +2282,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.New.Q1.C)
+            y: parseInt(this.salesBreakdown.New.Q1.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.New.Q2.C)
+            y: parseInt(this.salesBreakdown.New.Q2.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.New.Q3.C)
+            y: parseInt(this.salesBreakdown.New.Q3.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.New.Q4.C)
+            y: parseInt(this.salesBreakdown.New.Q4.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q4'
           }]
         },
         {
@@ -2528,16 +2323,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.New.Q1.B)
+            y: parseInt(this.salesBreakdown.New.Q1.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.New.Q2.B)
+            y: parseInt(this.salesBreakdown.New.Q2.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.New.Q3.B)
+            y: parseInt(this.salesBreakdown.New.Q3.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.New.Q4.B)
+            y: parseInt(this.salesBreakdown.New.Q4.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q4'
           }]
         },
         {
@@ -2565,16 +2364,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.New.Q1.A)
+            y: parseInt(this.salesBreakdown.New.Q1.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.New.Q2.A)
+            y: parseInt(this.salesBreakdown.New.Q2.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.New.Q3.A)
+            y: parseInt(this.salesBreakdown.New.Q3.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.New.Q4.A)
+            y: parseInt(this.salesBreakdown.New.Q4.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q4'
           }]
         },
         {
@@ -2602,77 +2405,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.New.Q1.Act)
+            y: parseInt(this.salesBreakdown.New.Q1.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.New.Q2.Act)
+            y: parseInt(this.salesBreakdown.New.Q2.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.New.Q3.Act)
+            y: parseInt(this.salesBreakdown.New.Q3.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.New.Q4.Act)
+            y: parseInt(this.salesBreakdown.New.Q4.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=New Order&time=Q4'
           }]
         },
       ],
-      drilldown: {
-        series:[
-          {
-            type: 'column',
-            name: "test",
-            id: "test",
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
-            plotOptions: {
-              column: {
-                  stacking: 'normal',
-                  dataLabels: {
-                    enabled: true
-                  }
-              }
-            },
-            data: [{
-                "name": "Q1",
-                "y": 1
-            }, {
-                "name": "Q2",
-                "y": 2
-            }, {
-                "name": "Q3",
-                "y": 3
-            }, {
-                "name": "Q4",
-                "y": 4
-            }]
-          },{
-            type: 'column',
-            name: "test",
-            id: "test1",
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
-            plotOptions: {
-              column: {
-                  stacking: 'normal',
-                  dataLabels: {
-                    enabled: true
-                  }
-              }
-            },
-            data: [{
-                "name": "Q1",
-                "y": 1
-            }, {
-                "name": "Q2",
-                "y": 2
-            }, {
-                "name": "Q3",
-                "y": 3
-            }, {
-                "name": "Q4",
-                "y": 4
-            }]
-          }
-
-        ]
-      },
       responsive: {
           rules: [{
               condition: {
@@ -2768,16 +2517,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.Backlog.Q1.E)
+            y: parseInt(this.salesBreakdown.Backlog.Q1.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.Backlog.Q2.E)
+            y: parseInt(this.salesBreakdown.Backlog.Q2.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.Backlog.Q3.E)
+            y: parseInt(this.salesBreakdown.Backlog.Q3.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.Backlog.Q4.E)
+            y: parseInt(this.salesBreakdown.Backlog.Q4.E),
+            url: this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q4'
           }]
         },
         {
@@ -2805,16 +2558,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.Backlog.Q1.D)
+            y: parseInt(this.salesBreakdown.Backlog.Q1.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.Backlog.Q2.D)
+            y: parseInt(this.salesBreakdown.Backlog.Q2.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.Backlog.Q3.D)
+            y: parseInt(this.salesBreakdown.Backlog.Q3.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.Backlog.Q4.D)
+            y: parseInt(this.salesBreakdown.Backlog.Q4.D),
+            url: this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q4'
           }]
         },
         {
@@ -2842,16 +2599,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.Backlog.Q1.C)
+            y: parseInt(this.salesBreakdown.Backlog.Q1.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.Backlog.Q2.C)
+            y: parseInt(this.salesBreakdown.Backlog.Q2.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.Backlog.Q3.C)
+            y: parseInt(this.salesBreakdown.Backlog.Q3.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.Backlog.Q4.C)
+            y: parseInt(this.salesBreakdown.Backlog.Q4.C),
+            url: this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q4'
           }]
         },
         {
@@ -2879,16 +2640,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.Backlog.Q1.B)
+            y: parseInt(this.salesBreakdown.Backlog.Q1.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.Backlog.Q2.B)
+            y: parseInt(this.salesBreakdown.Backlog.Q2.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.Backlog.Q3.B)
+            y: parseInt(this.salesBreakdown.Backlog.Q3.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.Backlog.Q4.B)
+            y: parseInt(this.salesBreakdown.Backlog.Q4.B),
+            url: this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q4'
           }]
         },
         {
@@ -2916,16 +2681,20 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.Backlog.Q1.A)
+            y: parseInt(this.salesBreakdown.Backlog.Q1.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.Backlog.Q2.A)
+            y: parseInt(this.salesBreakdown.Backlog.Q2.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.Backlog.Q3.A)
+            y: parseInt(this.salesBreakdown.Backlog.Q3.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.Backlog.Q4.A)
+            y: parseInt(this.salesBreakdown.Backlog.Q4.A),
+            url: this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q4'
           }]
         },
         {
@@ -2953,77 +2722,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: "Q1",
-            y: parseInt(this.salesBreakdown.Backlog.Q1.Act)
+            y: parseInt(this.salesBreakdown.Backlog.Q1.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q1'
           },{
             name: "Q2",
-            y: parseInt(this.salesBreakdown.Backlog.Q2.Act)
+            y: parseInt(this.salesBreakdown.Backlog.Q2.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q2'
           },{
             name: "Q3",
-            y: parseInt(this.salesBreakdown.Backlog.Q3.Act)
+            y: parseInt(this.salesBreakdown.Backlog.Q3.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q3'
           },{
             name: "Q4",
-            y: parseInt(this.salesBreakdown.Backlog.Q4.Act)
+            y: parseInt(this.salesBreakdown.Backlog.Q4.Act),
+            url: this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&estimatesale=Backlog&time=Q4'
           }]
         },
       ],
-      drilldown: {
-        series:[
-          {
-            type: 'column',
-            name: "test",
-            id: "test",
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
-            plotOptions: {
-              column: {
-                  stacking: 'normal',
-                  dataLabels: {
-                    enabled: true
-                  }
-              }
-            },
-            data: [{
-                "name": "Q1",
-                "y": 1
-            }, {
-                "name": "Q2",
-                "y": 2
-            }, {
-                "name": "Q3",
-                "y": 3
-            }, {
-                "name": "Q4",
-                "y": 4
-            }]
-          },{
-            type: 'column',
-            name: "test",
-            id: "test1",
-            colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(117,150,208)', 'rgb(57,93,157)'],
-            plotOptions: {
-              column: {
-                  stacking: 'normal',
-                  dataLabels: {
-                    enabled: true
-                  }
-              }
-            },
-            data: [{
-                "name": "Q1",
-                "y": 1
-            }, {
-                "name": "Q2",
-                "y": 2
-            }, {
-                "name": "Q3",
-                "y": 3
-            }, {
-                "name": "Q4",
-                "y": 4
-            }]
-          }
-
-        ]
-      },
       responsive: {
           rules: [{
               condition: {

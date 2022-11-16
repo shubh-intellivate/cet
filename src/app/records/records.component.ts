@@ -34,6 +34,8 @@ export class RecordsComponent implements OnInit {
   segment: string;
   country: string;
   page_title: any;
+  estimatesale: any;
+  time: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -56,6 +58,8 @@ export class RecordsComponent implements OnInit {
       this.classify = params.classify;
       this.segment = params.segment;
       this.country = params.country;
+      this.estimatesale = params.estimatesale;
+      this.time = params.time;
     })
   }
 
@@ -123,6 +127,30 @@ export class RecordsComponent implements OnInit {
         "fiscal_year":this.fiscal_year == "undefined" ? '' : this.fiscal_year
       }
       this.dataService.getOrderTrendRows(data).subscribe(res=>{
+        console.log(res);
+        if(res.result.status == "true"){
+          this.table_data = res.result.data
+          this.page_title = res.result.widget_name;
+          this.amount_sum = res.result.amount_sum + 'Mn'
+          this.table_data.every(element => {
+            for (let key in element) {
+              this.table_headers.push(key)
+            }
+            return false;
+          });
+        }
+      })
+    }else if(this.estimatesale && this.estimatesale !=''){
+      this.tableTitle = '';
+      let data =  {
+        "bu": this.bu == "undefined" ? '' : this.bu,
+        "timeframe": this.timeframe == "undefined" ? '' : this.timeframe,
+        "estimatesale": this.estimatesale == "undefined" ? '' : this.estimatesale,
+        "rank": this.rank == "undefined" ? '' : this.rank,
+        "time": this.time == "undefined" ? '' : this.time,
+        "fiscal_year":this.fiscal_year == "undefined" ? '' : this.fiscal_year
+      }
+      this.dataService.getSalesBreakdownRows(data).subscribe(res=>{
         console.log(res);
         if(res.result.status == "true"){
           this.table_data = res.result.data
