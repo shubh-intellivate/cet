@@ -82,6 +82,8 @@ export class DashboardComponent implements OnInit {
   newCustomers: any;
   segment_rank_show: boolean = false;
   segment_class_show: boolean = true;
+  typeofcust_rank_show: boolean = false;
+  typeofcust_class_show: boolean = true;
   normalizedavg: any;
   highestValue: any;
   chart_sales: Highcharts.Chart;
@@ -119,6 +121,7 @@ export class DashboardComponent implements OnInit {
   group_names: string;
   user_groups: Array<String> = [];
   access_bu_du: string;
+  typeOfCustomer: any;
 
   constructor(
     private dataService : DataService
@@ -395,6 +398,8 @@ export class DashboardComponent implements OnInit {
     this.geo_class_show = true;
     this.segment_rank_show = false;
     this.segment_class_show = true;
+    this.typeofcust_rank_show = false;
+    this.typeofcust_class_show = true;
     this.toggleSeg.nativeElement.value = 'rank';
     this.toggleG.nativeElement.value = 'rank'
     var bu = this.filterBu;
@@ -757,7 +762,6 @@ export class DashboardComponent implements OnInit {
       ]
     }
     Highcharts.chart('classify-pipeline-rank', classify_pipeline as any);
-   
     var geo_pipeline = {
       chart: {
         type: 'column',
@@ -1463,50 +1467,6 @@ export class DashboardComponent implements OnInit {
       },
   
       series: [
-        // {
-        //   name: 'F',
-        //   dataLabels: {
-        //     enabled: true,
-        //     formatter:function() {
-        //       if(this.y != 0) {
-        //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-        //       }
-        //     },
-        //     style: {
-        //       color: 'white',
-        //       textOutline: 'transparent'
-        //     }
-        //   },
-        //   point: {
-        //     events: {
-        //         click: function () {
-        //             // location.href = this.options.url;
-        //             window.open(this.options.url);
-        //         }
-        //     }
-        //   },
-        //   data: [{
-        //     name: this.subProjectClassify.project1.name,
-        //     y: parseInt(this.subProjectClassify.project1.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
-        //   },{
-        //     name: this.subProjectClassify.project2.name,
-        //     y: parseInt(this.subProjectClassify.project2.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
-        //   },{
-        //     name: this.subProjectClassify.project3.name,
-        //     y: parseInt(this.subProjectClassify.project3.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
-        //   },{
-        //     name: this.subProjectClassify.project4.name,
-        //     y: parseInt(this.subProjectClassify.project4.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
-        //   },{
-        //     name: this.subProjectClassify.project5.name,
-        //     y: parseInt(this.subProjectClassify.project5.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
-        //   }]
-        // },
           {
           name: 'E',
           dataLabels: {
@@ -2015,6 +1975,102 @@ export class DashboardComponent implements OnInit {
       ]
     }
     Highcharts.chart('subproject-pipeline-class', subproject_pipeline_class as any);
+    var amount_arr = [
+      ['Government', this.typeOfCustomer.goverment.amount],
+      ['Enterprise', this.typeOfCustomer.enterprise.amount]
+    ];
+    var typeofcust_class = {
+      chart: {
+          type: 'pie'
+      },
+      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
+      title: {
+          text: '',
+          align: 'center',
+          verticalAlign: 'middle',
+          x: -135
+      },
+      accessibility: {
+          announceNewData: {
+              enabled: true
+          },
+          point: {
+              valueSuffix: '%'
+          }
+      },
+      plotOptions: {
+        pie: {
+          size:'100%'
+        },
+        series: {
+            dataLabels: {
+                enabled: false,
+                format: '{point.y:.1f}%'
+            },
+            cursor: 'pointer',
+        }
+      },
+      tooltip: {
+          // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
+          // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+          formatter(){
+            let point = this,
+            amount;
+            amount_arr.forEach(d => {
+              if(d[0] == point.point['name']){
+                amount = d[1]
+              }
+            })
+            return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Amount: ${amount}Mn`
+          }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        itemMarginTop: 10,
+        itemMarginBottom: 10,
+        // labelFormat: '{name} {y:.1f}%',
+        labelFormatter: function () {
+          let point = this,
+          no_of_opp;
+          amount_arr.forEach(d => {
+            if(d[0] == point.name){
+              no_of_opp = d[1]
+            }
+          })
+          return `${point.name}: ${no_of_opp}(${point.y}%)`
+        }
+      },
+      series: [
+          {
+              name: "Percentage",
+              showInLegend: true,
+              colorByPoint: true,
+              innerSize: '50%',
+              point: {
+                events: {
+                    click: function () {
+                        // location.href = this.options.url;
+                        window.open(this.options.url);
+                    }
+                }
+              },
+              data: [ {
+                  name: 'Government',
+                  y: parseInt(this.typeOfCustomer.goverment.per),
+                  url: this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+                },
+                {
+                  name: 'Enterprise',
+                  y: parseInt(this.typeOfCustomer.enterprise.per),
+                  url: this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+                }
+              ]
+          }
+      ]
+    };
+    Highcharts.chart('type-of-customer-rank', typeofcust_class as any);
   }
 
   openSalesModal(){
@@ -3964,6 +4020,7 @@ export class DashboardComponent implements OnInit {
           this.pipelineClassify = res.result.result.achieved.classify;
           this.geoClassify = res.result.result.achieved.geoclassify;
           this.subProjectClassify = res.result.result.achieved.subProject;
+          this.typeOfCustomer = res.result.result.achieved.typeofcustomer;
           this.fRankOpen = res.result.result.achieved.open.F;
           this.fRankTogo = res.result.result.achieved.toGo.F;
           const chart_order = Highcharts.chart('chart-gauge-order', {

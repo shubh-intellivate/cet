@@ -67,7 +67,7 @@
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #fiscal_year>
                 <option value="2022">FY 2022</option>
-                <option value="2021">FY 2021</option>
+                <option value="2023">FY 2023</option>
               </select>
             </div>
           </div>
@@ -247,16 +247,8 @@
           </div>
           <div class="media" style="margin-left: 10px;display: none;">
             <div class="media-body">
-              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #geo>
-                <!-- <option value="">Geo</option> -->
+              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()">
                 <option value="">India & DU</option>
-                <!-- <option value="">All Branches</option>
-                <option value="japan">Japan</option>
-                <option value="emea">EMEA</option> -->
-                <!-- <option value="LATAM">LATAM</option> -->
-                <!-- <option value="usa">USA</option>
-                <option value="apac">APAC</option>
-                <option value="Australia">Australia</option> -->
               </select>
             </div>
           </div>
@@ -266,6 +258,25 @@
                 <!-- <option value="">Currency</option> -->
                 <option value="">M-INR</option>
                 <!-- <option>Dollar(Mn)</option> -->
+              </select>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-body">
+              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()"  #geo>
+                <option value="">All Geo</option>
+                <option value="abo">ABO</option>
+                <option value="emea">EMEA</option>
+                <option value="jbo">JBO</option>
+                <option value="sbo">SBO</option>
+                <option value="usbo">USBO</option>
+                <option value="Australia">Australia</option>
+                <option value="LATAM">LATAM</option>
+                <option value="apac">APAC</option>
+                <option value="india">India</option>
+                <option value="japan">Japan</option>
+                <option value="USA">usa</option>
+                <option value="Others">Others</option>
               </select>
             </div>
           </div>
@@ -473,7 +484,7 @@
                   <div class="card-body row" style="    padding-top: 0px !important;">
                     <div class="col-lg-7" style="text-align: center;">
                       <!-- <div class="az-content-label az-content-label-sm">Simple</div> -->
-                      <div style="height:72px;margin-top: 15px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{avgOrderSize}}</a></div>
+                      <div style="height:72px;margin-top: 15px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&show_records=all">{{avgOrderSize}}</a></div>
                     </div>
                     <div class="col-lg-5" style="text-align: center;">
                       <div class="row" style="margin-left:10px;">
@@ -482,7 +493,7 @@
                               Max
                             </div>
                             <div class="row">
-                              <div style="height:25px;text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">{{maxOrderSizeValue}}</div>
+                              <div style="height:25px;text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&show_records=max">{{maxOrderSizeValue}}</a></div>
                               <!-- <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">630</div> -->
                             </div>
                           </div>
@@ -493,7 +504,7 @@
                             Min
                           </div>
                           <div class="row">
-                            <div style="height:50px;text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">{{minOrderSizeValue}}</div>
+                            <div style="height:50px;text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&show_records=min">{{minOrderSizeValue}}</a></div>
                             <!-- <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">0.15</div> -->
                           </div>
                         </div>
@@ -1226,6 +1237,36 @@
                   <div id="subproject-pipeline-class" [hidden]="segment_class_show" style="height: 400px;"></div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            </div>
+            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-five">
+                <div class="card-header row">
+                  <div class="col-lg-6">
+                    <h6 class="card-title">Type of Customer</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                  </div>
+                  <div class="col-lg-6">
+                    <!-- <div class="media" style="float: right;">
+                      <div class="media-body">
+                        <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleSegment()" #toggleSeg>
+                          <option value="rank">Rank</option>
+                          <option value="classify">Classify</option>
+                        </select>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="type-of-customer-rank" [hidden]="typeofcust_rank_show" style="height: 400px;"></div>
+                  <div id="type-of-customer-class" [hidden]="typeofcust_class_show" style="height: 400px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0">
             </div>
           </div>
         </div>
