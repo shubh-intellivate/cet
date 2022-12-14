@@ -290,6 +290,7 @@
         <button class="w3-bar-item w3-button tablink w3-grey" (click)="showTab($event, 'Order', 'Order')">Order</button>
         <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Sales', 'Sales')">Sales</button>
         <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'BI Performance', 'BI Performance')">BI Performance</button>
+        <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Leads', 'Leads')">Leads</button>
       </div>
       <div id="Order" class="tabs">
         <div class="row row-sm mg-b-20">
@@ -1084,67 +1085,59 @@
         </div>
       </div>
 
-
-      <!-- <div class="row row-sm mg-b-20">
-        <div class="col-lg-3 col-xl-3 mg-t-20 mg-lg-t-0"></div>
-        <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-table-one" style="height: 100%;">
-            <h6 class="card-title">BU Performance<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-            <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="wd-45p">BU</th>
-                    <th>Status</th>
-                    <th>Order conversion</th>
-                    <th>Say-Do</th>
-                    <th>Run rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>AIPF</strong></td>
-                    <td class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: red;" class="fas fa-caret-down"></i><strong>134</strong> (1.51%)</td>
-                    <td>33.58%</td>
-                    <td>15.47Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>SMFG</strong></td>
-                    <td class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>290</strong> (3.30%)</td>
-                    <td>9.22%</td>
-                    <td>7.99Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Display</strong></td>
-                    <td class="rag" style="background-color: #F0787B;"></td>
-                    <td><i style="color: red;" class="fas fa-caret-down"></i><strong>250</strong> (3.00%)</td>
-                    <td>20.75%</td>
-                    <td>2.40Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Logistics</strong></td>
-                    <td class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                    <td>32.07%</td>
-                    <td>15.09Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>JCCS</strong></td>
-                    <td class="rag" style="background-color: #F2C979;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                    <td>32.07%</td>
-                    <td>15.09Mn</td>
-                  </tr>
-                </tbody>
-              </table>
+      <div id="Leads" class="tabs" style="display:none">
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Lead Analysis Basis BUs</h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="lead-analysis" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Lead Status Analysis</h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="lead-status-analysis" style="height: 250px;"></div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-xl-3 mg-t-20 mg-lg-t-0"></div>
-      </div> -->
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Lead Source Analysis</h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="lead-source-analysis" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1169,12 +1162,6 @@
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
-                      <!-- <div class="media-body">
-                        <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleClassify()" #toggleClass>
-                          <option value="rank">Rank</option>
-                          <option value="classify">Classify</option>
-                        </select>
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -1236,8 +1223,7 @@
             </div>
           </div>
           <div class="row row-sm mg-b-20">
-            <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-            </div>
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
             <div class="col-lg-6 mg-t-20 mg-lg-t-0">
               <div class="card card-dashboard-five">
                 <div class="card-header row">
@@ -1262,7 +1248,23 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+          </div>
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-five">
+                <div class="card-header row">
+                  <div class="col-lg-6">
+                    <h6 class="card-title">Aging</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                  </div>
+                  <div class="col-lg-6">
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="aging" style="height: 400px;"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
