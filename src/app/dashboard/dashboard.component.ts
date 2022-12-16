@@ -1975,99 +1975,295 @@ export class DashboardComponent implements OnInit {
       ]
     }
     Highcharts.chart('subproject-pipeline-class', subproject_pipeline_class as any);
-    var amount_arr = [
-      ['Government', this.typeOfCustomer.goverment.amount],
-      ['Enterprise', this.typeOfCustomer.enterprise.amount]
-    ];
+ 
     var typeofcust_class = {
       chart: {
-          type: 'pie'
+        type: 'column',
       },
-      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
       title: {
-          text: '',
-          align: 'center',
-          verticalAlign: 'middle',
-          x: -135
+          text: '' ,
+          align: 'right'
       },
       accessibility: {
           announceNewData: {
               enabled: true
+          }
+      },
+      xAxis: {
+          type: 'category'
+      },
+      yAxis: {
+          title: {
+              text: ''
           },
-          point: {
-              valueSuffix: '%'
-          }
-      },
-      plotOptions: {
-        pie: {
-          size:'100%'
-        },
-        series: {
-            dataLabels: {
-                enabled: false,
-                format: '{point.y:.1f}%'
+          gridLineColor: 'transparent',
+          type: 'logarithmic',
+          minorTickInterval: 100,
+          stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: ( // theme
+                    Highcharts.defaultOptions.title.style &&
+                    Highcharts.defaultOptions.title.style.color
+                ) || 'gray'
             },
-            cursor: 'pointer',
+            formatter: function () {
+              return this.total;
+            }
+        },labels:{
+          enabled: false
         }
-      },
-      tooltip: {
-          // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
-          // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-          formatter(){
-            let point = this,
-            amount;
-            amount_arr.forEach(d => {
-              if(d[0] == point.point['name']){
-                amount = d[1]
-              }
-            })
-            return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Amount: ${amount}Mn`
-          }
+  
       },
       legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        itemMarginTop: 10,
-        itemMarginBottom: 10,
-        // labelFormat: '{name} {y:.1f}%',
-        labelFormatter: function () {
-          let point = this,
-          no_of_opp;
-          amount_arr.forEach(d => {
-            if(d[0] == point.name){
-              no_of_opp = d[1]
+          enabled: false
+      },
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  formatter:function() {
+                    if(this.y != 0) {
+                      return this.y;
+                    }
+                  }
+              }
+          },
+          column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
             }
-          })
-          return `${point.name}: ${no_of_opp}(${point.y}%)`
         }
       },
+      colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
+      tooltip: {
+          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
+      },
+  
       series: [
           {
-              name: "Percentage",
-              showInLegend: true,
-              colorByPoint: true,
-              innerSize: '50%',
-              point: {
-                events: {
-                    click: function () {
-                        // location.href = this.options.url;
-                        window.open(this.options.url);
-                    }
+          name: 'E',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
                 }
-              },
-              data: [ {
-                  name: 'Government',
-                  y: parseInt(this.typeOfCustomer.goverment.per),
-                  url: this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
-                },
-                {
-                  name: 'Enterprise',
-                  y: parseInt(this.typeOfCustomer.enterprise.per),
-                  url: this.base_url+'records?bu='+bu+'&rank=&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+            }
+          },
+          data: [{
+            name: 'Government',
+            y: parseInt(this.typeOfCustomer.goverment.E),
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+          },{
+            name: 'Enterprise',
+            y: parseInt(this.typeOfCustomer.enterprise.E),
+            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+          }]
+        },{
+          name: 'D',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
                 }
-              ]
-          }
+            }
+          },
+          data: [{
+            name: 'Government',
+            y: parseInt(this.typeOfCustomer.goverment.D),
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+          },{
+            name: 'Enterprise',
+            y: parseInt(this.typeOfCustomer.enterprise.D),
+            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+          }]
+        },{
+          name: 'C',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: 'Government',
+            y: parseInt(this.typeOfCustomer.goverment.C),
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+          },{
+            name: 'Enterprise',
+            y: parseInt(this.typeOfCustomer.enterprise.C),
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+          }]
+        },{
+          name: 'B',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: 'Government',
+            y: parseInt(this.typeOfCustomer.goverment.B),
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+          },{
+            name: 'Enterprise',
+            y: parseInt(this.typeOfCustomer.enterprise.B),
+            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+          }]
+        },{
+          name: 'A',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: 'Government',
+            y: parseInt(this.typeOfCustomer.goverment.A),
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+          },{
+            name: 'Enterprise',
+            y: parseInt(this.typeOfCustomer.enterprise.A),
+            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+          }]
+        },{
+          name: 'S',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: 'Government',
+            y: parseInt(this.typeOfCustomer.goverment.S),
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+          },{
+            name: 'Enterprise',
+            y: parseInt(this.typeOfCustomer.enterprise.S),
+            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+          }]
+        },{
+          name: 'Act',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: 'Government',
+            y: parseInt(this.typeOfCustomer.goverment.Act),
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
+          },{
+            name: 'Enterprise',
+            y: parseInt(this.typeOfCustomer.enterprise.Act),
+            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
+          }]
+        }
       ]
     };
     Highcharts.chart('type-of-customer-rank', typeofcust_class as any);
@@ -2113,7 +2309,7 @@ export class DashboardComponent implements OnInit {
   
       },
       legend: {
-          enabled: true
+          enabled: false
       },
       plotOptions: {
           series: {
@@ -2135,20 +2331,20 @@ export class DashboardComponent implements OnInit {
             }
         }
       },
-      colors: ['rgb(15, 121, 155)', 'rgb(4, 191, 191)' , 'rgb(41, 128, 185)', 'rgb(25, 118, 210)', 'rgb(0, 75, 141)', 'rgb(121, 154, 224)'],
+      colors: ['rgb(162,197,238)', 'rgb(119,135,186)', 'rgb(117,150,208)', 'rgb(57,93,157)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(127,127,127)'],
       tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Mn</b>'
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b>'
       },
   
       series: [
         {
-          name: '>150',
+          name: 'E',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2165,45 +2361,37 @@ export class DashboardComponent implements OnInit {
             }
           },
           data: [{
-            name: 'Suspect',
-            y: 10,
-            url:  this.base_url
-          },{
-            name: 'Contact/Prospect',
+            name: '>150',
             y: 18,
             url:  this.base_url
           },{
-            name: 'RFP Responded',
-            y: 12,
+            name: '150-120',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Shortlisted',
-            y: 45,
+            name: '120-90',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Final Negotiation',
-            y: 14,
+            name: '90-60',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Order in Process',
-            y: 8,
+            name: '60-30',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'PO/LOI Received',
-            y: 11,
-            url:  this.base_url
-          },{
-            name: 'Order Recorded',
-            y: 13,
+            name: '30-0',
+            y: 18,
             url:  this.base_url
           }]
         },{
-          name: '120-150',
+          name: 'D',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2220,45 +2408,37 @@ export class DashboardComponent implements OnInit {
             }
           },
           data: [{
-            name: 'Suspect',
-            y: 10,
-            url:  this.base_url
-          },{
-            name: 'Contact/Prospect',
+            name: '>150',
             y: 18,
             url:  this.base_url
           },{
-            name: 'RFP Responded',
-            y: 12,
+            name: '150-120',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Shortlisted',
-            y: 45,
+            name: '120-90',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Final Negotiation',
-            y: 14,
+            name: '90-60',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Order in Process',
-            y: 8,
+            name: '60-30',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'PO/LOI Received',
-            y: 11,
-            url:  this.base_url
-          },{
-            name: 'Order Recorded',
-            y: 13,
+            name: '30-0',
+            y: 18,
             url:  this.base_url
           }]
         },{
-          name: '90-120',
+          name: 'C',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2275,45 +2455,37 @@ export class DashboardComponent implements OnInit {
             }
           },
           data: [{
-            name: 'Suspect',
-            y: 10,
-            url:  this.base_url
-          },{
-            name: 'Contact/Prospect',
+            name: '>150',
             y: 18,
             url:  this.base_url
           },{
-            name: 'RFP Responded',
-            y: 12,
+            name: '150-120',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Shortlisted',
-            y: 45,
+            name: '120-90',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Final Negotiation',
-            y: 14,
+            name: '90-60',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Order in Process',
-            y: 8,
+            name: '60-30',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'PO/LOI Received',
-            y: 11,
-            url:  this.base_url
-          },{
-            name: 'Order Recorded',
-            y: 13,
+            name: '30-0',
+            y: 18,
             url:  this.base_url
           }]
         },{
-          name: '60-90',
+          name: 'B',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2330,45 +2502,37 @@ export class DashboardComponent implements OnInit {
             }
           },
           data: [{
-            name: 'Suspect',
-            y: 10,
-            url:  this.base_url
-          },{
-            name: 'Contact/Prospect',
+            name: '>150',
             y: 18,
             url:  this.base_url
           },{
-            name: 'RFP Responded',
-            y: 12,
+            name: '150-120',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Shortlisted',
-            y: 45,
+            name: '120-90',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Final Negotiation',
-            y: 14,
+            name: '90-60',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Order in Process',
-            y: 8,
+            name: '60-30',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'PO/LOI Received',
-            y: 11,
-            url:  this.base_url
-          },{
-            name: 'Order Recorded',
-            y: 13,
+            name: '30-0',
+            y: 18,
             url:  this.base_url
           }]
         },{
-          name: '30-60',
+          name: 'A',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2385,45 +2549,37 @@ export class DashboardComponent implements OnInit {
             }
           },
           data: [{
-            name: 'Suspect',
-            y: 10,
-            url:  this.base_url
-          },{
-            name: 'Contact/Prospect',
+            name: '>150',
             y: 18,
             url:  this.base_url
           },{
-            name: 'RFP Responded',
-            y: 12,
+            name: '150-120',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Shortlisted',
-            y: 45,
+            name: '120-90',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Final Negotiation',
-            y: 14,
+            name: '90-60',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Order in Process',
-            y: 8,
+            name: '60-30',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'PO/LOI Received',
-            y: 11,
-            url:  this.base_url
-          },{
-            name: 'Order Recorded',
-            y: 13,
+            name: '30-0',
+            y: 18,
             url:  this.base_url
           }]
         },{
-          name: '0-30',
+          name: 'S',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
               }
             },
             style: {
@@ -2440,36 +2596,75 @@ export class DashboardComponent implements OnInit {
             }
           },
           data: [{
-            name: 'Suspect',
-            y: 10,
-            url:  this.base_url
-          },{
-            name: 'Contact/Prospect',
+            name: '>150',
             y: 18,
             url:  this.base_url
           },{
-            name: 'RFP Responded',
-            y: 12,
+            name: '150-120',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Shortlisted',
-            y: 45,
+            name: '120-90',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Final Negotiation',
-            y: 14,
+            name: '90-60',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Order in Process',
-            y: 8,
+            name: '60-30',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'PO/LOI Received',
-            y: 11,
+            name: '30-0',
+            y: 18,
+            url:  this.base_url
+          }]
+        },{
+          name: 'Act',
+          dataLabels: {
+            enabled: true,
+            formatter:function() {
+              if(this.y != 0) {
+                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+              }
+            },
+            style: {
+              color: 'white',
+              textOutline: 'transparent'
+            }
+          },
+          point: {
+            events: {
+                click: function () {
+                    // location.href = this.options.url;
+                    window.open(this.options.url);
+                }
+            }
+          },
+          data: [{
+            name: '>150',
+            y: 18,
             url:  this.base_url
           },{
-            name: 'Order Recorded',
-            y: 13,
+            name: '150-120',
+            y: 18,
+            url:  this.base_url
+          },{
+            name: '120-90',
+            y: 18,
+            url:  this.base_url
+          },{
+            name: '90-60',
+            y: 18,
+            url:  this.base_url
+          },{
+            name: '60-30',
+            y: 18,
+            url:  this.base_url
+          },{
+            name: '30-0',
+            y: 18,
             url:  this.base_url
           }]
         }
