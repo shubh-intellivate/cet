@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
   customDateFilter: any="none";
   infoModal: any="none";
   pipelineModal: any="none";
+  leadsModal: any="none";
   salesModal: any="none";
   SalesInfoModal: any="none";
   timeFilter: any="Annual";
@@ -389,6 +390,177 @@ export class DashboardComponent implements OnInit {
     this.blur = "";
     this.fRankModal = "none";
 
+  }
+
+  openLeadsModal(){
+    this.blur = "blur";
+    this.leadsModal = "block";
+    var amount_arr = [
+      ['BU', '145'],
+      ['Marketing', '127'],
+      ['New', '262'],
+      ['Discussing', '53'],
+      ['Qualified', '48'],
+      ['Interested', '6'],
+      ['Unqualified', '2'],
+      ['Nurturing', '2']
+    ];
+    this.chart_sales = Highcharts.chart('leads-analysis', {
+      chart: {
+          type: 'pie'
+      },
+      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
+      title: {
+          text: '',
+          align: 'center',
+          verticalAlign: 'middle',
+          x: -135
+      },
+      accessibility: {
+          announceNewData: {
+              enabled: true
+          },
+          point: {
+              valueSuffix: '%'
+          }
+      },
+      plotOptions: {
+        pie: {
+          size:'100%'
+        },
+        series: {
+            dataLabels: {
+                enabled: false,
+                format: '{point.y:.1f}%'
+            },
+            cursor: 'pointer',
+        }
+      },
+      tooltip: {
+          // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
+          // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+          formatter(){
+            let point = this,
+            amount;
+            amount_arr.forEach(d => {
+              if(d[0] == point.point['name']){
+                amount = d[1]
+              }
+            })
+            return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Amount: ${amount}Mn`
+          }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        itemMarginTop: 10,
+        itemMarginBottom: 10,
+        // labelFormat: '{name} {y:.1f}%',
+        labelFormatter: function () {
+          let point = this,
+          no_of_opp;
+          amount_arr.forEach(d => {
+            if(d[0] == point.name){
+              no_of_opp = d[1]
+            }
+          })
+          return `${point.name}: ${no_of_opp}(${point.y}%)`
+        }
+      },
+      series: [
+          {
+              name: "Percentage",
+              showInLegend: true,
+              colorByPoint: true,
+              innerSize: '50%',
+              point: {
+                events: {
+                    click: function () {
+                        // location.href = this.options.url;
+                        window.open(this.options.url);
+                    }
+                }
+              },
+              data: [ {
+                  name: 'BU',
+                  y: 60,
+                  drilldown: 'bu'
+                },{
+                  name: 'Marketing',
+                  y: 40,
+                  drilldown: 'marketing'
+                },
+              ]
+          }
+      ],
+      drilldown: {
+        series: [
+            {
+              name: 'BU',
+              id: 'bu',
+              showInLegend: true,
+              data: [
+                [
+                  'New',
+                  69
+                ],
+                [
+                  'Discussing',
+                  14
+                ],
+                [
+                  'Qualified',
+                  13
+                ],
+                [
+                  'Interested',
+                  2
+                ],
+                [
+                  'Unqualified',
+                  1
+                ],
+                [
+                  'Nurturing',
+                  1
+                ],
+              ]
+            },
+            {
+              name: 'Marketing',
+              id: 'marketing',
+              showInLegend: true,
+              data: [
+                [
+                  'New',
+                  69
+                ],
+                [
+                  'Discussing',
+                  14
+                ],
+                [
+                  'Qualified',
+                  13
+                ],
+                [
+                  'Interested',
+                  2
+                ],
+                [
+                  'Unqualified',
+                  1
+                ],
+                [
+                  'Nurturing',
+                  1
+                ],
+              ]
+            },
+        ]
+      }  
+    } as any);
   }
 
   openPipelineModal(){
@@ -3418,6 +3590,11 @@ export class DashboardComponent implements OnInit {
     this.blur = '';
   }
 
+  closeLeadsModal(){
+    this.leadsModal = "none";
+    this.blur = '';
+  }
+
   closeSalesModal(){
     this.salesModal = "none";
     this.blur = '';
@@ -3593,421 +3770,6 @@ export class DashboardComponent implements OnInit {
       res => {
         this.bu_group_names = res.bu_names;
       });
-  }
-
-  leadAnalysis(){
-    var amount_arr = [
-      ['BU Display Business', '145'],
-      ['BU PNS Business', '127'],
-      ['BU Smart Mfg.', '24'],
-      ['BU Logistics', '22'],
-      ['BO-Japan', '15'],
-      ['BU Public Safety', '12'],
-      ['BU Transportation', '11'],
-      ['Other BU', '7'],
-      ['BU CNS', '4'],
-      ['BU JCCS', '2'],
-      ['BU AIPF BU', '2'],
-      ['Solution Factory', '1'],
-      ['BU CNS 5G', '1'],
-    ];
-    this.chart_sales = Highcharts.chart('lead-analysis', {
-      chart: {
-          type: 'pie'
-      },
-      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
-      title: {
-          text: '',
-          align: 'center',
-          verticalAlign: 'middle',
-          x: -135
-      },
-      accessibility: {
-          announceNewData: {
-              enabled: true
-          },
-          point: {
-              valueSuffix: '%'
-          }
-      },
-      plotOptions: {
-        pie: {
-          size:'100%'
-        },
-        series: {
-            dataLabels: {
-                enabled: false,
-                format: '{point.y:.1f}%'
-            },
-            cursor: 'pointer',
-        }
-      },
-      tooltip: {
-          // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
-          // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-          formatter(){
-            let point = this,
-            amount;
-            amount_arr.forEach(d => {
-              if(d[0] == point.point['name']){
-                amount = d[1]
-              }
-            })
-            return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Amount: ${amount}Mn`
-          }
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        itemMarginTop: 10,
-        itemMarginBottom: 10,
-        // labelFormat: '{name} {y:.1f}%',
-        labelFormatter: function () {
-          let point = this,
-          no_of_opp;
-          amount_arr.forEach(d => {
-            if(d[0] == point.name){
-              no_of_opp = d[1]
-            }
-          })
-          return `${point.name}: ${no_of_opp}(${point.y}%)`
-        }
-      },
-      series: [
-          {
-              name: "Percentage",
-              showInLegend: true,
-              colorByPoint: true,
-              innerSize: '50%',
-              point: {
-                events: {
-                    click: function () {
-                        // location.href = this.options.url;
-                        window.open(this.options.url);
-                    }
-                }
-              },
-              data: [ {
-                  name: 'BU Display Business',
-                  y: 39,
-                  url: ''
-                },{
-                  name: 'BU PNS Business',
-                  y: 34,
-                  url: ''
-                },{
-                  name: 'BU Smart Mfg.',
-                  y: 6,
-                  url: ''
-                },{
-                  name: 'BU Logistics',
-                  y: 6,
-                  url: ''
-                },{
-                  name: 'BO-Japan',
-                  y: 4,
-                  url: ''
-                },{
-                  name: 'BU Public Safety',
-                  y: 3,
-                  url: ''
-                },{
-                  name: 'BU Transportation',
-                  y: 3,
-                  url: ''
-                },{
-                  name: 'Other BU',
-                  y: 2,
-                  url: ''
-                },{
-                  name: 'BU CNS',
-                  y: 1,
-                  url: ''
-                },{
-                  name: 'BU JCCS',
-                  y: 1,
-                  url: ''
-                },{
-                  name: 'BU AIPF BU',
-                  y: 1,
-                  url: ''
-                },{
-                  name: 'Solution Factory',
-                  y: 0,
-                  url: ''
-                },{
-                  name: 'BU CNS 5G',
-                  y: 0,
-                  url: ''
-                },
-              ]
-          }
-      ]
-    } as any);
-    var amount_arr_lead = [
-      ['New', '262'],
-      ['Discussing', '53'],
-      ['Qualified', '48'],
-      ['Interested', '6'],
-      ['Unqualified', '2'],
-      ['Nurturing', '2']
-    ];
-    this.chart_sales = Highcharts.chart('lead-status-analysis', {
-      chart: {
-          type: 'pie'
-      },
-      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
-      title: {
-          text: '',
-          align: 'center',
-          verticalAlign: 'middle',
-          x: -135
-      },
-      accessibility: {
-          announceNewData: {
-              enabled: true
-          },
-          point: {
-              valueSuffix: '%'
-          }
-      },
-      plotOptions: {
-        pie: {
-          size:'100%'
-        },
-        series: {
-            dataLabels: {
-                enabled: false,
-                format: '{point.y:.1f}%'
-            },
-            cursor: 'pointer',
-        }
-      },
-      tooltip: {
-          // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
-          // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-          formatter(){
-            let point = this,
-            amount;
-            amount_arr_lead.forEach(d => {
-              if(d[0] == point.point['name']){
-                amount = d[1]
-              }
-            })
-            return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Amount: ${amount}Mn`
-          }
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        itemMarginTop: 10,
-        itemMarginBottom: 10,
-        // labelFormat: '{name} {y:.1f}%',
-        labelFormatter: function () {
-          let point = this,
-          no_of_opp;
-          amount_arr_lead.forEach(d => {
-            if(d[0] == point.name){
-              no_of_opp = d[1]
-            }
-          })
-          return `${point.name}: ${no_of_opp}(${point.y}%)`
-        }
-      },
-      series: [
-          {
-              name: "Percentage",
-              showInLegend: true,
-              colorByPoint: true,
-              innerSize: '50%',
-              point: {
-                events: {
-                    click: function () {
-                        // location.href = this.options.url;
-                        window.open(this.options.url);
-                    }
-                }
-              },
-              data: [ {
-                  name: 'New',
-                  y: 69,
-                  url: ''
-                },{
-                  name: 'Discussing',
-                  y: 14,
-                  url: ''
-                },{
-                  name: 'Qualified',
-                  y: 13,
-                  url: ''
-                },{
-                  name: 'Interested',
-                  y: 2,
-                  url: ''
-                },{
-                  name: 'Unqualified',
-                  y: 1,
-                  url: ''
-                },{
-                  name: 'Nurturing',
-                  y: 1,
-                  url: ''
-                },
-              ]
-          }
-      ]
-    } as any);
-    var number_of_leads = [
-      ['Website', '79.09'],
-      ['Others', '10.46'],
-      ['Marketing Demand Generation', '79.09'],
-      ['EDM Campaign', '7.77'],
-      ['Customer Event', '0.80'],
-      ['Partner', '0.54'],
-      ['EDM', '0.27'],
-      ['Employee Referral', '0.27'],
-    ];
-    this.chart_line_top_accounts = Highcharts.chart('lead-source-analysis', {
-      chart: {
-        zoomType: 'xy'
-      },
-      title: {
-          text: ''
-      },
-      colors: ['rgb(70,121,167)','rgb(162,197,238)'],
-      yAxis: {
-          title: {
-              text: ''
-          },
-          type: 'logarithmic',
-          minorTickInterval: 1000,
-          gridLineColor: 'transparent',
-          stackLabels: {
-            enabled: true,
-            style: {
-                fontWeight: 'bold',
-                color: ( // theme
-                    Highcharts.defaultOptions.title.style &&
-                    Highcharts.defaultOptions.title.style.color
-                ) || 'gray'
-            },
-            formatter: function () {
-              return this.total;
-            }
-        },
-        labels:{
-          enabled: false
-        }
-      },
-      xAxis: {
-        type: 'category'
-      },
-      plotOptions: {
-        column: {
-          stacking: 'normal',
-          dataLabels: {
-              enabled: true,
-              formatter: function () {
-                return this.total;
-              }
-          }
-        },
-        series: {
-          pointWidth: 60,
-          cursor: 'pointer',
-        }
-      },
-      tooltip: {
-        formatter(){
-          let point = this,
-              no_of_opp;
-              number_of_leads.forEach(d => {
-            if(d[0] == point.point['name']){
-              no_of_opp = d[1]
-            }
-          })
-          return `${point.key} <br> <b>${point.series.name}: ${point.point.y}</b> <br>%: ${no_of_opp}`
-        }
-      },
-      series: [{
-          name: 'Count',
-          type:'column',
-          showInLegend: false,
-          dataLabels: {
-            enabled: false,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [
-            {
-              name: 'Website',
-              y: 295,
-              url: ''
-            },{
-              name: 'Others',
-              y: 39,
-              url: ''
-            },{
-              name: 'Marketing Demand Generation',
-              y: 29,
-              url: ''
-            },{
-              name: 'EDM Campaign',
-              y: 3,
-              url: ''
-            },{
-              name: 'Customer Event',
-              y: 3,
-              url: ''
-            },{
-              name: 'Partner',
-              y: 2,
-              url: ''
-            },{
-              name: 'EDM',
-              y: 1,
-              url: ''
-            },{
-              name: 'Employee Referral',
-              y: 1,
-              url: ''
-            },
-          ]
-      }],
-      responsive: {
-          rules: [{
-              condition: {
-                  maxWidth: 500
-              },
-              chartOptions: {
-                  legend: {
-                      layout: 'horizontal',
-                      align: 'center',
-                      verticalAlign: 'bottom'
-                  }
-              }
-          }]
-      }
-
-    } as any);
-    this.chart_line_top_accounts.reflow();
   }
 
   getSayDoOrder(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
@@ -5030,7 +4792,6 @@ export class DashboardComponent implements OnInit {
     this.dataService.getOrderOverview(data).subscribe(
       res => {
         if(res.result.status == "true"){
-          this.leadAnalysis();
           var per = parseFloat(res.result.result.percentage)
           this.currentBC = res.result.result.achieved.currentbc;
           this.pipelineClassify = res.result.result.achieved.classify;
