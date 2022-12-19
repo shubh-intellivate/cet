@@ -303,9 +303,9 @@
                 <div class="col-lg-6">
                   <div class="media" style="float: right;">
                     <div class="media-body">
-                      <a href="javascript:void(0)" (click)="openLeadsModal()" *ngIf="pipelineClassify">Leads</a>&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href="javascript:void(0)" (click)="openPipelineModal()" *ngIf="pipelineClassify">Pipeline</a>&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href="javascript:void(0)" (click)="openFRankModal()" *ngIf="pipelineClassify">Suspect</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="openLeadsModal()" *ngIf="pipelineClassify">Leads</a>&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href="javascript:void(0)" (click)="createChartGaugeOrder()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
                       <span title="Rank Info" (click)="openOrderInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
                     </div>
@@ -1105,7 +1105,7 @@
                 <div class="card-header row">
                   <div class="col-lg-6">
                     <h6 class="card-title">Leads</h6>
-                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Number</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
@@ -1140,7 +1140,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Classify(Basis Rank)</h6>
+                    <h6 class="card-title">Classify(Basis Rank)({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
@@ -1158,7 +1158,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Geo</h6>
+                    <h6 class="card-title">Geo({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
@@ -1184,7 +1184,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Segment</h6>
+                    <h6 class="card-title">Segment({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
@@ -1211,7 +1211,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Type of Customer</h6>
+                    <h6 class="card-title">Type of Customer({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
@@ -1238,7 +1238,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Rank Aging</h6>
+                    <h6 class="card-title">Rank Aging({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Numbers</p>
                   </div>
                   <div class="col-lg-6">
@@ -1271,7 +1271,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Rank F</h6>
+                    <h6 class="card-title">Rank F({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
@@ -1308,7 +1308,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">New/Backlog</h6>
+                    <h6 class="card-title">New/Backlog({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
@@ -1326,7 +1326,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">New Sales Trend</h6>
+                    <h6 class="card-title">New Sales Trend({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
@@ -1341,7 +1341,7 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Backlog Sales Trend</h6>
+                    <h6 class="card-title">Backlog Sales Trend({{currentBC}}BC)</h6>
                     <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
