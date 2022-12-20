@@ -2535,27 +2535,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["0to30"].E),
+            y: parseInt(this.rankAging["151greater"].E),
             url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
-            name: '150-120 Days',
-            y: parseInt(this.rankAging["30to60"].E),
+            name: '91-150 Days',
+            y: parseInt(this.rankAging["91to150"].E),
             url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
           },{
-            name: '120-90 Days',
-            y: parseInt(this.rankAging["60to90"].E),
+            name: '61-90 Days',
+            y: parseInt(this.rankAging["61to90"].E),
             url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=90&end_range=120'
           },{
-            name: '90-60 Days',
-            y: parseInt(this.rankAging["90to120"].E),
+            name: '31-60 Days',
+            y: parseInt(this.rankAging["31to60"].E),
             url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=60&end_range=90'
           },{
-            name: '60-30 Days',
-            y: parseInt(this.rankAging["120to150"].E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=30&end_range=60'
-          },{
-            name: '30-0 Days',
-            y: parseInt(this.rankAging["150greater"].E),
+            name: '0-30 Days',
+            y: parseInt(this.rankAging["0to30"].E),
             url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
@@ -2582,27 +2578,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["0to30"].D),
+            y: parseInt(this.rankAging["151greater"].D),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
-            name: '150-120 Days',
-            y: parseInt(this.rankAging["30to60"].D),
+            name: '91-150 Days',
+            y: parseInt(this.rankAging["91to150"].D),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
           },{
-            name: '120-90 Days',
-            y: parseInt(this.rankAging["60to90"].D),
+            name: '61-90 Days',
+            y: parseInt(this.rankAging["61to90"].D),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=90&end_range=120'
           },{
-            name: '90-60 Days',
-            y: parseInt(this.rankAging["90to120"].D),
+            name: '31-60 Days',
+            y: parseInt(this.rankAging["31to60"].D),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=60&end_range=90'
           },{
-            name: '60-30 Days',
-            y: parseInt(this.rankAging["120to150"].D),
-            url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=30&end_range=60'
-          },{
-            name: '30-0 Days',
-            y: parseInt(this.rankAging["150greater"].D),
+            name: '0-30 Days',
+            y: parseInt(this.rankAging["0to30"].D),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
@@ -2629,27 +2621,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["0to30"].C),
+            y: parseInt(this.rankAging["151greater"].C),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
-            name: '150-120 Days',
-            y: parseInt(this.rankAging["30to60"].C),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
+            name: '91-150 Days',
+            y: parseInt(this.rankAging["91to150"].C),
+            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
           },{
-            name: '120-90 Days',
-            y: parseInt(this.rankAging["60to90"].C),
+            name: '61-90 Days',
+            y: parseInt(this.rankAging["61to90"].C),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=90&end_range=120'
           },{
-            name: '90-60 Days',
-            y: parseInt(this.rankAging["90to120"].C),
+            name: '31-60 Days',
+            y: parseInt(this.rankAging["31to60"].C),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=60&end_range=90'
           },{
-            name: '60-30 Days',
-            y: parseInt(this.rankAging["120to150"].C),
-            url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=30&end_range=60'
-          },{
-            name: '30-0 Days',
-            y: parseInt(this.rankAging["150greater"].C),
+            name: '0-30 Days',
+            y: parseInt(this.rankAging["0to30"].C),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
@@ -2676,27 +2664,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["0to30"].B),
+            y: parseInt(this.rankAging["151greater"].B),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
-            name: '150-120 Days',
-            y: parseInt(this.rankAging["30to60"].B),
+            name: '91-150 Days',
+            y: parseInt(this.rankAging["91to150"].B),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
           },{
-            name: '120-90 Days',
-            y: parseInt(this.rankAging["60to90"].B),
+            name: '61-90 Days',
+            y: parseInt(this.rankAging["61to90"].B),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=90&end_range=120'
           },{
-            name: '90-60 Days',
-            y: parseInt(this.rankAging["90to120"].B),
+            name: '31-60 Days',
+            y: parseInt(this.rankAging["31to60"].B),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=60&end_range=90'
           },{
-            name: '60-30 Days',
-            y: parseInt(this.rankAging["120to150"].B),
-            url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=30&end_range=60'
-          },{
-            name: '30-0 Days',
-            y: parseInt(this.rankAging["150greater"].B),
+            name: '0-30 Days',
+            y: parseInt(this.rankAging["0to30"].B),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
@@ -2723,27 +2707,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["0to30"].A),
+            y: parseInt(this.rankAging["151greater"].A),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
-            name: '150-120 Days',
-            y: parseInt(this.rankAging["30to60"].A),
+            name: '91-150 Days',
+            y: parseInt(this.rankAging["91to150"].A),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
           },{
-            name: '120-90 Days',
-            y: parseInt(this.rankAging["60to90"].A),
+            name: '61-90 Days',
+            y: parseInt(this.rankAging["61to90"].A),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=90&end_range=120'
           },{
-            name: '90-60 Days',
-            y: parseInt(this.rankAging["90to120"].A),
+            name: '31-60 Days',
+            y: parseInt(this.rankAging["31to60"].A),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=60&end_range=90'
           },{
-            name: '60-30 Days',
-            y: parseInt(this.rankAging["120to150"].A),
-            url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=30&end_range=60'
-          },{
-            name: '30-0 Days',
-            y: parseInt(this.rankAging["150greater"].A),
+            name: '0-30 Days',
+            y: parseInt(this.rankAging["0to30"].A),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
@@ -2770,27 +2750,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["0to30"].S),
+            y: parseInt(this.rankAging["151greater"].S),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
-            name: '150-120 Days',
-            y: parseInt(this.rankAging["30to60"].S),
+            name: '91-150 Days',
+            y: parseInt(this.rankAging["91to150"].S),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
           },{
-            name: '120-90 Days',
-            y: parseInt(this.rankAging["60to90"].S),
+            name: '61-90 Days',
+            y: parseInt(this.rankAging["61to90"].S),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=90&end_range=120'
           },{
-            name: '90-60 Days',
-            y: parseInt(this.rankAging["90to120"].S),
+            name: '31-60 Days',
+            y: parseInt(this.rankAging["31to60"].S),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=60&end_range=90'
           },{
-            name: '60-30 Days',
-            y: parseInt(this.rankAging["120to150"].S),
-            url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=30&end_range=60'
-          },{
-            name: '30-0 Days',
-            y: parseInt(this.rankAging["150greater"].S),
+            name: '0-30 Days',
+            y: parseInt(this.rankAging["0to30"].S),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
@@ -2817,27 +2793,23 @@ export class DashboardComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["0to30"].Act),
+            y: parseInt(this.rankAging["151greater"].Act),
             url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
-            name: '150-120 Days',
-            y: parseInt(this.rankAging["30to60"].Act),
+            name: '91-150 Days',
+            y: parseInt(this.rankAging["91to150"].Act),
             url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=120&end_range=150'
           },{
-            name: '120-90 Days',
-            y: parseInt(this.rankAging["60to90"].Act),
+            name: '61-90 Days',
+            y: parseInt(this.rankAging["61to90"].Act),
             url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=90&end_range=120'
           },{
-            name: '90-60 Days',
-            y: parseInt(this.rankAging["90to120"].Act),
+            name: '31-60 Days',
+            y: parseInt(this.rankAging["31to60"].Act),
             url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=60&end_range=90'
           },{
-            name: '60-30 Days',
-            y: parseInt(this.rankAging["120to150"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=30&end_range=60'
-          },{
-            name: '30-0 Days',
-            y: parseInt(this.rankAging["150greater"].Act),
+            name: '0-30 Days',
+            y: parseInt(this.rankAging["0to30"].Act),
             url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         }
