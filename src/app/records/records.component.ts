@@ -38,6 +38,8 @@ export class RecordsComponent implements OnInit {
   time: any;
   show_records: any;
   type_of_cust: any;
+  end_range: string;
+  start_range: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -64,6 +66,8 @@ export class RecordsComponent implements OnInit {
       this.time = params.time;
       this.show_records = params.show_records;
       this.type_of_cust = params.type_of_cust;
+      this.start_range = params.start_range;
+      this.end_range = params.end_range;
     })
   }
 
@@ -185,6 +189,8 @@ export class RecordsComponent implements OnInit {
         "fiscal_year": this.fiscal_year == "undefined" ? '' : this.fiscal_year,
         "show_records": this.show_records == "undefined" ? '' : this.show_records,
         "type_of_cust": this.type_of_cust == "undefined" ? '' : this.type_of_cust,
+        "start_range": this.start_range == "undefined" ? '' : this.start_range,
+        "end_range": this.end_range == "undefined" ? '' : this.end_range,
         "current_month": this.current_month == undefined ? false : true
       }
       if(this.highestValue && this.highestValue != 0){
