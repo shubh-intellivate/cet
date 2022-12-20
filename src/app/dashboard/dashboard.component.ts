@@ -396,172 +396,212 @@ export class DashboardComponent implements OnInit {
   openLeadsModal(){
     this.blur = "blur";
     this.leadsModal = "block";
-    var amount_arr = [
-      ['BU', '145'],
-      ['Marketing', '127'],
-      ['New', '262'],
-      ['Discussing', '53'],
-      ['Qualified', '48'],
-      ['Interested', '6'],
-      ['Unqualified', '2'],
-      ['Nurturing', '2']
-    ];
-    this.chart_sales = Highcharts.chart('leads-analysis', {
-      chart: {
-          type: 'pie'
-      },
-      colors: ['rgb(70,121,167)','rgb(192, 201, 228)', 'rgb(162,197,238)', 'rgb(124,148,207)', 'rgb(48,137,202)'],
-      title: {
-          text: '',
-          align: 'center',
-          verticalAlign: 'middle',
-          x: -135
-      },
-      accessibility: {
-          announceNewData: {
-              enabled: true
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    this.dataService.getLeadsOverview(data).subscribe(
+      res => {
+        console.log(res)
+        var amount_arr = [
+          ['BU', parseInt(res.result.result.bu_count)],
+          ['Marketing', parseInt(res.result.result.mark_count)],
+          ['New-BU', parseInt(res.result.result.bu_status.New)],
+          ['Discussing-BU', parseInt(res.result.result.bu_status.Discussing)],
+          ['Qualified-BU', parseInt(res.result.result.bu_status.Qualified)],
+          ['Interested-BU', parseInt(res.result.result.bu_status.Interested)],
+          ['Unqualified-BU', parseInt(res.result.result.bu_status.Unqualified)],
+          ['Nurturing-BU', parseInt(res.result.result.bu_status.Nurturing)],
+          ['Contacted-BU', parseInt(res.result.result.bu_status.Contacted)],
+          ['NA MQL-BU', parseInt(res.result.result.bu_status["NA MQL"])],
+          ['New-Marketing', parseInt(res.result.result.mark_status.New)],
+          ['Discussing-Marketing', parseInt(res.result.result.mark_status.Discussing)],
+          ['Qualified-Marketing', parseInt(res.result.result.mark_status.Qualified)],
+          ['Interested-Marketing', parseInt(res.result.result.mark_status.Interested)],
+          ['Unqualified-Marketing', parseInt(res.result.result.mark_status.Unqualified)],
+          ['Nurturing-Marketing', parseInt(res.result.result.mark_status.Nurturing)],
+          ['Contacted-Marketing', parseInt(res.result.result.mark_status.Contacted)],
+          ['NA MQL-Marketing', parseInt(res.result.result.mark_status["NA MQL"])],
+        ];
+        this.chart_sales = Highcharts.chart('leads-analysis', {
+          chart: {
+              type: 'pie'
           },
-          point: {
-              valueSuffix: '%'
-          }
-      },
-      plotOptions: {
-        pie: {
-          size:'100%'
-        },
-        series: {
-            dataLabels: {
-                enabled: false,
-                format: '{point.y:.1f}%'
-            },
-            cursor: 'pointer',
-        }
-      },
-      tooltip: {
-          // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
-          // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-          formatter(){
-            let point = this,
-            amount;
-            amount_arr.forEach(d => {
-              if(d[0] == point.point['name']){
-                amount = d[1]
-              }
-            })
-            return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Amount: ${amount}Mn`
-          }
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        itemMarginTop: 10,
-        itemMarginBottom: 10,
-        // labelFormat: '{name} {y:.1f}%',
-        labelFormatter: function () {
-          let point = this,
-          no_of_opp;
-          amount_arr.forEach(d => {
-            if(d[0] == point.name){
-              no_of_opp = d[1]
-            }
-          })
-          return `${point.name}: ${no_of_opp}(${point.y}%)`
-        }
-      },
-      series: [
-          {
-              name: "Percentage",
-              showInLegend: true,
-              colorByPoint: true,
-              innerSize: '50%',
-              point: {
-                events: {
-                    click: function () {
-                        // location.href = this.options.url;
-                        window.open(this.options.url);
-                    }
-                }
+          colors: ['rgb(70,121,167)', 'rgb(162,197,238)', 'rgb(85,121,190)', 'rgb(81,200,244)', 'rgb(127,127,127)', 'rgb(122,148,228)', 'rgb(132,174,220)', 'rgb(143,163,213)'],
+          title: {
+              text: '',
+              align: 'center',
+              verticalAlign: 'middle',
+              x: -135
+          },
+          accessibility: {
+              announceNewData: {
+                  enabled: true
               },
-              data: [ {
-                  name: 'BU',
-                  y: 60,
-                  drilldown: 'bu'
-                },{
-                  name: 'Marketing',
-                  y: 40,
-                  drilldown: 'marketing'
+              point: {
+                  valueSuffix: '%'
+              }
+          },
+          plotOptions: {
+            pie: {
+              size:'100%'
+            },
+            series: {
+                dataLabels: {
+                    enabled: false,
+                    format: '{point.y:.1f}%'
                 },
-              ]
-          }
-      ],
-      drilldown: {
-        series: [
-            {
-              name: 'BU',
-              id: 'bu',
-              showInLegend: true,
-              data: [
-                [
-                  'New',
-                  69
-                ],
-                [
-                  'Discussing',
-                  14
-                ],
-                [
-                  'Qualified',
-                  13
-                ],
-                [
-                  'Interested',
-                  2
-                ],
-                [
-                  'Unqualified',
-                  1
-                ],
-                [
-                  'Nurturing',
-                  1
-                ],
-              ]
-            },
-            {
-              name: 'Marketing',
-              id: 'marketing',
-              showInLegend: true,
-              data: [
-                [
-                  'New',
-                  69
-                ],
-                [
-                  'Discussing',
-                  14
-                ],
-                [
-                  'Qualified',
-                  13
-                ],
-                [
-                  'Interested',
-                  2
-                ],
-                [
-                  'Unqualified',
-                  1
-                ],
-                [
-                  'Nurturing',
-                  1
-                ],
-              ]
-            },
-        ]
-      }  
-    } as any);
+                cursor: 'pointer',
+            }
+          },
+          tooltip: {
+              // headerFormat: '<span style="font-size:11px">Percentage</span><br>',
+              // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+              formatter(){
+                let point = this,
+                amount;
+                amount_arr.forEach(d => {
+                  if(d[0] == point.point['name']){
+                    amount = d[1]
+                  }
+                })
+                return `${point.key} <br> <b>${point.series.name}: ${point.point.y}%</b> <br>Count: ${amount}`
+              }
+          },
+          legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            itemMarginTop: 10,
+            itemMarginBottom: 10,
+            // labelFormat: '{name} {y:.1f}%',
+            labelFormatter: function () {
+              let point = this,
+              no_of_opp;
+              amount_arr.forEach(d => {
+                if(d[0] == point.name){
+                  no_of_opp = d[1]
+                }
+              })
+              return `${point.name}: ${no_of_opp}(${point.y}%)`
+            }
+          },
+          series: [
+              {
+                  name: "Percentage",
+                  showInLegend: true,
+                  colorByPoint: true,
+                  innerSize: '50%',
+                  point: {
+                    events: {
+                        click: function () {
+                            // location.href = this.options.url;
+                            window.open(this.options.url);
+                        }
+                    }
+                  },
+                  data: [ {
+                      name: 'BU',
+                      y: parseInt(res.result.result.bu_per),
+                      drilldown: 'bu'
+                    },{
+                      name: 'Marketing',
+                      y: parseInt(res.result.result.mark_per),
+                      drilldown: 'marketing'
+                    },
+                  ]
+              }
+          ],
+          drilldown: {
+            series: [
+                {
+                  name: 'BU',
+                  id: 'bu',
+                  showInLegend: true,
+                  data: [
+                    [
+                      'New-BU',
+                      parseInt(res.result.result.bu_status.New_per),
+                    ],
+                    [
+                      'Discussing-BU',
+                      parseInt(res.result.result.bu_status.Discussing_per),
+                    ],
+                    [
+                      'Qualified-BU',
+                      parseInt(res.result.result.bu_status.Qualified_per),
+                    ],
+                    [
+                      'Interested-BU',
+                      parseInt(res.result.result.bu_status.Interested_per),
+                    ],
+                    [
+                      'Unqualified-BU',
+                      parseInt(res.result.result.bu_status.Unqualified_per),
+                    ],
+                    [
+                      'Nurturing-BU',
+                      parseInt(res.result.result.bu_status.Nurturing_per),
+                    ],
+                    [
+                      'Contacted-BU',
+                      parseInt(res.result.result.bu_status.Contacted_per),
+                    ],
+                    [
+                      'NA MQL-BU',
+                      parseInt(res.result.result.bu_status["NAMQL_per"]),
+                    ],
+                  ]
+                },
+                {
+                  name: 'Marketing',
+                  id: 'marketing',
+                  showInLegend: true,
+                  data: [
+                    [
+                      'New-Marketing',
+                      parseInt(res.result.result.mark_status.New_per),
+                    ],
+                    [
+                      'Discussing-Marketing',
+                      parseInt(res.result.result.mark_status.Discussing_per),
+                    ],
+                    [
+                      'Qualified-Marketing',
+                      parseInt(res.result.result.mark_status.Qualified_per),
+                    ],
+                    [
+                      'Interested-Marketing',
+                      parseInt(res.result.result.mark_status.Interested_per),
+                    ],
+                    [
+                      'Unqualified-Marketing',
+                      parseInt(res.result.result.mark_status.Unqualified_per),
+                    ],
+                    [
+                      'Nurturing-Marketing',
+                      parseInt(res.result.result.mark_status.Nurturing_per),
+                    ],
+                    [
+                      'Contacted-Marketing',
+                      parseInt(res.result.result.mark_status.Contacted_per),
+                    ],
+                    [
+                      'NA MQL-Marketing',
+                      parseInt(res.result.result.mark_status["NAMQL_per"]),
+                    ],
+                  ]
+                },
+            ]
+          }  
+        } as any);
+      }
+    );
   }
 
   openPipelineModal(){

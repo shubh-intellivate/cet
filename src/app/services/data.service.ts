@@ -69,6 +69,10 @@ export class DataService {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/order_overview", postData, this.httpOptions)
   }
 
+  public getLeadsOverview(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/leads_overview", postData, this.httpOptions)
+  }
+
   public getOrderRecords(postData: any): Observable<any> {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/get_rows_sales", postData, this.httpOptions)
   }
