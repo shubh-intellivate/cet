@@ -523,78 +523,112 @@ export class DashboardComponent implements OnInit {
                   name: 'BU',
                   id: 'bu',
                   showInLegend: true,
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function () {
+                              // location.href = this.options.url;
+                              window.open(this.options.url);
+                          }
+                      }
+                  },
                   data: [
-                    [
-                      'New-BU',
-                      parseInt(res.result.result.bu_status.New_per),
-                    ],
-                    [
-                      'Discussing-BU',
-                      parseInt(res.result.result.bu_status.Discussing_per),
-                    ],
-                    [
-                      'Qualified-BU',
-                      parseInt(res.result.result.bu_status.Qualified_per),
-                    ],
-                    [
-                      'Interested-BU',
-                      parseInt(res.result.result.bu_status.Interested_per),
-                    ],
-                    [
-                      'Unqualified-BU',
-                      parseInt(res.result.result.bu_status.Unqualified_per),
-                    ],
-                    [
-                      'Nurturing-BU',
-                      parseInt(res.result.result.bu_status.Nurturing_per),
-                    ],
-                    [
-                      'Contacted-BU',
-                      parseInt(res.result.result.bu_status.Contacted_per),
-                    ],
-                    [
-                      'NA MQL-BU',
-                      parseInt(res.result.result.bu_status["NAMQL_per"]),
-                    ],
+                    {
+                      name: 'New-BU',
+                      y: parseInt(res.result.result.bu_status.New_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=New'
+                    },
+                    {
+                      name: 'Discussing-BU',
+                      y: parseInt(res.result.result.bu_status.Discussing_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=Discussing'
+                    },
+                    {
+                      name: 'Qualified-BU',
+                      y: parseInt(res.result.result.bu_status.Qualified_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=Qualified'
+                    },
+                    {
+                      name: 'Interested-BU',
+                      y: parseInt(res.result.result.bu_status.Interested_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=Interested'
+                    },
+                    {
+                      name: 'Unqualified-BU',
+                      y: parseInt(res.result.result.bu_status.Unqualified_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=Unqualified'
+                    },
+                    {
+                      name: 'Nurturing-BU',
+                      y: parseInt(res.result.result.bu_status.Nurturing_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=Nurturing'
+                    },
+                    {
+                      name: 'Contacted-BU',
+                      y: parseInt(res.result.result.bu_status.Contacted_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=Contacted'
+                    },
+                    {
+                      name: 'NA MQL-BU',
+                      y: parseInt(res.result.result.bu_status["NAMQL_per"]),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=BU&lead_status=NA MQL'
+                    },
                   ]
                 },
                 {
                   name: 'Marketing',
                   id: 'marketing',
                   showInLegend: true,
+                  cursor: 'pointer',
+                  point: {
+                      events: {
+                          click: function () {
+                              // location.href = this.options.url;
+                              window.open(this.options.url);
+                          }
+                      }
+                  },
                   data: [
-                    [
-                      'New-Marketing',
-                      parseInt(res.result.result.mark_status.New_per),
-                    ],
-                    [
-                      'Discussing-Marketing',
-                      parseInt(res.result.result.mark_status.Discussing_per),
-                    ],
-                    [
-                      'Qualified-Marketing',
-                      parseInt(res.result.result.mark_status.Qualified_per),
-                    ],
-                    [
-                      'Interested-Marketing',
-                      parseInt(res.result.result.mark_status.Interested_per),
-                    ],
-                    [
-                      'Unqualified-Marketing',
-                      parseInt(res.result.result.mark_status.Unqualified_per),
-                    ],
-                    [
-                      'Nurturing-Marketing',
-                      parseInt(res.result.result.mark_status.Nurturing_per),
-                    ],
-                    [
-                      'Contacted-Marketing',
-                      parseInt(res.result.result.mark_status.Contacted_per),
-                    ],
-                    [
-                      'NA MQL-Marketing',
-                      parseInt(res.result.result.mark_status["NAMQL_per"]),
-                    ],
+                    {
+                      name: 'New-Marketing',
+                      y: parseInt(res.result.result.mark_status.New_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=New'
+                    },
+                    {
+                      name: 'Discussing-Marketing',
+                      y: parseInt(res.result.result.mark_status.Discussing_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=Discussing'
+                    },
+                    {
+                      name: 'Qualified-Marketing',
+                      y: parseInt(res.result.result.mark_status.Qualified_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=Qualified'
+                    },
+                    {
+                      name: 'Interested-Marketing',
+                      y: parseInt(res.result.result.mark_status.Interested_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=Interested'
+                    },
+                    {
+                      name: 'Unqualified-Marketing',
+                      y: parseInt(res.result.result.mark_status.Unqualified_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=Unqualified'
+                    },
+                    {
+                      name: 'Nurturing-Marketing',
+                      y: parseInt(res.result.result.mark_status.Nurturing_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=Nurturing'
+                    },
+                    {
+                      name: 'Contacted-Marketing',
+                      y: parseInt(res.result.result.mark_status.Contacted_per),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=Contacted'
+                    },
+                    {
+                      name: 'NA MQL-Marketing',
+                      y: parseInt(res.result.result.mark_status["NAMQL_per"]),
+                      url: this.base_url+'records?bu='+this.filterBu+'&geo='+this.filterGeo+'&timeframe='+this.filterTimeframe+'&fiscal_year='+this.filterFiscal_year+'&api_type=leads_overview&lead_generated_by=Marketing&lead_status=NA MQL'
+                    },
                   ]
                 },
             ]
