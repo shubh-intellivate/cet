@@ -19,9 +19,9 @@
         <li class="nav-item" ngbDropdown [ngClass]="{ 'active': dashboard.isActive }">
           <a routerLink="/dashboard" routerLinkActive="active" #dashboard="routerLinkActive" class="nav-link"> BU/DU Dashboard</a>
         </li>
-        <li class="nav-item" ngbDropdown [ngClass]="{ 'active': branches.isActive }">
+        <!-- <li class="nav-item" ngbDropdown [ngClass]="{ 'active': branches.isActive }">
           <a routerLink="/branches" routerLinkActive="active" #branches="routerLinkActive" class="nav-link"> Branches Dashboard</a>
-        </li>
+        </li> -->
       </ul>
     </div><!-- az-header-menu -->
     <div class="az-header-right">
@@ -89,7 +89,7 @@
           <a routerLink="/general-pages/profile" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
           <a routerLink="/general-pages/profile" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
           <a routerLink="/general-pages/profile" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a> -->
-          <a href="https://morpheusdev.service-now.com/$pwd_reset.do?sysparm_url=ss_default" target="_blank" class="dropdown-item"><i class="typcn typcn-cog"></i> Change Password</a>
+          <a href="https://morpheus.service-now.com/$pwd_reset.do?sysparm_url=ss_default" target="_blank" class="dropdown-item"><i class="typcn typcn-cog"></i> Change Password</a>
           <a routerLink="/logout" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
         </div>
       </div>
