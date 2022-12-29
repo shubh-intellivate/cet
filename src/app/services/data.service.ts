@@ -12,8 +12,8 @@ export class DataService {
   httpOptions = {
     headers: new HttpHeaders({
       'Referrer-Policy': 'no-referrer-when-downgrade',
-      // 'Access-Control-Allow-Origin': 'http://88.218.92.164/',
-      'Access-Control-Allow-Origin': 'http://45.66.159.11/',
+      'Access-Control-Allow-Origin': 'http://88.218.92.164/',
+      // 'Access-Control-Allow-Origin': 'http://45.66.159.11/',
       'Access-Control-Allow-Methods': 'GET,POST',
       'Access-Control-Allow-Credentials': 'true',
       'Authorization': 'Basic ' + btoa('shubhendru:Shubh@123')
@@ -69,6 +69,10 @@ export class DataService {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/order_overview", postData, this.httpOptions)
   }
 
+  public getOrderOverviewBranches(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet_branch/order_overview", postData, this.httpOptions)
+  }
+
   public getLeadsOverview(postData: any): Observable<any> {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/leads_overview", postData, this.httpOptions)
   }
@@ -87,6 +91,10 @@ export class DataService {
 
   public getSalesOverview(postData: any): Observable<any> {
     return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet/sales_overview", postData, this.httpOptions)
+  }
+
+  public getBillingOverview(postData: any): Observable<any> {
+    return this.http.post(environment.API_URL+"api/x_intp_cet_and_fin/cet_branch/billing_overview", postData, this.httpOptions)
   }
 
   public getLostOpportunities(postData: any): Observable<any> {

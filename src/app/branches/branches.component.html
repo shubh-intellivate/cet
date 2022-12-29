@@ -5,6 +5,57 @@
   .blur{
     filter: blur(5px);
   }
+  .w3-bar{
+      border-bottom: 1px solid #cdd4e0;
+      margin-bottom: 20px;
+      background-color: #ccc;
+      width: 100%;
+      overflow: hidden;
+    }
+    .w3-bar-item:hover{
+      background-color: rgb(127,127,127) !important;
+    }
+    .w3-bar-item{
+      border-right: 1px solid;
+    }
+    .w3-grey{
+      background-color: #7987a1 !important;
+      color: white !important;
+    }
+    .w3-bar .w3-button {
+        white-space: normal;
+        border: none;
+        display: inline-block;
+        padding: 8px 16px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        background-color: inherit;
+        text-align: center;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .w3-bar .w3-bar-item {
+        padding: 8px 16px;
+        float: left;
+        width: auto;
+        border: none;
+        display: block;
+        outline: 0;
+    }
+    /* .card-dashboard-five .card-title {
+        font-size: 12px !important;
+    }
+    .card-dashboard-five .card-text {
+        font-size: 11px !important;
+    } */
+    .container{
+      max-width: 95% !important;
+    }
+    .hideCategory{
+      display: none !important;
+    }
 </style>
 
 <div class="az-content az-content-dashboard">
@@ -14,8 +65,9 @@
         <nav class="nav">
           <div class="media">
             <div class="media-body">
-              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;">
-                <option value="">2021</option>
+              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #fiscal_year>
+                <option value="2022">FY 2022</option>
+                <option value="2023">FY 2023</option>
               </select>
             </div>
           </div>
@@ -23,8 +75,8 @@
             <div class="media-body">
                 <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #timeframe>
                   <!-- <option value="">Timeframe</option> -->
-                  <option value="annual">Annual</option>Z
-                  <!-- <option value="ytd">YTD</option> -->
+                  <option value="annual">Annual</option>
+                  <option value="YTD">YTD</option>
                   <option value="Q1">Q1</option>
                   <option value="Q2">Q2</option>
                   <option value="Q3">Q3</option>
@@ -59,102 +111,144 @@
           </div>
           <div class="media" [hidden]="true">
             <div class="media-body">
-              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #bu>
-                <option value="All BU">All BU</option>
-                <option value="BU AIPF BU">AIPF</option>
-                <option value="BU Display Business">Display</option>
-                <option value="BU Smart Mfg.">Smart Mfg.</option>
-                <option value="ATSS">ATSS</option>
-                <option value="Biz Enablement Service">Biz Enablement Service</option>
-                <option value="IT PF">IT PF</option>
-                <option value="Digital PF DU">Digital PF DU</option>
-                <option value="SA&S -Others">SA&S -Others</option>
-              </select>
+              <input type="text" #bu>
             </div>
           </div>
-          <div class="media" style="margin-left: 20px;">
+          <div class="media" style="margin-left: 20px;margin-right: 13px;">
             <div class="media-body">
               <div class="container btn btn-secondary dropdown-toggle">
                 <div class="row">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          BU
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="IndiaDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{selectedBuValue}}
                         </button>
                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')">All</a></li>
-                            <li class="dropdown-submenu">
-                              <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
-                              <ul class="dropdown-menu">
-                                <li class="dropdown-item"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">DU Digital Platform</a></li>
-                                <li class="dropdown-submenu">
-                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Enterprise DU')">Enterprise DU</a>
-                                  <ul class="dropdown-menu">
-                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
-                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
-                                  </ul>
-                                </li>
-                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU NMEC')">DU NMEC</a></li>
-                                <li class="dropdown-submenu">
-                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Solutions DU')">Public Solutions DU</a>
-                                  <ul class="dropdown-menu">
-                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Aviation')">DU Public Solutions - Aviation</a></li>
-                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Others')">DU Public Solutions - Others</a></li>
-                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions - Public Safety')">DU Public Solutions - Public Safety</a></li>
-                                  </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                  <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('SAS DU')">SAS DU</a>
-                                  <ul class="dropdown-menu">
-                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Australia MS')">DU SA&S - Australia MS</a></li>
-                                      <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('DU SA&S - Others')">DU SA&S - Others</a></li>
-                                  </ul>
-                                </li>
-                                <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('Solution Factory')">Solution Factory</a></li>
-                              </ul>
-                            </li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Transportation')">BU Transportation</a></li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Submarine')">BU Submarine</a></li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Smart Mfg.')">BU Smart Mfg.</a></li>
-                            <li class="dropdown-submenu">
-                              <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Safety BU')">Public Safety BU</a>
-                              <ul class="dropdown-menu">
-                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety - Aviation')">BU Public Safety - Aviation</a></li>
-                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety')">BU Public Safety</a></li>
-                              </ul>
-                            </li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU PNS Business')">BU PNS Business</a></li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU NEC Labs')">BU NEC Labs</a></li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Logistics')">BU Logistics</a></li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU JCCS')">BU JCCS</a></li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
-                            <li class="dropdown-submenu">
-                              <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS BU')">CNS BU</a>
-                              <ul class="dropdown-menu">
-                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS')">BU CNS</a></li>
-                                  <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU CNS 5G')">BU CNS 5G</a></li>
-                              </ul>
-                            </li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
-                            <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
+                          <li class="dropdown-item"><a href="javascript:void(0)" (click)="selectBu('')" *ngIf="access_bu_du == 'All'">All</a></li>
 
-                          </ul>
+                          <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('CNS (Consol)') > -1 ? '': 'hideCategory'">
+
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('CNS (Consol)')">CNS (Consol)</a>
+
+                            <ul class="dropdown-menu">
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU CNS') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU CNS')">BU CNS</a></li>
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU CNS 5G') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU CNS 5G')">BU CNS 5G</a></li>
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU CNS NWSL') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU CNS NWSL')">BU CNS NWSL</a></li>
+
+                            </ul>
+
+                          </li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Transportation') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Transportation')">BU Transportation</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Submarine') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Submarine')">BU Submarine</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Smart Mfg.') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Smart Mfg.')">BU Smart Mfg.</a></li>
+
+                          <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('BU Public Safety (Consol)') > -1 ? '': 'hideCategory'">
+
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('Public Safety BU')">BU Public Safety (Consol)</a>
+
+                            <ul class="dropdown-menu">
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Public Safety-Aviation') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety-Aviation')">BU Public Safety-Aviation</a></li>
+
+                                <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Public Safety') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Public Safety')">BU Public Safety</a></li>
+
+                            </ul>
+
+                          </li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU PNS Business') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU PNS Business')">BU PNS Business</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU NEC Labs') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU NEC Labs')">BU NEC Labs</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Logistics') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Logistics')">BU Logistics</a></li>
+                          
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Display Business') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Display Business')">BU Display Business</a></li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU Biz Enablement Services') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU Biz Enablement Services')">BU Biz Enablement Services</a></li>
+
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU AIPF BU') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU AIPF BU')">BU AIPF BU</a></li>
+
+                          <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('GDC') > -1 ? '': 'hideCategory'">
+
+                            <a  class="dropdown-item" tabindex="-1" href="javascript:void(0)" (click)="selectBu('GDC')">GDC</a>
+
+                            <ul class="dropdown-menu">
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU JCCS') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU JCCS')">DU JCCS</a></li>
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Digital Platform') > -1 ? '': 'hideCategory'"><a tabindex="-1" href="javascript:void(0)" (click)="selectBu('DU Digital Platform')">DU Digital Platform</a></li>
+
+                              <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('DU ESDU (Consol.)') > -1 ? '': 'hideCategory'">
+
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU ESDU (Consol.)')">DU ESDU (Consol.)</a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Enterprise Solutions') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Enterprise Solutions')">DU Enterprise Solutions</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Global Retail') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Global Retail')">DU Global Retail</a></li>
+
+                                </ul>
+
+                              </li>
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU NMEC') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU NMEC')">DU NMEC</a></li>
+
+                              <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('DU Public Solutions (Consol.)') > -1 ? '': 'hideCategory'">
+
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU Public Solutions (Consol.)')">DU Public Solutions (Consol.)</a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Public Solutions-Aviation') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions-Aviation')">DU Public Solutions-Aviation</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Public Solutions-Others') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions-Others')">DU Public Solutions-Others</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU Public Solutions-Public Safety') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU Public Solutions-Public Safety')">DU Public Solutions-Public Safety</a></li>
+
+                                </ul>
+
+                              </li>
+
+                              <li class="dropdown-submenu" [ngClass]="user_groups.indexOf('DU SA&S (Consol.)') > -1 ? '': 'hideCategory'">
+
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="selectBu('DU SA&S (Consol.)')">DU SA&S (Consol.)</a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU SA&S-Australia MS') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU SA&S-Australia MS')">DU SA&S-Australia MS</a></li>
+
+                                    <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU SAS-Others & SEI SD') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU SA&S-Others')">DU SAS-Others & SEI SD</a></li>
+
+                                </ul>
+
+                              </li>
+
+                              <li class="dropdown-item" [ngClass]="user_groups.indexOf('DU NexGen Connectivity') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('DU NexGen Connectivity')">DU NexGen Connectivity</a></li>
+
+                            </ul>
+
+                          </li>
+
+                          <li class="dropdown-item" [ngClass]="user_groups.indexOf('BU IP Led Biz') > -1 ? '': 'hideCategory'"><a href="javascript:void(0)" (click)="selectBu('BU IP Led Biz')">	
+                            BU IP Led Biz</a></li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
             </div>
           </div>
-          <div class="media">
+          <div class="media" style="margin-left: 10px;display: none;">
             <div class="media-body">
-              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #geo>
-                <!-- <option value="">Geo</option> -->
-                <option value="All Branches">All Branches</option>
-                <!-- <option value="india">India</option> -->
-                <option value="japan">Japan</option>
-                <option value="emea">EMEA</option>
-                <!-- <option value="LATAM">LATAM</option> -->
-                <option value="usa">USA</option>
-                <option value="apac">APAC</option>
-                <option value="Australia">Australia</option>
+              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()">
+                <option value="">India & DU</option>
               </select>
             </div>
           </div>
@@ -162,8 +256,23 @@
             <div class="media-body">
               <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #currency>
                 <!-- <option value="">Currency</option> -->
-                <option value="">INR(Mn)</option>
+                <option value="">M-INR</option>
                 <!-- <option>Dollar(Mn)</option> -->
+              </select>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-body">
+              <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()"  #geo>
+                <option value="">All Geo</option>
+                <option value="abo">ABO</option>
+                <option value="emea">EMEA</option>
+                <option value="jbo">JBO</option>
+                <option value="sbo">SBO</option>
+                <option value="usbo">USBO</option>
+                <option value="apac">APAC</option>
+                <option value="india">India</option>
+                <option value="Others">Others</option>
               </select>
             </div>
           </div>
@@ -177,316 +286,559 @@
           <a class="nav-link" routerLink="/"><i class="fas fa-elli psis-h"></i></a>
         </nav> -->
       </div>
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Order Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}/{{geoFilter}}<br>Values in Million</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <!-- <a href="javascript:void(0)" (click)="openPipelineModal()" *ngIf="hide_branches_order">Pipeline</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
-                    <a href="javascript:void(0)" (click)="openPipelineModal()">Pipeline</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="javascript:void(0)" (click)="createChartGaugeOrder()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <!-- <span title="Rank Info" (click)="openOrderInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div id="chart-gauge-order" style="height: 400px;"></div>
-              <!-- <div id="chart-gauge-order" [hidden]="hide_branches_order" style="height: 400px;"></div>
-              <div id="chart-gauge-order-branch" [hidden]="hide_single_branch_order" style="height: 400px;"></div> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Billing Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="openSalesModal()" *ngIf="salesBreakdown">Billing</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="javascript:void(0)" (click)="createChartGaugeSales()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span title="Rank Info" (click)="openSalesInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div id="chart-gauge-sales" style="height: 400px;"></div>
-            </div>
-          </div>
-        </div>
+      <div class="w3-bar">
+        <button class="w3-bar-item w3-button tablink w3-grey" (click)="showTab($event, 'Order', 'Order')">Order</button>
+        <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Sales', 'Sales')">Billing</button>
+        <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Sales Person', 'Sales Person')">Sales Person</button>
       </div>
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-8 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Growth Trend of Order Pipeline<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}/{{geoFilter}}<br>Values in Million<br>in last 3 Months</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleSegment()">
-                      <option value="stages">Excluding Suspect</option>
-                      <option value="classify">Only Suspect</option>
-                    </select>
+      <div id="Order" class="tabs">
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Order Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="openPipelineModal()" *ngIf="pipelineClassify">Pipeline</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="openFRankModal()" *ngIf="pipelineClassify">Suspect</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="openLeadsModal()" *ngIf="pipelineClassify">Leads</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="createChartGaugeOrder()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span title="Rank Info" (click)="openOrderInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <div id="chart-growth-trend" style="height: 250px;"></div>
+              <div class="card-body">
+                <div id="chart-gauge-order" style="height: 250px;"></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Closed Lost Opportunities<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}/{{geoFilter}}<br>Values in Million</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <!-- <span title="Rank Info" (click)="openOrderInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span> -->
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-10">
+                  <h6 class="card-title">Order Conversion<span *ngIf="currentBC">({{currentBC}}BC)</span></h6> 
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <select (change)="toggleOrderConversion()" style="width: 100px;" #toggleOrder>
+                        <option>By Amount</option>
+                        <option>By Number of Opportunities</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2" [hidden]="orderByAmount">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showOrderOppPercentage()">Reset</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2" [hidden]="orderByOpp">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showOrderAmtPercentage()">Reset</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <div id="chart-closed-lost-opp" style="height: 250px;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 389px;">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Newly Created Opportunities Leaderboard<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
-                <p class="card-text"></p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+              <div class="card-body" [hidden]="orderByOpp">
+                <div [hidden]="order_amt_graph" id="chart-order-amt" style="height: 231px;"></div>
+                <div [hidden]="order_amt_per" style="margin-top:33%;height:139px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderAmtGraph()">{{orderAmtPerValue}}</span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
-              <div id="opp-leaderboard" style="height: 250px;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 389px;">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
-                <p class="card-text"></p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+              <div class="card-body" [hidden]="orderByAmount">
+                <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 231px;"></div>
+                <div [hidden]="order_opp_per" style="margin-top:33%;height:139px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
-              <div id="order-trend" style="height: 250px;"></div>
-            </div>
-          </div>
-        </div>
-       
-      </div>
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-8">
-                <h6 class="card-title">Order Conversion<span *ngIf="currentBC">({{currentBC}}BC)</span></h6> 
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <select (change)="toggleOrderConversion()" style="width: 100px;" #toggleOrder>
-                      <option>By Amount</option>
-                      <option>By Number of Opportunities</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4" [hidden]="orderByAmount">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="showOrderOppPercentage()">Reset</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4" [hidden]="orderByOpp">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <a href="javascript:void(0)" (click)="showOrderAmtPercentage()">Reset</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body" [hidden]="orderByOpp">
-              <div [hidden]="order_amt_graph" id="chart-order-amt" style="height: 317px;"></div>
-              <div [hidden]="order_amt_per" style="margin-top:33%;height:241px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderAmtGraph()">{{orderAmtPerValue}}</span>
-                <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  (Basis {{actual_timeframe}})
-                </div>
-              </div>
-            </div>
-            <div class="card-body" [hidden]="orderByAmount">
-              <div [hidden]="order_opp_graph" id="chart-order-opp" style="height: 317px;"></div>
-              <div [hidden]="order_opp_per" style="margin-top:33%;height:241px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showOrderOppGraph()">{{orderOppPerValue}}</span>
-                <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
-                  (Basis {{actual_timeframe}})
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 220px;">
-            <div class="card-header row">
-              <div class="col-lg-12">
-                <h6 class="card-title">Projected Conversion rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15"></div>
-              <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{bidWinRate}}</span></div>
-            </div>
-          </div>
-          <div class="card card-dashboard-five mg-t-20" style="height: 220px;">
-            <div class="card-header row">
-              <div class="col-lg-12">
-                <h6 class="card-title">Orders Won<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}<br>Values in Million</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15">Last Month ({{ordersBookedMonth}})</div>
-              <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=order_booked_last_month&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{ordersBookedLastMonth}}</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="row row-sm">
-            <div class="col-lg-8 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
-                  </div>
-                </div>
-                <div class="card-body row">
-                  <div class="col-lg-4" style="text-align: center;">
-                    <div class="az-content-label az-content-label-sm">Current</div>
-                    <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{orderRunRate}}</span></div>
-                  </div><div class="col-lg-4" style="text-align: center;">
-                    <div class="az-content-label az-content-label-sm">Required</div>
-                    <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{requiredRunRate}}</span></div>
-                  </div>
-                  <div class="col-lg-4" style="text-align: center;">
-                    <div class="az-content-label az-content-label-sm">Estimated</div>
-                    <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{estimatedRunRate}}</span></div>
-                  </div>
+  
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" style="height: 130px;">
+              <div class="card-header row">
+                <div class="col-lg-12">
+                  <h6 class="card-title">Projected Conversion rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
                 </div>
               </div>
+              <div class="card-body" style="padding: 0px !important;">
+                <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{bidWinRate}}</span></div>
+              </div>
             </div>
-            <div class="col-lg-4 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five" style="height: 220px;">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">New Customers Acquired<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
-                  </div>
+            <div class="card card-dashboard-five mg-t-20" style="height: 130px;">
+              <div class="card-header row">
+                <div class="col-lg-12">
+                  <h6 class="card-title">New Customers Acquired<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
                 </div>
-                <div class="card-body">
-                  <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);margin-top: 20px;"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=new_customer_acquired&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{newCustomers}}</a></div>
+              </div>
+              <div class="card-body" style="padding: 0px !important;">
+                <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=new_customer_acquired&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{newCustomers}}</a></div>
+              </div>
+            </div>
+            <div class="card card-dashboard-five mg-t-20" style="height: 150px;">
+              <div class="card-header row">
+                <div class="col-lg-12">
+                  <h6 class="card-title">Orders Won<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{buFilter}}<br>Values in M-INR</p>
                 </div>
+              </div>
+              <div class="card-body" style="padding-top: 0px !important;">
+                <div class="az-content-label az-content-label-sm" style="font-size: 11px !important;">Last Month ({{ordersBookedMonth}})</div>
+                <div style="text-align:center; font-weight: 900;font-size: 2.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=order_booked_last_month&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{ordersBookedLastMonth}}</a></div>
               </div>
             </div>
           </div>
-          <div class="row row-sm mg-b-20 mg-t-20">
-            <div class="col-lg-4 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five" style="height: 220px;">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">Average Order Cycle Time<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Months</p>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="row row-sm">
+              <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="height: 210px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                    </div>
                   </div>
-                </div>
-                <div class="card-body">
-                  <div style="height:72px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{avgOrderCycle}}</span></div>
+                  <div class="card-body row">
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Current</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{orderRunRate}}</span></div>
+                    </div><div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Required</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{requiredRunRate}}</span></div>
+                    </div>
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Estimated</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{estimatedRunRate}}</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-8 mg-t-20 mg-lg-t-0">
-              <div class="card card-dashboard-five" style="height: 220px;">
-                <div class="card-header row">
-                  <div class="col-lg-12">
-                    <h6 class="card-title">Average Order <br>Size<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+            <div class="row row-sm mg-t-20">
+              <div class="col-lg-6">
+                <div class="card card-dashboard-five" style="height: 220px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Average Order Cycle Time<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Months</p>
+                    </div>
+                  </div>
+                  <div class="card-body" style="padding: 0px !important;">
+                    <div style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><span>{{avgOrderCycle}}</span></div>
                   </div>
                 </div>
-                <div class="card-body row">
-                  <div class="col-lg-6" style="text-align: center;">
-                    <!-- <div class="az-content-label az-content-label-sm">Simple</div> -->
-                    <div style="height:72px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&start_date=&end_date=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}">{{avgOrderSize}}</a></div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card card-dashboard-five" style="height: 220px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Average Order <br>Size<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                    </div>
                   </div>
-                  <div class="col-lg-6" style="text-align: center;">
-                    <div class="row" style="margin-top: -18px;margin-left:20px;">
+                  <div class="card-body row" style="    padding-top: 0px !important;">
+                    <div class="col-lg-7" style="text-align: center;">
+                      <!-- <div class="az-content-label az-content-label-sm">Simple</div> -->
+                      <div style="height:72px;margin-top: 15px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&show_records=all">{{avgOrderSize}}</a></div>
+                    </div>
+                    <div class="col-lg-5" style="text-align: center;">
+                      <div class="row" style="margin-left:10px;">
+                          <div class="az-content-label az-content-label-sm">
+                            <div class="row">
+                              Max
+                            </div>
+                            <div class="row">
+                              <div style="height:25px;text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&show_records=max">{{maxOrderSizeValue}}</a></div>
+                              <!-- <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">630</div> -->
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row" style="margin-left:10px;">
                         <div class="az-content-label az-content-label-sm">
                           <div class="row">
-                            Max Value
+                            Min
                           </div>
                           <div class="row">
-                            <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">{{maxOrderSizeValue}}</div>
-                            <!-- <div style="height:25px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">630</div> -->
+                            <div style="height:50px;text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);"><a style="color: rgb(70, 121, 167);" target="_blank" href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&type=&rank=&api_type=average_order_size&highestValue=0&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&show_records=min">{{minOrderSizeValue}}</a></div>
+                            <!-- <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">0.15</div> -->
                           </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-left:20px;">
-                      <div class="az-content-label az-content-label-sm">
-                        <div class="row">
-                          Min Value
-                        </div>
-                        <div class="row">
-                          <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">{{minOrderSizeValue}}</div>
-                          <!-- <div style="height:50px;text-align:center; font-weight: 900;font-size: 1.5rem;color: rgb(70, 121, 167);">0.15</div> -->
-                        </div>
-                      </div>
+                    </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" >
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Order Pipeline Trend<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleOrderTrend()" #toggleTrend>
+                        <option value="amount">Amount</option>
+                        <option value="opportunity">Opportunity</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
+                <div id="order-trend" [hidden]="hideOrderTrendAmt" style="height: 325px;"></div>
+                <div id="order-trend-opp" [hidden]="hideOrderTrendOpp" style="height: 325px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-12 col-xl-12 mg-t-20 mg-lg-t-0">
+            <div class="card card-table-one">
+              <div class="row">
+                <div class="col-md-12">
+                  <div style="text-align: center;">
+                    <h3 class="card-title" style="font-size: 1rem;">Top 7 Key Projects<span *ngIf="currentBC">({{currentBC}}BC)</span></h3>
+                    {{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>
+                    <select class="" style="border-width: 0px;" (change)="toggleProjects()" #toggleProj>
+                      <option value="actual">Actual (BC)</option>
+                      <option value="open">Open (SF)</option>
+                      <option value="open_from_bc">Open (BC)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table" style="table-layout: fixed; width: 100%">
+                  <thead *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
+                    <tr>
+                      <th class="wd-30p">Project</th>
+                      <th class="wd-30p">Account</th>
+                      <th class="wd-10p" style="text-align: center;">BU</th>
+                      <th class="wd-10p">Value(M-INR)</th>
+                      <th class="wd-10p" style="text-align: center;">Rank</th>
+                      <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                    </tr>
+                  </thead>
+                  <thead *ngIf="top_key_projects_open" [hidden]="hide_project_open">
+                    <tr>
+                      <th class="wd-30p">Project</th>
+                      <th class="wd-30p">Account</th>
+                      <th class="wd-10p" style="text-align: center;">BU</th>
+                      <th class="wd-10p">Value(Mn)</th>
+                      <th class="wd-10p" style="text-align: center;">Rank</th>
+                      <th class="wd-10p" style="text-align: center;">Stage</th>
+                      <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                    </tr>
+                  </thead>
+                  <thead *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
+                    <tr>
+                      <th class="wd-30p">Project</th>
+                      <th class="wd-30p">Account</th>
+                      <th class="wd-10p" style="text-align: center;">BU</th>
+                      <th class="wd-10p">Value(Mn)</th>
+                      <th class="wd-10p" style="text-align: center;">Rank</th>
+                      <th class="wd-10p" style="text-align: center;">Risk</th>
+                      <!-- <th class="wd-10p" style="text-align: right;">Closing Month</th> -->
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
+                    <tr>
+                      <td><strong>{{top_key_projects_actuals.project_1.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_1.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_1.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_1.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_1.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_1.month}}</strong></td> -->
+                    </tr>
+                    <tr>
+                      <td><strong>{{top_key_projects_actuals.project_2.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_2.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_2.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_2.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_2.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_2.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_3.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_3.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_3.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_3.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_3.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_3.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_4.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_4.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_4.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_4.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_4.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_4.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_5.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_5.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_5.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_5.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_5.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_6.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_6.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_6.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_6.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_6.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_actuals.project_7.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_7.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_7.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_actuals.project_7.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_actuals.project_7.rank | uppercase}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td> -->
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="top_key_projects_open" [hidden]="hide_project_open">
+                    <tr>
+                      <td><strong>{{top_key_projects_open.project_1.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_1.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_1.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_1.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_1.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_1.month}}</strong></td> -->
+                    </tr>
+                    <tr>
+                      <td><strong>{{top_key_projects_open.project_2.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_2.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_2.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_2.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_2.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_2.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_3.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_3.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_3.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_3.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_3.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_3.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_4.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_4.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_4.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_4.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_4.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_4.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_5.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_5.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_5.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_5.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_5.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_6.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_6.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_6.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_6.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_6.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open.project_7.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_7.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open.project_7.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open.project_7.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_7.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open.project_7.stage}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td> -->
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="top_key_projects_open_bc" [hidden]="hide_project_open_bc">
+                    <tr>
+                      <td><strong>{{top_key_projects_open_bc.project_1.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_1.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_1.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_1.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_1.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_1.risk}}</strong></td>
+                    </tr>
+                    <tr>
+                      <td><strong>{{top_key_projects_open_bc.project_2.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_2.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_2.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_2.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_2.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_2.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_2.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_3.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_3.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_3.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_3.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_3.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_3.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_3.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_4.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_4.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_4.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_4.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_4.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_4.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_4.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_5.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_5.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_5.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_5.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_5.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_5.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_6.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_6.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_6.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_6.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_6.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_6.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                    </tr><tr>
+                      <td><strong>{{top_key_projects_open_bc.project_7.oppertunity}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_7.account}}</strong></td>
+                      <td style="text-align: left;"><strong>{{top_key_projects_open_bc.project_7.bu}}</strong></td>
+                      <td><strong>{{top_key_projects_open_bc.project_7.amount}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_7.rank | uppercase}}</strong></td>
+                      <td style="text-align: center;"><strong>{{top_key_projects_open_bc.project_7.risk}}</strong></td>
+                      <!-- <td style="text-align: right;"><strong>{{top_key_projects_open_bc.project_5.month}}</strong></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Top 5 Key Accounts<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15">Order Value</div>
+                <div id="chart-top-accounts" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" style="height: 100%;">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleLostOpp()" #toggleLost>
+                        <option value="amount">Amount</option>
+                        <option value="opportunity">Opportunity</option>
+                      </select>
+                      <br>
+                      <a href="{{base_url}}records?bu={{buFilterLink}}&geo=&currency=&lost_reason=All&timeframe={{timeFilter == 'Annual' ? '' : timeFilter}}&fiscal_year={{filterFiscal_year}}" target="_blank" style="float: right;text-align: right;margin-right: 10px;">View All</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15"></div>
+                <div id="chart-pie-lost-opp" [hidden]="hideLostAmt" style="height: 250px;"></div>
+                <div id="chart-pie-lost-opp-number" [hidden]="hideLostOpp" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="Sales" class="tabs" style="display:none">
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Billing Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="openSalesModal()" *ngIf="salesBreakdown">Sales breakdown</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:void(0)" (click)="createChartGaugeSales()">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span title="Rank Info" (click)="openSalesInfo()"><i class="fa fa-info-circle fa-3" aria-hidden="true"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="chart-gauge-sales" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="row row-sm">
+              <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="height: 210px;">
+                  <div class="card-header row">
+                    <div class="col-lg-12">
+                      <h6 class="card-title">Run Rate<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                      <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                    </div>
+                  </div>
+                  <div class="card-body row">
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Current</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{salesRunRate}}</span></div>
+                    </div><div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Required</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{salesRequiredRunRate}}</span></div>
+                    </div>
+                    <div class="col-lg-4" style="text-align: center;padding-right: 0px;padding-left: 0px;">
+                      <div class="az-content-label az-content-label-sm">Estimated</div>
+                      <div style="text-align:center; font-weight: 900;font-size: 2rem;color: rgb(70, 121, 167);"><span>{{salesEstimatedRunRate}}</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -495,279 +847,89 @@
         </div>
       </div>
 
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-12 col-xl-12 mg-t-20 mg-lg-t-0">
-          <div class="card card-table-one">
-            <div class="row">
-              <div class="col-md-12">
-                <div style="text-align: center;">
-                  <h3 class="card-title" style="font-size: 1rem;">Top 5 Key Projects<span *ngIf="currentBC">({{currentBC}}BC)</span></h3>
-                  {{buFilter}}/{{timeFilter}}<br>
-                  <select class="" style="border-width: 0px;" (change)="toggleProjects()" #toggleProj>
-                    <option value="actual">Actual</option>
-                    <option value="open">Open</option>
-                  </select>
+      <div id="Sales Person" class="tabs" style="display:none">
+        <div class="row row-sm mg-b-20">
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five" style="height: 389px;">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Newly Created Opportunities Leaderboard<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                  <p class="card-text"></p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div class="card-body">
+                <!-- <div class="az-content-label az-content-label-sm mg-b-15">Order</div> -->
+                <div id="opp-leaderboard" style="height: 250px;"></div>
+              </div>
             </div>
-            <div class="table-responsive">
-              <table class="table" style="table-layout: fixed; width: 100%">
-                <thead>
-                  <tr>
-                    <th class="wd-30p">Project</th>
-                    <th class="wd-30p">Account</th>
-                    <th class="wd-10p" style="text-align: center;">BU</th>
-                    <th class="wd-10p">Value(Mn)</th>
-                    <th class="wd-10p">Rank</th>
-                    <th class="wd-10p" style="text-align: right;">Closing Month</th>
-                  </tr>
-                </thead>
-                <tbody *ngIf="top_key_projects_actuals" [hidden]="hide_project_actuals">
-                  <tr>
-                    <td><strong>{{top_key_projects_actuals.project_1.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_1.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_1.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_1.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_1.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_1.month}}</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>{{top_key_projects_actuals.project_2.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_2.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_2.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_2.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_2.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_2.month}}</strong></td>
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_3.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_3.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_3.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_3.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_3.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_3.month}}</strong></td>
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_4.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_4.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_4.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_4.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_4.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_4.month}}</strong></td>
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_actuals.project_5.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_5.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_actuals.project_5.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_5.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_actuals.project_5.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_actuals.project_5.month}}</strong></td>
-                  </tr>
-                </tbody>
-                <tbody *ngIf="top_key_projects_open" [hidden]="hide_project_open">
-                  <tr>
-                    <td><strong>{{top_key_projects_open.project_1.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_1.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_1.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_1.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_1.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_1.month}}</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>{{top_key_projects_open.project_2.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_2.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_2.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_2.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_2.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_2.month}}</strong></td>
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_3.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_3.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_3.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_3.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_3.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_3.month}}</strong></td>
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_4.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_4.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_4.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_4.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_4.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_4.month}}</strong></td>
-                  </tr><tr>
-                    <td><strong>{{top_key_projects_open.project_5.oppertunity}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_5.account}}</strong></td>
-                    <td style="text-align: left;"><strong>{{top_key_projects_open.project_5.bu}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_5.amount}}</strong></td>
-                    <td><strong>{{top_key_projects_open.project_5.rank | uppercase}}</strong></td>
-                    <td style="text-align: right;"><strong>{{top_key_projects_open.project_5.month}}</strong></td>
-                  </tr>
-                </tbody>
-              </table>
+          </div>
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-6">
+                  <h6 class="card-title">Growth Trend of Order Pipeline<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{buFilter}}/{{timeFilter}}/{{geoFilter}}<br>Values in Million<br>in last 3 Months</p>
+                </div>
+                <div class="col-lg-6">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleSegment()">
+                        <option value="stages">Excluding Suspect</option>
+                        <option value="classify">Only Suspect</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="chart-growth-trend" style="height: 250px;"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Top 5 Key Accounts<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':leadsModal}">
+    <div class="modal-dialog" role="document" style="max-width: 1000px;max-height: 1000px;overflow-y: initial !important;">
+      <div class="modal-content" style="margin-top: -20px;">
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
+          <h4 class="modal-title">Leads Analysis({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
+          <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closeLeadsModal()">
+            <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 80vh; overflow-y: auto;">
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-five">
+                <div class="card-header row">
+                  <div class="col-lg-6">
+                    <h6 class="card-title">Leads</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Number</p>
                   </div>
+                  <div class="col-lg-6">
+                    <div class="media" style="float: right;">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="leads-analysis" style="height: 400px;"></div>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15">Order Value</div>
-              <div id="chart-top-accounts" style="height: 250px;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-dashboard-five" style="height: 100%;">
-            <div class="card-header row">
-              <div class="col-lg-6">
-                <h6 class="card-title">Lost Opportunity Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-                <p class="card-text">{{buFilter}}/{{timeFilter}}</p>
-              </div>
-              <div class="col-lg-6">
-                <div class="media" style="float: right;">
-                  <div class="media-body">
-                    <!-- <i class="fa fa-filter fa-3" aria-hidden="true"></i> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="az-content-label az-content-label-sm mg-b-15"></div>
-              <div id="chart-pie-lost-opp" style="height: 250px;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row row-sm mg-b-20">
-        <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-table-one">
-            <h6 class="card-title">Geo Wise Health<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="wd-45p">Country</th>
-                    <th>Status</th>
-                    <th>Order conversion</th>
-                    <th>Say-Do</th>
-                    <th>Run rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>India</strong></td>
-                    <td class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: red;" class="fas fa-caret-down"></i><strong>134</strong> (1.51%)</td>
-                    <td>33.58%</td>
-                    <td>15.47Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>LATAM</strong></td>
-                    <td class="rag" style="background-color: #F0787B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>290</strong> (3.30%)</td>
-                    <td>9.22%</td>
-                    <td>7.99Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>APAC</strong></td>
-                    <td  class="rag" style="background-color: #F2C979;"></td>
-                    <td><i style="color: red;" class="fas fa-caret-down"></i><strong>250</strong> (3.00%)</td>
-                    <td>20.75%</td>
-                    <td>2.40Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Japan</strong></td>
-                    <td  class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                    <td>32.07%</td>
-                    <td>15.09Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>USA</strong></td>
-                    <td  class="rag" style="background-color: #F0787B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                    <td>32.07%</td>
-                    <td>15.09Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>EMEA</strong></td>
-                    <td  class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                    <td>32.07%</td>
-                    <td>15.09Mn</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-xl-6 mg-t-20 mg-lg-t-0">
-          <div class="card card-table-one" style="height: 100%;">
-            <h6 class="card-title">BU Performance<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="wd-45p">BU</th>
-                    <th>Status</th>
-                    <th>Order conversion</th>
-                    <th>Say-Do</th>
-                    <th>Run rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>AIPF</strong></td>
-                    <td class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: red;" class="fas fa-caret-down"></i><strong>134</strong> (1.51%)</td>
-                    <td>33.58%</td>
-                    <td>15.47Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>SMFG</strong></td>
-                    <td class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>290</strong> (3.30%)</td>
-                    <td>9.22%</td>
-                    <td>7.99Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Display</strong></td>
-                    <td class="rag" style="background-color: #F0787B;"></td>
-                    <td><i style="color: red;" class="fas fa-caret-down"></i><strong>250</strong> (3.00%)</td>
-                    <td>20.75%</td>
-                    <td>2.40Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Logistics</strong></td>
-                    <td class="rag" style="background-color: #B0D08B;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                    <td>32.07%</td>
-                    <td>15.09Mn</td>
-                  </tr>
-                  <tr>
-                    <td><strong>JCCS</strong></td>
-                    <td class="rag" style="background-color: #F2C979;"></td>
-                    <td><i style="color: green;" class="fas fa-caret-up"></i><strong>216</strong> (2.79%)</td>
-                    <td>32.07%</td>
-                    <td>15.09Mn</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
           </div>
         </div>
       </div>
@@ -778,8 +940,8 @@
     <div class="modal-dialog" role="document" style="max-width: 1000px;max-height: 1000px;overflow-y: initial !important;">
       <div class="modal-content" style="margin-top: -20px;">
         <div class="modal-header">
-          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{buFilter}}/{{timeFilter}}</h4> -->
-          <h4 class="modal-title">Pipeline Analysis({{buFilter}}/{{timeFilter}})</h4>
+          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
+          <h4 class="modal-title">Pipeline Analysis({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
           <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closePipelineModal()">
             <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
           </button>
@@ -790,17 +952,11 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Classify(Probability Wise)</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <h6 class="card-title">Classify(Basis Rank)({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
-                      <!-- <div class="media-body">
-                        <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleClassify()" #toggleClass>
-                          <option value="rank">Rank</option>
-                          <option value="classify">Classify</option>
-                        </select>
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -814,16 +970,16 @@
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Pipeline Distribution Basis BU's</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <h6 class="card-title">Geo({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
                       <div class="media-body">
-                        <!-- <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleGeo()" #toggleG>
+                        <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleGeo()" #toggleG>
                           <option value="rank">Rank</option>
                           <option value="classify">Classify</option>
-                        </select> -->
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -836,18 +992,18 @@
             </div>
           </div>
           <div class="row row-sm mg-b-20">
-            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Order Pipeline</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <h6 class="card-title">Segment({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
                       <div class="media-body">
                         <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleSegment()" #toggleSeg>
-                          <option value="stages">Stages</option>
+                          <option value="rank">Rank</option>
                           <option value="classify">Classify</option>
                         </select>
                       </div>
@@ -855,29 +1011,89 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <div id="order-pipeline-stages" [hidden]="segment_rank_show" style="height: 400px;"></div>
-                  <div id="order-pipeline-class" [hidden]="segment_class_show" style="height: 400px;"></div>
+                  <div id="subproject-pipeline-rank" [hidden]="segment_rank_show" style="height: 400px;"></div>
+                  <div id="subproject-pipeline-class" [hidden]="segment_class_show" style="height: 400px;"></div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
             <div class="col-lg-6 mg-t-20 mg-lg-t-0">
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Open Pipeline</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <h6 class="card-title">Type of Customer({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                  </div>
+                  <div class="col-lg-6">
+                    <!-- <div class="media" style="float: right;">
+                      <div class="media-body">
+                        <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleSegment()" #toggleSeg>
+                          <option value="rank">Rank</option>
+                          <option value="classify">Classify</option>
+                        </select>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="type-of-customer-rank" [hidden]="typeofcust_rank_show" style="height: 400px;"></div>
+                  <div id="type-of-customer-class" [hidden]="typeofcust_class_show" style="height: 400px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+          </div>
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-five">
+                <div class="card-header row">
+                  <div class="col-lg-6">
+                    <h6 class="card-title">Rank Aging({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in Numbers</p>
+                  </div>
+                  <div class="col-lg-6">
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="aging" style="height: 400px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':fRankModal}">
+    <div class="modal-dialog" role="document" style="max-width: 500px;max-height: 500px;">
+      <div class="modal-content" style="margin-top: -20px;">
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
+          <h4 class="modal-title">Suspect Analysis({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
+          <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closeFRankModal()">
+            <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-five">
+                <div class="card-header row">
+                  <div class="col-lg-6">
+                    <h6 class="card-title">Rank F({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
                     <div class="media" style="float: right;">
-                      <div class="media-body">
-                        
-                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="card-body">
-                  <div id="open-pipeline-stages" style="height: 400px;"></div>
-                  <!-- <div id="subproject-pipeline-class" [hidden]="segment_class_show" style="height: 400px;"></div> -->
+                  <div id="f-rank" *ngIf="fRankOpen > 0" style="height: 200px;"></div>
+                  <div *ngIf="fRankOpen == 0" style="text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);">NA</div>
                 </div>
               </div>
             </div>
@@ -888,37 +1104,63 @@
   </div>
 
   <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':salesModal}">
-    <div class="modal-dialog" role="document" style="max-width: 600px;max-height: 500px;">
+    <div class="modal-dialog" role="document" style="max-width: 1000px;max-height: 1000px;overflow-y: initial !important;">
       <div class="modal-content" style="margin-top: -20px;">
         <div class="modal-header">
-          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{buFilter}}/{{timeFilter}}</h4> -->
-          <h4 class="modal-title">Billing Breakdown({{buFilter}}/{{timeFilter}})</h4>
+          <!-- <h4 class="modal-title">Pipeline Analysis<br>{{geoFilter}}/{{buFilter}}/{{timeFilter}}</h4> -->
+          <h4 class="modal-title">Sales Breakdown({{geoFilter}}/{{buFilter}}/{{timeFilter}})</h4>
           <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closeSalesModal()">
             <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="height: 80vh; overflow-y: auto;">
           <div class="row row-sm mg-b-20">
-            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
               <div class="card card-dashboard-five">
                 <div class="card-header row">
                   <div class="col-lg-6">
-                    <h6 class="card-title">Total Billing Pipeline by Delivery Date</h6>
-                    <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in Million</p>
+                    <h6 class="card-title">New/Backlog({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
                   </div>
                   <div class="col-lg-6">
-                    <div class="media" style="float: right;">
-                      <div class="media-body">
-                        <select class="btn btn-secondary dropdown-toggle" [hidden]="true" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="toggleSales()" #toggleSale>
-                          <option value="overall">Overall</option>
-                          <option value="rank">Ranks</option>
-                        </select>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div class="card-body">
-                  <div id="billing-delivery-date" style="height: 400px;"></div>
+                  <div id="classify-sales" style="height: 250px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 mg-t-20 mg-lg-t-0"></div>
+          </div>
+          <div class="row row-sm mg-b-20">
+            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-five">
+                <div class="card-header row">
+                  <div class="col-lg-6">
+                    <h6 class="card-title">New Sales Trend({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                  </div>
+                  <div class="col-lg-6">
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="new-sales-trend" style="height: 250px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+              <div class="card card-dashboard-five">
+                <div class="card-header row">
+                  <div class="col-lg-6">
+                    <h6 class="card-title">Backlog Sales Trend({{currentBC}}BC)</h6>
+                    <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}<br>Values in M-INR</p>
+                  </div>
+                  <div class="col-lg-6">
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="backlog-sales-trend" style="height: 250px;"></div>
                 </div>
               </div>
             </div>
@@ -942,6 +1184,7 @@
                   <th>Stage</th>
                   <th>Rank</th>
                   <th>Probability</th>
+                  <th>Color</th>
                 </tr>
               </thead>
               <tbody>
@@ -949,46 +1192,55 @@
                   <th scope="row">Suspect</th>
                   <td>F</td>
                   <td>0%</td>
+                  <td><i style="color: rgb(182,196,237);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Contact/Prospect</th>
                   <td>E</td>
                   <td>10%</td>
+                  <td><i style="color: rgb(162,197,238);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">RFP Responded</th>
                   <td>D</td>
                   <td>30%</td>
+                  <td><i style="color: rgb(119,135,186);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Shortlisted</th>
                   <td>C</td>
                   <td>50%</td>
+                  <td><i style="color: rgb(117,150,208);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Final Negotiation</th>
                   <td>B</td>
                   <td>70%</td>
+                  <td><i style="color: rgb(57,93,157);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Order in Process</th>
                   <td>A</td>
                   <td>90%</td>
+                  <td><i style="color: rgb(122,148,228);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">PO/LOI Received</th>
                   <td>S</td>
                   <td>100%</td>
+                  <td><i style="color: rgb(132,174,220);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Order Recorded</th>
                   <td>Act</td>
                   <td>100%</td>
+                  <td><i style="color: rgb(127,127,127);" class="fas fa-circle"></i></td>
                 </tr>
                 <tr>
                   <th scope="row">Closed Lost</th>
                   <td>L</td>
                   <td>0%</td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
