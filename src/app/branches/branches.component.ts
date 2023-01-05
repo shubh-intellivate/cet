@@ -17,6 +17,10 @@ export class BranchesComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl(),
   });
+  prev_year_saydo_order_value: boolean = false;
+  prev_year_saydo_order: boolean = true;
+  cur_year_saydo_order_value: boolean = false;
+  cur_year_saydo_order: boolean = true;
   order_opp_per: boolean = false;
   order_opp_graph: boolean = true;
   order_amt_per: boolean = false;
@@ -66,7 +70,9 @@ export class BranchesComponent implements OnInit {
   base_url: any = "http://88.218.92.164/cet";
   // base_url: any = "http://localhost:4200/";
   // base_url: any = "http://45.66.159.11/cet/";
+  sayDoOrderValue: any;
   top_key_accounts: any;
+  sayDoSalesValue: any;
   actual_timeframe:any = '';
   classify_rank_show: boolean = false;
   classify_class_show: boolean = true;
@@ -162,6 +168,8 @@ export class BranchesComponent implements OnInit {
     this.getSalesRequiredRunRate('','','','','','','2022');
     this.getTopKeyProjects('','','','','','','2022');
     this.getTopKeyAccounts('','','','','','','2022');
+    this.getSayDoOrder('','','','','','','2022');
+    this.getSayDoSales('','','','','','','2022');
     this.getNewCustomersAcquired('','','','','','','2022');
     this.getLostOpportunities('','','','','','','2022');
     this.getOrderTrend('','','','','','','2022');
@@ -2836,49 +2844,6 @@ export class BranchesComponent implements OnInit {
             y: parseInt(this.rankAging["0to30"].S),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
-        },{
-          name: 'Act',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
-          },{
-            name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
-          },{
-            name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
-          },{
-            name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
-          },{
-            name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
-          }]
         }
       ]
     }
@@ -3768,8 +3733,24 @@ export class BranchesComponent implements OnInit {
     this.getNewCustomersAcquired(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.getLostOpportunities(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.getOrderTrend(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getSayDoOrder(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
+    this.getSayDoSales(this.filterBu, this.filterStart_date, this.filterEnd_date, this.filterGeo, this.filterCurrency, this.filterTimeframe, this.filterFiscal_year);
     this.showOrderOppPercentage();
     this.showOrderAmtPercentage();
+    this.showPrevYearSaydoValue();
+    this.showCurYearSaydoValue();
+  }
+
+  sayDoColor(val){
+    var styles: any;
+    if(val >= 115 || val <= 85){
+      styles = {'color' : '#FF7F7F'};
+    }else if((val < 115 && val > 110) || (val > 85 && val < 90)){
+      styles = {'color' : '#E5CB82'};
+    }else{
+      styles = {'color' : '#4AA240'};
+    }
+    return styles;
   }
 
   getBuNames(){
@@ -3794,6 +3775,250 @@ export class BranchesComponent implements OnInit {
       res => {
         this.bu_group_names = res.bu_names;
       });
+  }
+
+  getSayDoOrder(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
+
+    this.dataService.getSayDoOrder(data).subscribe(
+      res => {
+        if(res.result.status == "true"){
+          this.sayDoOrderValue = res.result.result.say_do_ratio_sales;
+          var xaxis = []
+          var yaxis = []
+          res.result.result.drilldown.forEach(element => {
+            for (let key in element) {
+              xaxis.push(key)
+              yaxis.push(parseInt(element[key]))
+            }
+          });
+          const chart_line_top_accounts = Highcharts.chart('chart-prev-year-saydo-order', {
+            // chart: {
+            //   zoomType: 'xy'
+            // },
+            title: {
+                text: ''
+            },
+            colors: ['rgb(70,121,167)','rgb(162,197,238)'],
+            yAxis: {
+                  title: {
+                    text: ''
+                },
+                type: 'logarithmic',
+                minorTickInterval: 100,
+                gridLineColor: 'transparent',
+                stackLabels: {
+                  enabled: true,
+                  style: {
+                      fontWeight: 'bold',
+                      color: ( // theme
+                          Highcharts.defaultOptions.title.style &&
+                          Highcharts.defaultOptions.title.style.color
+                      ) || 'gray'
+                  },
+                  formatter: function () {
+                    return this.total;
+                  }
+              },
+              labels:{
+                enabled: false
+              }
+            },
+            xAxis: {
+                categories: xaxis
+            },
+            plotOptions: {
+                line: {
+                  dataLabels: {
+                    enabled: true,
+                    formatter: function () {
+                      return this.y+'%';
+                    }
+                  }
+                },
+                column: {
+                  dataLabels: {
+                      enabled: true,
+                      formatter: function () {
+                        return this.y+'%';
+                      }
+                  }
+                },
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            // location.href = this.options.url;
+                            window.open(this.options.url);
+                        }
+                    }
+                },
+            },
+            tooltip: {
+              pointFormat: '<span style="color:{series.color}">{series.name}: {point.y}%</span><br/>'
+            },
+            series: [{
+                name: 'Order',
+                type: 'line',
+                showInLegend: false,
+                data: yaxis
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+          
+          } as any);
+        }
+      }
+    );    
+  }
+
+  getSayDoSales(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
+    var data =  {
+      "bu": this.filterBu,
+      "start_date": this.filterStart_date,
+      "end_date": this.filterEnd_date,
+      "geo": this.filterGeo,
+      "currency": this.filterCurrency,
+      "fiscal_year": this.filterFiscal_year,
+      "timeframe": this.filterTimeframe
+    }
+    bu = this.filterBu;
+    start_date = this.filterStart_date;
+    end_date = this.filterEnd_date;
+    geo = this.filterGeo;
+    currency = this.filterCurrency;
+    fiscal_year = this.filterFiscal_year;
+    timeframe = this.filterTimeframe;
+
+    this.dataService.getSayDoSales(data).subscribe(
+      res => {
+        if(res.result.status == "true"){
+          this.sayDoSalesValue = res.result.result.say_do_ratio_sales;
+          var xaxis = []
+          var yaxis = []
+          res.result.result.drilldown.forEach(element => {
+            for (let key in element) {
+              xaxis.push(key)
+              yaxis.push(parseInt(element[key]))
+            }
+          });
+          const chart_line_top_accounts = Highcharts.chart('chart-prev-year-saydo-sales', {
+            // chart: {
+            //   zoomType: 'xy'
+            // },
+            title: {
+                text: ''
+            },
+            colors: ['rgb(70,121,167)','rgb(162,197,238)'],
+            yAxis: {
+                  title: {
+                    text: ''
+                },
+                type: 'logarithmic',
+                minorTickInterval: 100,
+                gridLineColor: 'transparent',
+                stackLabels: {
+                  enabled: true,
+                  style: {
+                      fontWeight: 'bold',
+                      color: ( // theme
+                          Highcharts.defaultOptions.title.style &&
+                          Highcharts.defaultOptions.title.style.color
+                      ) || 'gray'
+                  },
+                  formatter: function () {
+                    return this.total;
+                  }
+              },
+              labels:{
+                enabled: false
+              }
+            },
+            xAxis: {
+                categories: xaxis
+            },
+            plotOptions: {
+                line: {
+                  dataLabels: {
+                    enabled: true,
+                    formatter: function () {
+                      return this.y+'%';
+                    }
+                  }
+                },
+                column: {
+                  dataLabels: {
+                      enabled: true,
+                      formatter: function () {
+                        return this.y+'%';
+                      }
+                  }
+                },
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            // location.href = this.options.url;
+                            window.open(this.options.url);
+                        }
+                    }
+                },
+            },
+            tooltip: {
+              pointFormat: '<span style="color:{series.color}">{series.name}: {point.y}%</span><br/>'
+            },
+            series: [{
+                name: 'Order',
+                type: 'line',
+                showInLegend: false,
+                data: yaxis
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+          
+          } as any);
+        }
+      }
+    );    
   }
 
   getTopKeyProjects(bu, start_date, end_date, geo, currency, timeframe, fiscal_year){
@@ -4532,6 +4757,26 @@ export class BranchesComponent implements OnInit {
     );
   }
 
+  showPrevYearSaydoValue(){
+    this.prev_year_saydo_order = true;
+    this.prev_year_saydo_order_value = false;
+  }
+
+  showLastYearSaydoOrder(){
+    this.prev_year_saydo_order_value = true;
+    this.prev_year_saydo_order = false;
+  }
+
+  showCurYearSaydoValue(){
+    this.cur_year_saydo_order = true;
+    this.cur_year_saydo_order_value = false;
+  }
+
+  showCurYearSaydoOrder(){
+    this.cur_year_saydo_order_value = true;
+    this.cur_year_saydo_order = false;
+  }
+
   createChartGaugeOrder(bu, start_date, end_date, geo, currency, timeframe, fiscal_year): void {
     var data =  {
       "bu": this.filterBu,
@@ -4881,7 +5126,7 @@ export class BranchesComponent implements OnInit {
                     enabled: true,
                     formatter: function() {
                       if (this.y > 0) {
-                        return this.point.name + ': ' +this.point.y
+                        return '('+this.point.name+')' + this.point.y
                       }
                     },
                     // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
@@ -4937,7 +5182,7 @@ export class BranchesComponent implements OnInit {
                     enabled: true,
                     formatter: function() {
                       if (this.y > 0) {
-                        return this.point.name + ' ' +this.point.y
+                        return '('+this.point.name+')' + this.point.y
                       }
                     },
                     // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
@@ -4965,22 +5210,22 @@ export class BranchesComponent implements OnInit {
                   borderColor: '#fff',
                   data: [
                     {
-                      name: 'A',
+                      name: '1',
                       y: parseInt(res.result.result.achieved.toGo["1"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
-                      name: 'B',
+                      name: '2',
                       y: parseInt(res.result.result.achieved.toGo["2"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
-                      name: 'C',
+                      name: '3',
                       y: parseInt(res.result.result.achieved.toGo["3"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     },
                     {
-                      name: 'D',
+                      name: '4',
                       y: parseInt(res.result.result.achieved.toGo["4"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=order_overview'
                     }
@@ -5429,7 +5674,7 @@ export class BranchesComponent implements OnInit {
                     enabled: true,
                     formatter: function() {
                       if (this.y > 0) {
-                        return this.point.name + ' ' +this.point.y
+                        return '('+this.point.name+')' + this.point.y
                       }
                     },
                     // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
@@ -5457,22 +5702,22 @@ export class BranchesComponent implements OnInit {
                   borderColor: '#fff',
                   data: [
                   {
-                    name: 'A',
+                    name: '1',
                     y: parseInt(res.result.result.achieved.open["1"]),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
-                    name: 'B',
+                    name: '2',
                     y: parseInt(res.result.result.achieved.open["2"]),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
-                    name: 'C',
+                    name: '3',
                     y: parseInt(res.result.result.achieved.open["3"]),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   },
                   {
-                    name: 'D',
+                    name: '4',
                     y: parseInt(res.result.result.achieved.open["4"]),
                     url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=open&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                   }
@@ -5485,7 +5730,7 @@ export class BranchesComponent implements OnInit {
                     enabled: true,
                     formatter: function() {
                       if (this.y > 0) {
-                        return this.point.name + ' ' +this.point.y
+                        return '('+this.point.name+')' + this.point.y
                       }
                     },
                     // format: '<span style="font-weight:normal;color:black;fill:white;">{point.name} {point.y}</span>',
@@ -5513,22 +5758,22 @@ export class BranchesComponent implements OnInit {
                   borderColor: '#fff',
                   data: [
                     {
-                      name: 'A',
+                      name: '1',
                       y: parseInt(res.result.result.achieved.toGo["1"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
-                      name: 'B',
+                      name: '2',
                       y: parseInt(res.result.result.achieved.toGo["2"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
-                      name: 'C',
+                      name: '3',
                       y: parseInt(res.result.result.achieved.toGo["3"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     },
                     {
-                      name: 'D',
+                      name: '4',
                       y: parseInt(res.result.result.achieved.toGo["4"]),
                       url: this.base_url+'records?bu='+bu+'&geo='+geo+'&currency='+currency+'&type=toGo&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=sales_overview'
                     }

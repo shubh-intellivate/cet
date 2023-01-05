@@ -2843,49 +2843,6 @@ export class DashboardComponent implements OnInit {
             y: parseInt(this.rankAging["0to30"].S),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
-        },{
-          name: 'Act',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
-          },{
-            name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
-          },{
-            name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
-          },{
-            name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
-          },{
-            name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].Act),
-            url:  this.base_url+'records?bu='+bu+'&rank=Act&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
-          }]
         }
       ]
     }

@@ -365,6 +365,32 @@
               </div>
             </div>
           </div>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-10">
+                  <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
+                </div>
+                <div class="col-lg-2">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showPrevYearSaydoValue()">Reset</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15">Order</div>
+                <div [hidden]="prev_year_saydo_order" id="chart-prev-year-saydo-order" style="height: 240px;"></div>
+                <div [hidden]="prev_year_saydo_order_value" style="margin-top:41%;height:142px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showLastYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoOrderValue)">{{sayDoOrderValue}}<span *ngIf="sayDoOrderValue">%</span></span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
   
         <div class="row row-sm mg-b-20">
@@ -814,6 +840,32 @@
               </div>
               <div class="card-body">
                 <div id="chart-gauge-sales" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-five">
+              <div class="card-header row">
+                <div class="col-lg-10">
+                  <h6 class="card-title">Say-Do Ratio<span *ngIf="currentBC">({{currentBC}}BC)</span></h6>
+                  <p class="card-text">{{geoFilter}}/{{buFilter}}/{{timeFilter}}</p>
+                </div>
+                <div class="col-lg-2">
+                  <div class="media" style="float: right;">
+                    <div class="media-body">
+                      <a href="javascript:void(0)" (click)="showCurYearSaydoValue()">Reset</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="az-content-label az-content-label-sm mg-b-15">Sales</div>
+                <div [hidden]="cur_year_saydo_order" id="chart-prev-year-saydo-sales" style="height: 240px;"></div>
+                <div [hidden]="cur_year_saydo_order_value" style="margin-top:35%;height: 159px;text-align:center; font-weight: 900;font-size: 3rem;color: rgb(70, 121, 167);cursor: pointer;"><span (click)="showCurYearSaydoOrder()" [ngStyle]="sayDoColor(sayDoSalesValue)">{{sayDoSalesValue}}<span *ngIf="sayDoSalesValue">%</span></span>
+                  <div style="text-align:center; font-weight: 900;font-size: 1rem;color: rgb(70, 121, 167);">
+                    ({{actual_timeframe}})
+                  </div>
+                </div>
               </div>
             </div>
           </div>
