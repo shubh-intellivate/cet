@@ -725,49 +725,13 @@ export class BranchesComponent implements OnInit {
       },
   
       series: [
-        // {
-        //   name: 'F',
-        //   dataLabels: {
-        //     enabled: true,
-        //     formatter:function() {
-        //       if(this.y != 0) {
-        //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-        //       }
-        //     },
-        //     style: {
-        //       color: 'white',
-        //       textOutline: 'transparent'
-        //     }
-        //   },
-        //   point: {
-        //     events: {
-        //         click: function () {
-        //             // location.href = this.options.url;
-        //             window.open(this.options.url);
-        //         }
-        //     }
-        //   },
-        //   data: [{
-        //     name: 'EE',
-        //     y: parseInt(this.pipelineClassify.EE.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
-        //   }, {
-        //     name: 'EN',
-        //     y: parseInt(this.pipelineClassify.EN.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
-        //   }, {
-        //     name: 'NN',
-        //     y: parseInt(this.pipelineClassify.NN.F),
-        //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
-        //   }]
-        // },
           {
-          name: 'E',
+          name: '0',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -785,59 +749,24 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'EE',
-            y: parseInt(this.pipelineClassify.EE.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
-          }, {
-            name: 'EN',
-            y: parseInt(this.pipelineClassify.EN.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
-          }, {
-            name: 'NN',
-            y: parseInt(this.pipelineClassify.NN.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
-          }]
-        },{
-          name: 'D',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: 'EE',
-            y: parseInt(this.pipelineClassify.EE.D),
+            y: parseInt(this.pipelineClassify.EE['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
-            y: parseInt(this.pipelineClassify.EN.D),
+            y: parseInt(this.pipelineClassify.EN['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
-            y: parseInt(this.pipelineClassify.NN.D),
+            y: parseInt(this.pipelineClassify.NN['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
-          name: 'C',
+          name: '1',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -855,24 +784,24 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'EE',
-            y: parseInt(this.pipelineClassify.EE.C),
+            y: parseInt(this.pipelineClassify.EE['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
-            y: parseInt(this.pipelineClassify.EN.C),
+            y: parseInt(this.pipelineClassify.EN['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
-            y: parseInt(this.pipelineClassify.NN.C),
+            y: parseInt(this.pipelineClassify.NN['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
-          name: 'B',
+          name: '2',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -890,24 +819,24 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'EE',
-            y: parseInt(this.pipelineClassify.EE.B),
+            y: parseInt(this.pipelineClassify.EE['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
-            y: parseInt(this.pipelineClassify.EN.B),
+            y: parseInt(this.pipelineClassify.EN['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
-            y: parseInt(this.pipelineClassify.NN.B),
+            y: parseInt(this.pipelineClassify.NN['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
-          name: 'A',
+          name: '3',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -925,24 +854,24 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'EE',
-            y: parseInt(this.pipelineClassify.EE.A),
+            y: parseInt(this.pipelineClassify.EE['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
-            y: parseInt(this.pipelineClassify.EN.A),
+            y: parseInt(this.pipelineClassify.EN['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
-            y: parseInt(this.pipelineClassify.NN.A),
+            y: parseInt(this.pipelineClassify.NN['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
-          name: 'S',
+          name: '4',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -960,15 +889,15 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'EE',
-            y: parseInt(this.pipelineClassify.EE.S),
+            y: parseInt(this.pipelineClassify.EE['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=ee&type=classify&api_type=order_overview'
           }, {
             name: 'EN',
-            y: parseInt(this.pipelineClassify.EN.S),
+            y: parseInt(this.pipelineClassify.EN['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=en&type=classify&api_type=order_overview'
           }, {
             name: 'NN',
-            y: parseInt(this.pipelineClassify.NN.S),
+            y: parseInt(this.pipelineClassify.NN['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&classify=nn&type=classify&api_type=order_overview'
           }]
         },{
@@ -977,7 +906,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1081,58 +1010,13 @@ export class BranchesComponent implements OnInit {
       },
   
       series: [
-      //   {
-      //   name: 'F',
-      //   dataLabels: {
-      //     enabled: true,
-      //     formatter:function() {
-      //       if(this.y != 0) {
-      //         return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-      //       }
-      //     },
-      //     style: {
-      //       color: 'white',
-      //       textOutline: 'transparent'
-      //     }
-      //   },
-      //   point: {
-      //     events: {
-      //         click: function () {
-      //             // location.href = this.options.url;
-      //             window.open(this.options.url);
-      //         }
-      //     }
-      //   },
-      //   data: [{
-      //     name: 'India',
-      //     y: parseInt(this.geoClassify.india.F),
-      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
-      //   }, {
-      //     name: 'Japan',
-      //     y: parseInt(this.geoClassify.japan.F),
-      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
-      //   }, {
-      //     name: 'USA',
-      //     y: parseInt(this.geoClassify.usa.F),
-      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
-      //   }, {
-      //     name: 'APAC',
-      //     y: parseInt(this.geoClassify.apac.F),
-      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
-      //   },{
-      //     name: 'EMEA',
-      //     y: parseInt(this.geoClassify.emea.F),
-      //     url:  this.base_url+'records?bu='+bu+'&rank=F&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
-      //   },
-      // ]
-      // },
-          {
-          name: 'E',
+        {
+          name: '0',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1150,77 +1034,33 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'India',
-            y: parseInt(this.geoClassify.india.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
-          }, {
-            name: 'Japan',
-            y: parseInt(this.geoClassify.japan.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
-          }, {
-            name: 'USA',
-            y: parseInt(this.geoClassify.usa.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
-          }, {
-            name: 'APAC',
-            y: parseInt(this.geoClassify.apac.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
-          },{
-            name: 'EMEA',
-            y: parseInt(this.geoClassify.emea.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
-          },
-        ]
-        },  {
-          name: 'D',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: 'India',
-            y: parseInt(this.geoClassify.india.D),
+            y: parseInt(this.geoClassify.india['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
-            y: parseInt(this.geoClassify.japan.D),
+            y: parseInt(this.geoClassify.japan['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
-            y: parseInt(this.geoClassify.usa.D),
+            y: parseInt(this.geoClassify.usa['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
-            y: parseInt(this.geoClassify.apac.D),
+            y: parseInt(this.geoClassify.apac['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
-            y: parseInt(this.geoClassify.emea.D),
+            y: parseInt(this.geoClassify.emea['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },  {
-          name: 'C',
+          name: '1',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1238,33 +1078,33 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'India',
-            y: parseInt(this.geoClassify.india.C),
+            y: parseInt(this.geoClassify.india['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
-            y: parseInt(this.geoClassify.japan.C),
+            y: parseInt(this.geoClassify.japan['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
-            y: parseInt(this.geoClassify.usa.C),
+            y: parseInt(this.geoClassify.usa['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
-            y: parseInt(this.geoClassify.apac.C),
+            y: parseInt(this.geoClassify.apac['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
-            y: parseInt(this.geoClassify.emea.C),
+            y: parseInt(this.geoClassify.emea['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
         },  {
-          name: 'B',
+          name: '2',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1282,33 +1122,33 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'India',
-            y: parseInt(this.geoClassify.india.B),
+            y: parseInt(this.geoClassify.india['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
-            y: parseInt(this.geoClassify.japan.B),
+            y: parseInt(this.geoClassify.japan['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
-            y: parseInt(this.geoClassify.usa.B),
+            y: parseInt(this.geoClassify.usa['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
-            y: parseInt(this.geoClassify.apac.B),
+            y: parseInt(this.geoClassify.apac['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
-            y: parseInt(this.geoClassify.emea.B),
+            y: parseInt(this.geoClassify.emea['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
-        },    {
-          name: 'A',
+        },  {
+          name: '3',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1326,33 +1166,33 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'India',
-            y: parseInt(this.geoClassify.india.A),
+            y: parseInt(this.geoClassify.india['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
-            y: parseInt(this.geoClassify.japan.A),
+            y: parseInt(this.geoClassify.japan['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
-            y: parseInt(this.geoClassify.usa.A),
+            y: parseInt(this.geoClassify.usa['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
-            y: parseInt(this.geoClassify.apac.A),
+            y: parseInt(this.geoClassify.apac['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
-            y: parseInt(this.geoClassify.emea.A),
+            y: parseInt(this.geoClassify.emea['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
-        },{
-          name: 'S',
+        },  {
+          name: '4',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1370,23 +1210,23 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'India',
-            y: parseInt(this.geoClassify.india.S),
+            y: parseInt(this.geoClassify.india['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=india&type=geo&api_type=order_overview'
           }, {
             name: 'Japan',
-            y: parseInt(this.geoClassify.japan.S),
+            y: parseInt(this.geoClassify.japan['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=japan&type=geo&api_type=order_overview'
           }, {
             name: 'USA',
-            y: parseInt(this.geoClassify.usa.S),
+            y: parseInt(this.geoClassify.usa['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=usa&type=geo&api_type=order_overview'
           }, {
             name: 'APAC',
-            y: parseInt(this.geoClassify.apac.S),
+            y: parseInt(this.geoClassify.apac['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=apac&type=geo&api_type=order_overview'
           },{
             name: 'EMEA',
-            y: parseInt(this.geoClassify.emea.S),
+            y: parseInt(this.geoClassify.emea['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&country=emea&type=geo&api_type=order_overview'
           },
         ]
@@ -1396,7 +1236,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1515,7 +1355,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1559,7 +1399,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1603,7 +1443,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1716,12 +1556,12 @@ export class BranchesComponent implements OnInit {
   
       series: [
           {
-          name: 'E',
+          name: '0',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1739,75 +1579,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: this.subProjectClassify.project1.name,
-            y: parseInt(this.subProjectClassify.project1.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
-          },{
-            name: this.subProjectClassify.project2.name,
-            y: parseInt(this.subProjectClassify.project2.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
-          },{
-            name: this.subProjectClassify.project3.name,
-            y: parseInt(this.subProjectClassify.project3.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
-          },{
-            name: this.subProjectClassify.project4.name,
-            y: parseInt(this.subProjectClassify.project4.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
-          },{
-            name: this.subProjectClassify.project5.name,
-            y: parseInt(this.subProjectClassify.project5.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
-          }]
-        },{
-          name: 'D',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: this.subProjectClassify.project1.name,
-            y: parseInt(this.subProjectClassify.project1.D),
+            y: parseInt(this.subProjectClassify.project1['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
-            y: parseInt(this.subProjectClassify.project2.D),
+            y: parseInt(this.subProjectClassify.project2['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
-            y: parseInt(this.subProjectClassify.project3.D),
+            y: parseInt(this.subProjectClassify.project3['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
-            y: parseInt(this.subProjectClassify.project4.D),
+            y: parseInt(this.subProjectClassify.project4['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
-            y: parseInt(this.subProjectClassify.project5.D),
+            y: parseInt(this.subProjectClassify.project5['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
-          name: 'C',
+          name: '1',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1825,32 +1622,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: this.subProjectClassify.project1.name,
-            y: parseInt(this.subProjectClassify.project1.C),
+            y: parseInt(this.subProjectClassify.project1['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
-            y: parseInt(this.subProjectClassify.project2.C),
+            y: parseInt(this.subProjectClassify.project2['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
-            y: parseInt(this.subProjectClassify.project3.C),
+            y: parseInt(this.subProjectClassify.project3['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
-            y: parseInt(this.subProjectClassify.project4.C),
+            y: parseInt(this.subProjectClassify.project4['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
-            y: parseInt(this.subProjectClassify.project5.C),
+            y: parseInt(this.subProjectClassify.project5['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
-          name: 'B',
+          name: '2',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1868,32 +1665,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: this.subProjectClassify.project1.name,
-            y: parseInt(this.subProjectClassify.project1.B),
+            y: parseInt(this.subProjectClassify.project1['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
-            y: parseInt(this.subProjectClassify.project2.B),
+            y: parseInt(this.subProjectClassify.project2['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
-            y: parseInt(this.subProjectClassify.project3.B),
+            y: parseInt(this.subProjectClassify.project3['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
-            y: parseInt(this.subProjectClassify.project4.B),
+            y: parseInt(this.subProjectClassify.project4['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
-            y: parseInt(this.subProjectClassify.project5.B),
+            y: parseInt(this.subProjectClassify.project5['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
-          name: 'A',
+          name: '3',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1911,32 +1708,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: this.subProjectClassify.project1.name,
-            y: parseInt(this.subProjectClassify.project1.A),
+            y: parseInt(this.subProjectClassify.project1['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
-            y: parseInt(this.subProjectClassify.project2.A),
+            y: parseInt(this.subProjectClassify.project2['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
-            y: parseInt(this.subProjectClassify.project3.A),
+            y: parseInt(this.subProjectClassify.project3['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
-            y: parseInt(this.subProjectClassify.project4.A),
+            y: parseInt(this.subProjectClassify.project4['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
-            y: parseInt(this.subProjectClassify.project5.A),
+            y: parseInt(this.subProjectClassify.project5['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
-          name: 'S',
+          name: '4',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -1954,23 +1751,23 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: this.subProjectClassify.project1.name,
-            y: parseInt(this.subProjectClassify.project1.S),
+            y: parseInt(this.subProjectClassify.project1['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project1.name
           },{
             name: this.subProjectClassify.project2.name,
-            y: parseInt(this.subProjectClassify.project2.S),
+            y: parseInt(this.subProjectClassify.project2['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project2.name
           },{
             name: this.subProjectClassify.project3.name,
-            y: parseInt(this.subProjectClassify.project3.S),
+            y: parseInt(this.subProjectClassify.project3['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project3.name
           },{
             name: this.subProjectClassify.project4.name,
-            y: parseInt(this.subProjectClassify.project4.S),
+            y: parseInt(this.subProjectClassify.project4['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project4.name
           },{
             name: this.subProjectClassify.project5.name,
-            y: parseInt(this.subProjectClassify.project5.S),
+            y: parseInt(this.subProjectClassify.project5['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&type=segment&api_type=order_overview&segment='+this.subProjectClassify.project5.name
           }]
         },{
@@ -1979,7 +1776,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2096,7 +1893,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2139,7 +1936,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2182,7 +1979,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2295,12 +2092,12 @@ export class BranchesComponent implements OnInit {
   
       series: [
           {
-          name: 'E',
+          name: '0',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2318,51 +2115,20 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'Government',
-            y: parseInt(this.typeOfCustomer.goverment.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
-          },{
-            name: 'Enterprise',
-            y: parseInt(this.typeOfCustomer.enterprise.E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
-          }]
-        },{
-          name: 'D',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: 'Government',
-            y: parseInt(this.typeOfCustomer.goverment.D),
+            y: parseInt(this.typeOfCustomer.goverment['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
           },{
             name: 'Enterprise',
-            y: parseInt(this.typeOfCustomer.enterprise.D),
+            y: parseInt(this.typeOfCustomer.enterprise['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
           }]
         },{
-          name: 'C',
+          name: '1',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2380,20 +2146,20 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'Government',
-            y: parseInt(this.typeOfCustomer.goverment.C),
+            y: parseInt(this.typeOfCustomer.goverment['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
           },{
             name: 'Enterprise',
-            y: parseInt(this.typeOfCustomer.enterprise.C),
+            y: parseInt(this.typeOfCustomer.enterprise['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
           }]
         },{
-          name: 'B',
+          name: '2',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2411,20 +2177,20 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'Government',
-            y: parseInt(this.typeOfCustomer.goverment.B),
+            y: parseInt(this.typeOfCustomer.goverment['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
           },{
             name: 'Enterprise',
-            y: parseInt(this.typeOfCustomer.enterprise.B),
+            y: parseInt(this.typeOfCustomer.enterprise['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
           }]
         },{
-          name: 'A',
+          name: '3',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2442,20 +2208,20 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'Government',
-            y: parseInt(this.typeOfCustomer.goverment.A),
+            y: parseInt(this.typeOfCustomer.goverment['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
           },{
             name: 'Enterprise',
-            y: parseInt(this.typeOfCustomer.enterprise.A),
+            y: parseInt(this.typeOfCustomer.enterprise['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
           }]
         },{
-          name: 'S',
+          name: '4',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2473,11 +2239,11 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: 'Government',
-            y: parseInt(this.typeOfCustomer.goverment.S),
+            y: parseInt(this.typeOfCustomer.goverment['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=government'
           },{
             name: 'Enterprise',
-            y: parseInt(this.typeOfCustomer.enterprise.S),
+            y: parseInt(this.typeOfCustomer.enterprise['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=type_of_customer&type_of_cust=enterprise'
           }]
         },{
@@ -2486,7 +2252,7 @@ export class BranchesComponent implements OnInit {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2587,12 +2353,12 @@ export class BranchesComponent implements OnInit {
   
       series: [
         {
-          name: 'E',
+          name: '0',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2610,75 +2376,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
-          },{
-            name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
-          },{
-            name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
-          },{
-            name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
-          },{
-            name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].E),
-            url:  this.base_url+'records?bu='+bu+'&rank=E&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
-          }]
-        },{
-          name: 'D',
-          dataLabels: {
-            enabled: true,
-            formatter:function() {
-              if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
-              }
-            },
-            style: {
-              color: 'white',
-              textOutline: 'transparent'
-            }
-          },
-          point: {
-            events: {
-                click: function () {
-                    // location.href = this.options.url;
-                    window.open(this.options.url);
-                }
-            }
-          },
-          data: [{
-            name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].D),
+            y: parseInt(this.rankAging["151greater"]['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
             name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].D),
+            y: parseInt(this.rankAging["91to150"]['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
           },{
             name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].D),
+            y: parseInt(this.rankAging["61to90"]['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
           },{
             name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].D),
+            y: parseInt(this.rankAging["31to60"]['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
           },{
             name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].D),
+            y: parseInt(this.rankAging["0to30"]['0']),
             url:  this.base_url+'records?bu='+bu+'&rank=D&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
-          name: 'C',
+          name: '1',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2696,32 +2419,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].C),
+            y: parseInt(this.rankAging["151greater"]['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
             name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].C),
+            y: parseInt(this.rankAging["91to150"]['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
           },{
             name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].C),
+            y: parseInt(this.rankAging["61to90"]['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
           },{
             name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].C),
+            y: parseInt(this.rankAging["31to60"]['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
           },{
             name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].C),
+            y: parseInt(this.rankAging["0to30"]['1']),
             url:  this.base_url+'records?bu='+bu+'&rank=C&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
-          name: 'B',
+          name: '2',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2739,32 +2462,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].B),
+            y: parseInt(this.rankAging["151greater"]['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
             name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].B),
+            y: parseInt(this.rankAging["91to150"]['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
           },{
             name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].B),
+            y: parseInt(this.rankAging["61to90"]['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
           },{
             name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].B),
+            y: parseInt(this.rankAging["31to60"]['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
           },{
             name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].B),
+            y: parseInt(this.rankAging["0to30"]['2']),
             url:  this.base_url+'records?bu='+bu+'&rank=B&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
-          name: 'A',
+          name: '3',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2782,32 +2505,32 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].A),
+            y: parseInt(this.rankAging["151greater"]['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
             name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].A),
+            y: parseInt(this.rankAging["91to150"]['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
           },{
             name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].A),
+            y: parseInt(this.rankAging["61to90"]['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
           },{
             name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].A),
+            y: parseInt(this.rankAging["31to60"]['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
           },{
             name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].A),
+            y: parseInt(this.rankAging["0to30"]['3']),
             url:  this.base_url+'records?bu='+bu+'&rank=A&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         },{
-          name: 'S',
+          name: '4',
           dataLabels: {
             enabled: true,
             formatter:function() {
               if(this.y != 0) {
-                return '<span style="font-weight:normal;color:white;fill:white;">'+this.series.name+': '+this.y+ '</span>';
+                return '<span style="font-weight:normal;color:white;fill:white;">'+'('+this.series.name+') '+this.y+ '</span>';
               }
             },
             style: {
@@ -2825,23 +2548,23 @@ export class BranchesComponent implements OnInit {
           },
           data: [{
             name: '>150 Days',
-            y: parseInt(this.rankAging["151greater"].S),
+            y: parseInt(this.rankAging["151greater"]['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=150&end_range=0'
           },{
             name: '91-150 Days',
-            y: parseInt(this.rankAging["91to150"].S),
+            y: parseInt(this.rankAging["91to150"]['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=91&end_range=150'
           },{
             name: '61-90 Days',
-            y: parseInt(this.rankAging["61to90"].S),
+            y: parseInt(this.rankAging["61to90"]['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=61&end_range=90'
           },{
             name: '31-60 Days',
-            y: parseInt(this.rankAging["31to60"].S),
+            y: parseInt(this.rankAging["31to60"]['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=31&end_range=60'
           },{
             name: '0-30 Days',
-            y: parseInt(this.rankAging["0to30"].S),
+            y: parseInt(this.rankAging["0to30"]['4']),
             url:  this.base_url+'records?bu='+bu+'&rank=S&timeframe='+timeframe+'&fiscal_year='+fiscal_year+'&api_type=ageing&start_range=0&end_range=30'
           }]
         }
